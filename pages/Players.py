@@ -42,7 +42,7 @@ if selected_player:
             **DX Debut:** {df['dx_debut'].iloc[0]}"""
         )
         tab_stats, tab_game_log = st.tabs(["Stats", "Game Log"])
-        with tab_stas:
+        with tab_stats:
             st.subheader(":green[Overview]")
             st.dataframe(
                 df,
@@ -63,5 +63,9 @@ if selected_player:
                     "on_base_plus_slugging"
                 )
             )
+
+        with tab_game_log:
+            st.markdown("Coming soon")
+            
     else:
         st.warning("No player found with that name.")
