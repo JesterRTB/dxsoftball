@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from Home import supabase
 
-st.set_page_config(page_title="D-X Player Search", page_icon="🥎")
+st.set_page_config(page_title="D-X Player Search", layout="wide", page_icon="🥎")
 
 def get_all_players():
     # Fetch just the player names from the primary_positions table
@@ -33,6 +33,7 @@ selected_player = st.selectbox(
 
 if selected_player:
     df = fetch_player_data(selected_player)
+    st.set_page_config(page_title=f"{selected_player}", layout="wide", page_icon="🥎")
     
     if not df.empty:
         # Displaying the high-level profile info
