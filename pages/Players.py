@@ -52,7 +52,7 @@ if selected_player:
                 placeholder="",
                 column_order=[
                     "season","games_batting","plate_appearances","runs","home_runs","runs_batted_in","batting_average","on_base_percentage","slugging_percentage",
-                    "on_base_plus_slugging","wraa","defensive_run_value","wins_above_replacement"
+                    "on_base_plus_slugging","wrc_plus","wraa","defensive_run_value","wins_above_replacement"
                 ],
                 column_config={
                     "season": st.column_config.Column("Season", help="**Season**"),
@@ -61,7 +61,14 @@ if selected_player:
                     "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
                     "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
                     "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
-                    "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**")
+                    "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**"),
+                    "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**"),
+                    "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**"),
+                    "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**"),
+                    "wrc_plus": st.column_config.NumberColumn("WRC+", format="%.0f", help="**Adjusted Weighted Runs Created**"),
+                    "wraa": st.column_config.NumberColumn("Bat", format="%.1f", help="**Batting Run Value**"),
+                    "defensive_run_value": st.column_config.NumberColumn("Def", format="%.1f", help="**Defensive Run Value**"),
+                    "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**")
                 }
             )
 
