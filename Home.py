@@ -41,7 +41,7 @@ def get_league_schedule(url):
 st.subheader(":green[D-Generation X Schedule]")
 
 try:
-    ical_link = st.secrets["TEAM_CALENDAR_URL"]
+    ical_link = st.secrets["CALENDAR_URL"]
     df = get_league_schedule(ical_link)
     
     # Display the upcoming games in a clean table
