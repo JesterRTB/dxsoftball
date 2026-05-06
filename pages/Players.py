@@ -53,7 +53,7 @@ if selected_player:
                 column_order=[
                     "season","games_batting","plate_appearances","runs","home_runs","runs_batted_in","batting_average","on_base_percentage","slugging_percentage",
                     "on_base_plus_slugging","wraa","defensive_run_value","wins_above_replacement"
-                ]
+                ],
                 column_config={
                     "season": st.column_config.Column("Season", help="**Season**"),
                     "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
