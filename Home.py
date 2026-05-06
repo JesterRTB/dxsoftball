@@ -49,5 +49,5 @@ try:
     st.table(df[["Date", "Time", "Opponent", "Field"]])
 
 except Exception as e:
-    st.error("Wait... something went wrong with the calendar sync.")
+    st.error(f"Error details: {e}") # This will show the actual technical error
     st.info("Make sure 'requests', 'ics', and 'arrow' are in your requirements.txt!")
