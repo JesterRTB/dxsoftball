@@ -46,7 +46,10 @@ try:
     
     # Display the upcoming games in a clean table
     # We drop the 'Unix' column so the user doesn't see it
-    st.table(df[["Date", "Time", "Opponent", "Field"]])
+    st.table(
+        df[["Date", "Time", "Opponent", "Field"]],
+        hide_index=True
+    )
 
 except Exception as e:
     st.error(f"Error details: {e}") # This will show the actual technical error
