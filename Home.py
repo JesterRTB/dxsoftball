@@ -14,7 +14,7 @@ def init_connection():
 
 supabase = init_connection()
 
-st.set_page_config(page_title="D-Generation X", page_icon="🥎")
+st.set_page_config(page_title="D-Generation X", page_icon="🥎", initial_sidebar_state="expanded")
 
 # 1. Fetch and Parse
 def get_league_schedule(url):
