@@ -27,6 +27,7 @@ selected_player = st.selectbox(
     "Select a player", 
     options=players,
     index=None,
+    width=300,
     placeholder="Select a player",
     label_visibility="collapsed"
 )
