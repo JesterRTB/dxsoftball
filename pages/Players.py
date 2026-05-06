@@ -43,25 +43,25 @@ if selected_player:
         )
         tab_stats, tab_game_log = st.tabs(["Stats", "Game Log"])
         with tab_stas:
-        st.subheader(":green[Overview]")
-        st.dataframe(
-            df,
-            height="content",
-            hide_index=True,
-            placeholder="",
-            column_order=(
-                "season",
-                "wins_above_replacement",
-                "games_batting",
-                "plate_appearances",
-                "runs",
-                "home_runs",
-                "runs_batted_in",
-                "batting_average",
-                "on_base_percentage",
-                "slugging_percentage",
-                "on_base_plus_slugging"
+            st.subheader(":green[Overview]")
+            st.dataframe(
+                df,
+                height="content",
+                hide_index=True,
+                placeholder="",
+                column_order=(
+                    "season",
+                    "wins_above_replacement",
+                    "games_batting",
+                    "plate_appearances",
+                    "runs",
+                    "home_runs",
+                    "runs_batted_in",
+                    "batting_average",
+                    "on_base_percentage",
+                    "slugging_percentage",
+                    "on_base_plus_slugging"
+                )
             )
-        )
     else:
         st.warning("No player found with that name.")
