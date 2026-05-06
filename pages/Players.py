@@ -32,7 +32,7 @@ selected_player = st.selectbox(
 )
 
 if selected_player:
-    df = fetch_player_data(player_search)
+    df = fetch_player_data(selected_player)
     
     if not df.empty:
         # Displaying the high-level profile info
