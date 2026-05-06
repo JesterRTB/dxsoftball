@@ -16,35 +16,38 @@ supabase = init_connection()
 
 st.set_page_config(page_title="D-Generation X", page_icon="🥎")
 
-def get_calendar_events(url):
+# 1. Fetch and Parse
+def get_league_schedule(url):
+    # Fetch the raw calendar data
     response = requests.get(url)
     calendar = Calendar(response.text)
     
     events = []
     for event in calendar.events:
-        # Convert to local time (Chicago)
-        start = arrow.get(event.begin).to('US/Central')
+        # QuickScores usually provides UTC; convert to Chicago time
+        start_time = arrow.get(event.begin).to('US/Central')
+        
         events.append({
-            "Game": event.name,
-            "Date": start.format('MMM D'),
-            "Time": start.format('h:mm A'),
-            "Location": event.location,
-            "Raw_Date": start.datetime # For sorting
+            "Date": start_time.format('ddd, MMM D'),
+            "Time": start_time.format('h:mm A'),
+            "Opponent": event.name.replace("Softball - ", ""), # Clean up the text
+            "Field": event.location if event.location else "TBD",
+            "Unix": start_time.timestamp() # For sorting
         })
     
-    return pd.DataFrame(events).sort_values("Raw_Date")
+    # Return as a DataFrame sorted by time
+    return pd.DataFrame(events).sort_values("Unix")
 
-# Your "Public Address in iCal format" from Google Settings
-ics_url = st.secrets["<iframe src="https://calendar.google.com/calendar/embed?src=0njlfmi13vb164gn4banaovrt5m8rhd9%40import.calendar.google.com&ctz=America%2FChicago" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>"]
+st.subheader(":green[D-Generation X Schedule]")
 
 try:
-    df = get_calendar_events(ics_url)
+    ical_link = st.secrets["TEAM_CALENDAR_URL"]
+    df = get_league_schedule(ical_link)
     
-    st.subheader("Upcoming Schedule")
-    # Display as a clean, flat table
-    st.table(df[["Date", "Time", "Game", "Location"]])
-    
-except Exception as e:
-    st.error("Could not sync with the league calendar.")
+    # Display the upcoming games in a clean table
+    # We drop the 'Unix' column so the user doesn't see it
+    st.table(df[["Date", "Time", "Opponent", "Field"]])
 
-st.image("https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
+except Exception as e:
+    st.error("Wait... something went wrong with the calendar sync.")
+    st.info("Make sure 'requests', 'ics', and 'arrow' are in your requirements.txt!")
