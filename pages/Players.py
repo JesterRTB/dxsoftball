@@ -48,7 +48,7 @@ if selected_player:
     total_row['on_base_plus_slugging'] = total_row['on_base_percentage']+total_row['slugging_percentage']
     total_row['strikeout_percentage']
     total_ops_points = (df['ops_plus']*df['plate_appearances']).sum()
-    #total_woba_points = (df['woba']*df['plate_appearances']).sum()
+    total_woba_points = (df['woba']*df['plate_appearances']).sum()
     total_wrc_points = (df['wrc_plus']*df['plate_appearances']).sum()
     total_pa = df['plate_appearances'].sum()
     total_row['wrc_plus'] = total_wrc_points/total_pa
