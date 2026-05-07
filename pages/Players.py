@@ -34,6 +34,16 @@ selected_player = st.selectbox(
 
 if selected_player:
     df = fetch_player_data(selected_player)
+    
+    # Create a total row for all columns
+    total_row = df.sum(numeric_only=True).to_frame().T
+    
+    # Give the index a name like 'Career Total'
+    total_row.index = ['Total']
+    
+    # Append it to the original DataFrame
+    df_with_total = pd.concat([df, total_row])
+    
     st.set_page_config(page_title=f"{selected_player}", layout="wide", page_icon="🥎")
     
     if not df.empty:
@@ -47,7 +57,7 @@ if selected_player:
         with tab_stats:
             st.subheader(":green[Overview]")
             st.dataframe(
-                df,
+                df_with_total,
                 height="content",
                 hide_index=True,
                 placeholder="",
