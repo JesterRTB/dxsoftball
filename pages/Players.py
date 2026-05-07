@@ -277,7 +277,7 @@ if selected_player:
                     "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \nPitching+Fielding+Positional"),
                     "replacement_runs": st.column_config.NumberColumn("Replacement", format="%.1f", help="**Replacement Run Value**"),
                     "runs_above_replacement": st.column_config.NumberColumn("RAR", format="%.1f", help="**Runs Above Replacement**  \nBatting+Defense+Replacement"),
-                    "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**  \nRAR/RPW  \nRPW= "Runs Per Win" - Value varies by season but is typically in the low-mid 20s")
+                    "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**  \nRAR/RPW  \nRPW= Runs Per Win - Value varies by season but is typically in the low-mid 20s")
                 }
             )
 
