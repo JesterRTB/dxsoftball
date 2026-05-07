@@ -53,7 +53,18 @@ if selected_player:
     
     # Append it to the original DataFrame
     df_with_total = pd.concat([df, total_row])
+
+    # 1. Define the styling function
+    def highlight_total_row(row):
+        # Check if the 'season' column for this row is exactly "Total"
+        if row['season'] == "Total":
+            # Apply a subtle gray tint with 20% opacity
+            return ['background-color: rgba(128, 128, 128, 0.2)'] * len(row)
+        else:
+            # Return empty strings (no style) for other rows
+            return [''] * len(row)
     
+    styled_df = df_with_total.style.apply(highlight_total_row, axis=1)
     st.set_page_config(page_title=f"{selected_player}", layout="wide", page_icon="🥎")
     
     if not df.empty:
@@ -67,7 +78,7 @@ if selected_player:
         with tab_stats:
             st.subheader(":green[Overview]")
             st.dataframe(
-                df_with_total,
+                styled_df,
                 height="content",
                 hide_index=True,
                 placeholder="",
