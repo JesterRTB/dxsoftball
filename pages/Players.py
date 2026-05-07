@@ -38,6 +38,7 @@ if selected_player:
     # Calculations
     df['strikeout_percentage'] = df['strikeout_percentage'] * 100
     df['walk_percentage'] = df['walk_percentage'] * 100
+    df['range_factor'] = (df['putouts']+df['assists'])/df['innings_defense']*7
     df['fielding_run_value_with_adjustment'] = df['fielding_run_value']+df['designated_hitter_adjustment']
     
     # Create a total row for all columns
@@ -60,6 +61,7 @@ if selected_player:
     total_row['batting_average_balls_in_play'] = (total_row['hits']-total_row['home_runs'])/(total_row['at_bats']-total_row['strikeouts_batting']-total_row['home_runs']+total_row['sacrifice_flies'])
     total_row['runs_allowed_per_seven'] = total_row['runs_allowed']/total_row['innings_pitched']*7
     total_row['strikeouts_per_seven'] = total_row['strikeouts_pitching']/total_row['innings_pitched']*7
+    total_row['range_factor'] = (total_row['putouts']+total_row['assists'])/total_row['innings_defense']*7
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
@@ -221,7 +223,7 @@ if selected_player:
                 placeholder="",
                 column_order=[
                     "season","games_batting","innings_defense","innings_pitched","innings_catcher","innings_first_base","innings_second_base","innings_third_base","innings_shortstop","innings_left_field",
-                    "innings_left_center_field","innings_right_center_field","innings_right_field","innings_designated_hitter","putouts","assists","out_credit_fielding","fielding_run_value",
+                    "innings_left_center_field","innings_right_center_field","innings_right_field","innings_designated_hitter","putouts","assists","range_factor","out_credit_fielding","fielding_run_value",
                     "designated_hitter_adjustment","fielding_run_value_with_adjustment"
                 ],
                 column_config={
@@ -241,6 +243,7 @@ if selected_player:
                     "innings_designated_hitter": st.column_config.NumberColumn("DH", format="%.1f", help="**Innings Played as Designated Hitter**"),
                     "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
                     "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
+                    "range_factor": st.column_config.NumberColumn("RF/7", format="%d", help="**Range Factor Per Seven Innings**  \n(PO+A)/Inn*7"),
                     "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs. The remaining 0.9 is split evenly between all fielders  \nwho touch the ball leading to an out"),
                     "fielding_run_value": st.column_config.NumberColumn("rawFRV", format="%.1f", help="**Raw Fielding Run Value**"),
                     "designated_hitter_adjustment": st.column_config.NumberColumn("DHA", format="%.1f", help="**Designated Hitter Adjustment**  \nSitting players accrue negative run value as if they were on the field and didn't make any plays.  \nTo balance the team average to zero, an equal amount of positive run value is distributed equally amongst the players in the field."),
