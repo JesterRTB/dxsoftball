@@ -46,6 +46,7 @@ if selected_player:
     #total_woba_points = (df['woba']*df['plate_appearances']).sum()
     total_wrc_points = (df['wrc_plus']*df['plate_appearances']).sum()
     total_pa = df['plate_appearances'].sum()
+    total_row['wrc_plus'] = total_wrc_points/total_pa
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
