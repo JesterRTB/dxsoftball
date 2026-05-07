@@ -115,7 +115,7 @@ if selected_player:
                 placeholder="",
                 column_order=[
                     "season","games_batting","at_bats","plate_appearances","hits","singles","doubles","triples","home_runs","total_bases","runs","runs_batted_in",
-                    "walks","strikeouts_batting,"sacrifice_flies","batting_double_plays","batting_triple_plays","batting_average"
+                    "walks","strikeouts_batting","sacrifice_flies","batting_double_plays","batting_triple_plays","batting_average"
                 ],
                 column_config={
                     "season": st.column_config.Column("Season", help="**Season**"),
