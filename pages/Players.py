@@ -50,6 +50,8 @@ if selected_player:
     total_woba_points = (df['woba']*df['plate_appearances']).sum()
     total_wrc_points = (df['wrc_plus']*df['plate_appearances']).sum()
     total_pa = df['plate_appearances'].sum()
+    total_row['ops_plus'] = total_ops_points/total_pa
+    total_row['woba'] = total_woba_points/total_pa
     total_row['wrc_plus'] = total_wrc_points/total_pa
     total_row['strikeout_percentage'] = total_row['strikeouts_batting']/total_pa*100
     total_row['walk_percentage'] = total_row['walks']/total_pa*100
