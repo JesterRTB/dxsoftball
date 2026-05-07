@@ -40,6 +40,7 @@ if selected_player:
     df['walk_percentage'] = df['walk_percentage'] * 100
     df['range_factor'] = (df['putouts']+df['assists'])/df['innings_defense']*7
     df['fielding_run_value_with_adjustment'] = df['fielding_run_value']+df['designated_hitter_adjustment']
+    df['runs_above_replacement'] = df['wraa']+df['defensive_run_value']+df['replacement_runs']
     
     # Create a total row for all columns
     total_row = df.sum(numeric_only=True).to_frame().T
@@ -259,7 +260,26 @@ if selected_player:
                 }
             )
 
-    
+            st.write("")
+            st.subheader(":green[Value]")
+            st.dataframe(
+                styled_df,
+                height="content",
+                hide_index=True,
+                placeholder="",
+                column_order=["season","wraa","pitching_run_value","fielding_run_value","designated_hitter_adjustment","defensive_run_value","replacement_runs","runs_above_replacement","wins_above_replacement"],
+                column_config={
+                    "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
+                    "wraa": st.column_config.NumberColumn("Batting", format="%.1f", help="**Batting Run Value**"),
+                    "pitching_run_value": st.column_config.NumberColumn("Pitching", format="%.1f", help="**Pitching Run Value**"),
+                    "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help="**Raw Fielding Run Value**"),
+                    "designated_hitter_adjustment": st.column_config.NumberColumn("Positional", format="%.1f", help="**Designated Hitter Adjustment**  \nSitting players accrue negative run value as if they were on the field and didn't make any plays.  \nTo balance the team average to zero, an equal amount of positive run value is distributed equally amongst the players in the field."),
+                    "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**"),
+                    "replacement_runs": st.column_config.NumberColumn("Replacement", format="%.1f", help="**Replacement Run Value**"),
+                    "runs_above_replacement": st.column_config.NumberColumn("RAR", format="%.1f", help="**Runs Above Replacement**"),
+                    "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**")
+                }
+            )
 
         with tab_game_log:
             st.markdown("Coming soon")
