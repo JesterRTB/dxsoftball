@@ -37,6 +37,7 @@ if selected_player:
     
     # Create a total row for all columns
     total_row = df.sum(numeric_only=True).to_frame().T
+    total_row['season'] = "Total"
     total_row['batting_average'] = total_row['hits']/total_row['at_bats']
     total_row['on_base_percentage'] = (total_row['hits']+total_row['walks'])/total_row['plate_appearances']
     total_row['slugging_percentage'] = total_row['total_bases']/total_row['at_bats']
