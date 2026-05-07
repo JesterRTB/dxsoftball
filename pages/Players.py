@@ -46,7 +46,6 @@ if selected_player:
     total_row['on_base_percentage'] = (total_row['hits']+total_row['walks'])/total_row['plate_appearances']
     total_row['slugging_percentage'] = total_row['total_bases']/total_row['at_bats']
     total_row['on_base_plus_slugging'] = total_row['on_base_percentage']+total_row['slugging_percentage']
-    total_row['strikeout_percentage']
     total_ops_points = (df['ops_plus']*df['plate_appearances']).sum()
     total_woba_points = (df['woba']*df['plate_appearances']).sum()
     total_wrc_points = (df['wrc_plus']*df['plate_appearances']).sum()
@@ -54,6 +53,8 @@ if selected_player:
     total_row['wrc_plus'] = total_wrc_points/total_pa
     total_row['strikeout_percentage'] = total_row['strikeouts_batting']/total_pa*100
     total_row['walk_percentage'] = total_row['walks']/total_pa*100
+    total_row['isolated_power'] = total_row['slugging_percentage']-total_row['batting_average']
+    total_row['batting_average_balls_in_play'] = (total_row['hits']-total_row['home_runs'])/(total_row['at_bats']-total_row['strikeouts_batting']-total_row['home_runs']+total_row['sacrifice_flies'])
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
@@ -105,7 +106,7 @@ if selected_player:
                     "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**"),
                     "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**"),
                     "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**"),
-                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created**"),
+                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus**"),
                     "wraa": st.column_config.NumberColumn("Bat", format="%.1f", help="**Batting Run Value**"),
                     "defensive_run_value": st.column_config.NumberColumn("Def", format="%.1f", help="**Defensive Run Value**"),
                     "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**")
@@ -167,11 +168,13 @@ if selected_player:
                     "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**"),
                     "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**"),
                     "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**"),
-                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created**"),
-                    "wraa": st.column_config.NumberColumn("Bat", format="%.1f", help="**Batting Run Value**"),
-                    "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
-                    "at_bats": st.column_config.NumberColumn("AB", format="%d", help="**At-Bats**"),
-                    "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
+                    "ops_plus": st.column_config.NumberColumn("OPS+", format="%.0f", help="**Adjusted On-Base Plus Slugging Plus**"),
+                    "isolated_power": st.column_config.NumberColumn("ISO", format="%.3f", help="**Isolated Power**  \nSLG-AVG"),
+                    "batting_average_balls_in_play": st.column_config.NumberColumn("BABIP", format="%.3f", help="**Batting Average on Balls In Play**"),
+                    "wrc": st.column_config.NumberColumn("wRC", format="%.0f", help="**Weighted Runs Created**"),
+                    "wraa": st.column_config.NumberColumn("wRAA", format="%.1f", help="**Weighted Runs Above Average**"),
+                    "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help="**Weighted On-Base Average**"),
+                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus**")
                 }
             )
 
