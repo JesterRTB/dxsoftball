@@ -201,7 +201,7 @@ if selected_player:
             # Pitching Stats only visible if player has ever pitched
             if has_pitched:
                 st.write("")
-                st.subheader(":green[Pitching]")
+                st.subheader(":green[Pitching]", help="Pitching stats tracked since Summer 2025")
                 st.dataframe(
                     styled_pitching_df,
                     height="content",
@@ -222,7 +222,7 @@ if selected_player:
                 )
                 
             st.write("")
-            st.subheader(":green[Fielding]")
+            st.subheader(":green[Fielding]", help="Fielding stats tracked since Summer 2025")
             st.dataframe(
                 styled_fielding_df,
                 height="content",
