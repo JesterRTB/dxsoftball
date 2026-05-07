@@ -76,6 +76,7 @@ if selected_player:
         )
         tab_stats, tab_game_log = st.tabs(["Stats", "Game Log"])
         with tab_stats:
+            # Overview / Quick Stats / Dashboard
             st.subheader(":green[Overview]")
             st.dataframe(
                 styled_df,
@@ -101,6 +102,40 @@ if selected_player:
                     "wraa": st.column_config.NumberColumn("Bat", format="%.1f", help="**Batting Run Value**"),
                     "defensive_run_value": st.column_config.NumberColumn("Def", format="%.1f", help="**Defensive Run Value**"),
                     "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**")
+                }
+            )
+
+            # Standard Batting Stats
+            st.write("")
+            st.subheader(":green[Standard Batting]")
+            st.dataframe(
+                styled_df,
+                height="content",
+                hide_index=True,
+                placeholder="",
+                column_order=[
+                    "season","games_batting","at_bats","plate_appearances","hits","singles","doubles","triples","home_runs","total_bases","runs","runs_batted_in",
+                    "walks","strikeouts_batting,"sacrifice_flies","batting_double_plays","batting_triple_plays","batting_average"
+                ],
+                column_config={
+                    "season": st.column_config.Column("Season", help="**Season**"),
+                    "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
+                    "at_bats": st.column_config.NumberColumn("AB", format="%d", help="**At-Bats**"),
+                    "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
+                    "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
+                    "singles": st.column_config.NumberColumn("1B", format="%d", help="**Singles**"),
+                    "doubles": st.column_config.NumberColumn("2B", format="%d", help="**Doubles**"),
+                    "triples": st.column_config.NumberColumn("3B", format="%d", help="**Triples**"),
+                    "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
+                    "total_bases": st.column_config.NumberColumn("TB", format="%d", help="**Total Bases**"),
+                    "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
+                    "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
+                    "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases on Balls / Walks**"),
+                    "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Strikeouts**\nIncludes foul outs"),
+                    "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**"),
+                    "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**"),
+                    "batting_triple_plays": st.column_config.NumberColumn("HITP", format="%d", help="**Hit Into Triple Plays**"),
+                    "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**")
                 }
             )
 
