@@ -88,7 +88,7 @@ if selected_player:
                     "on_base_plus_slugging","wrc_plus","wraa","defensive_run_value","wins_above_replacement"
                 ],
                 column_config={
-                    "season": st.column_config.Column("Season", help="**Season**"),
+                    "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
                     "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
                     "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
                     "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
@@ -118,7 +118,7 @@ if selected_player:
                     "walks","strikeouts_batting","sacrifice_flies","batting_double_plays","batting_triple_plays","batting_average"
                 ],
                 column_config={
-                    "season": st.column_config.Column("Season", help="**Season**"),
+                    "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
                     "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
                     "at_bats": st.column_config.NumberColumn("AB", format="%d", help="**At-Bats**"),
                     "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
