@@ -188,7 +188,7 @@ if selected_player:
                 height="content",
                 hide_index=True,
                 placeholder="",
-                column_order=["season","games_pitching","innings_pitched","runs_allowed","strikeouts_pitching","runs_allowed_per_seven","strikeouts_per_seven","out_credit_pitching","pitching_run_credit"],
+                column_order=["season","games_pitching","innings_pitched","runs_allowed","strikeouts_pitching","runs_allowed_per_seven","strikeouts_per_seven","out_credit_pitching","pitching_run_value"],
                 column_config={
                     "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
                     "games_pitching": st.column_config.NumberColumn("G", format="%d", help="**Games Pitched**"),
