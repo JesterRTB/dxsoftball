@@ -98,7 +98,7 @@ if selected_player:
                     "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**"),
                     "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**"),
                     "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**"),
-                    "wrc_plus": st.column_config.NumberColumn("WRC+", format="%.0f", help="**Adjusted Weighted Runs Created**"),
+                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created**"),
                     "wraa": st.column_config.NumberColumn("Bat", format="%.1f", help="**Batting Run Value**"),
                     "defensive_run_value": st.column_config.NumberColumn("Def", format="%.1f", help="**Defensive Run Value**"),
                     "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**")
@@ -136,6 +136,34 @@ if selected_player:
                     "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**"),
                     "batting_triple_plays": st.column_config.NumberColumn("HITP", format="%d", help="**Hit Into Triple Plays**"),
                     "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**")
+                }
+            )
+
+            # Advanced Batting Stats
+            st.write("")
+            st.subheader(":green[Advanced Batting]")
+            st.dataframe(
+                styled_df,
+                height="content",
+                hide_index=True,
+                placeholder="",
+                column_order=[
+                    "season","plate_appearances","walk_percentage","strikeout_percentage","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging",
+                    "ops_plus","isolated_power","batting_average_balls_in_play","wrc","wraa","woba","wrc_plus"
+                ],
+                column_config={
+                    "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
+                    "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
+                    "walk_percentage": st.column_config.NumberColumn("BB%", format="%.1f%%", help="**Walk Percentage**"),
+                    "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**"),
+                    "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**"),
+                    "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**"),
+                    "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**"),
+                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created**"),
+                    "wraa": st.column_config.NumberColumn("Bat", format="%.1f", help="**Batting Run Value**"),
+                    "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
+                    "at_bats": st.column_config.NumberColumn("AB", format="%d", help="**At-Bats**"),
+                    "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
                 }
             )
 
