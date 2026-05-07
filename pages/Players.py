@@ -223,15 +223,15 @@ if selected_player:
                 placeholder="",
                 column_order=[
                     "season","games_batting","innings_defense","innings_pitched","innings_catcher","innings_first_base","innings_second_base","innings_third_base","innings_shortstop","innings_left_field",
-                    "innings_left_center_field","innings_right_center_field","innings_right_field","innings_designated_hitter","putouts","assists","range_factor","out_credit_fielding","fielding_run_value",
-                    "designated_hitter_adjustment","fielding_run_value_with_adjustment"
+                    "innings_left_center_field","innings_right_center_field","innings_right_field","innings_designated_hitter","putouts","assists","fielding_double_plays","range_factor","out_credit_fielding",
+                    "fielding_run_value","designated_hitter_adjustment","fielding_run_value_with_adjustment"
                 ],
                 column_config={
                     "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
                     "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games Played**"),
-                    "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played**"),
+                    "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played as Pitcher**"),
                     "innings_pitched": st.column_config.NumberColumn("P", format="%.1f", help="**Innings Pitched**"),
-                    "innings_catcher": st.column_config.NumberColumn("C", format="%.1f", help="**Innings Played at Catcher**"),
+                    "innings_catcher": st.column_config.NumberColumn("C", format="%.1f", help="**Innings Played as Catcher**"),
                     "innings_first_base": st.column_config.NumberColumn("1B", format="%.1f", help="**Innings Played as First Baseman**"),
                     "innings_second_base": st.column_config.NumberColumn("2B", format="%.1f", help="**Innings Played as Second Baseman**"),
                     "innings_third_base": st.column_config.NumberColumn("3B", format="%.1f", help="**Innings Played as Third Baseman**"),
@@ -243,6 +243,7 @@ if selected_player:
                     "innings_designated_hitter": st.column_config.NumberColumn("DH", format="%.1f", help="**Innings Played as Designated Hitter**"),
                     "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
                     "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
+                    "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
                     "range_factor": st.column_config.NumberColumn("RF/7", format="%.2f", help="**Range Factor Per Seven Innings**  \n(PO+A)/Inn*7"),
                     "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs. The remaining 0.9 is split evenly between all fielders  \nwho touch the ball leading to an out"),
                     "fielding_run_value": st.column_config.NumberColumn("rawFRV", format="%.1f", help="**Raw Fielding Run Value**"),
