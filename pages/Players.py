@@ -59,7 +59,7 @@ if selected_player:
         # Check if the 'season' column for this row is exactly "Total"
         if row['season'] == "Total":
             # Apply a subtle gray tint with 20% opacity
-            return ['background-color: rgba(128, 128, 128, 0.2)'] * len(row)
+            return ['background-color: rgba(128, 128, 128, 0.2); font-weight: bold;'] * len(row)
         else:
             # Return empty strings (no style) for other rows
             return [''] * len(row)
