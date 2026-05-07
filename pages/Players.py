@@ -131,7 +131,7 @@ if selected_player:
                     "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
                     "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
                     "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases on Balls / Walks**"),
-                    "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Strikeouts**\nIncludes foul outs"),
+                    "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
                     "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**"),
                     "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**"),
                     "batting_triple_plays": st.column_config.NumberColumn("HITP", format="%d", help="**Hit Into Triple Plays**"),
