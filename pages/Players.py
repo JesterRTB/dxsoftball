@@ -180,6 +180,28 @@ if selected_player:
                 }
             )
 
+            # Pitching Stats
+            st.write("")
+            st.subheader(":green[Pitching]")
+            st.dataframe(
+                styled_df,
+                height="content",
+                hide_index=True,
+                placeholder="",
+                column_order=["season","games_pitching","innings_pitched","runs_allowed","strikeouts_pitching","runs_allowed_per_seven","strikeouts_per_seven","out_credit_pitching","pitching_run_credit"],
+                column_config={
+                    "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
+                    "games_pitching": st.column_config.NumberColumn("G", format="%d", help="**Games Pitched**"),
+                    "innings_pitched": st.column_config.NumberColumn("IP", format="%.1f", help="**Innings Pitched**"),
+                    "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
+                    "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
+                    "runs_allowed_per_seven": st.column_config.NumberColumn("RA7", format="%.2f", help="**Runs Allowed Per Seven Innings**"),
+                    "strikeouts_per_seven": st.column_config.NumberColumn("K/7", format="%.2f", help="**Strikeouts Per Seven Innings**  \nIncludes foul outs"),
+                    "out_credit_pitching": st.column_config.NumberColumn("PC", format="%.1f", help="**Pitching Out Credit**"),
+                    "pitching_run_value": st.column_config.NumberColumn("PRV", format="%.1f", help="**Pitching Run Value**")
+                }
+            )
+
         with tab_game_log:
             st.markdown("Coming soon")
             
