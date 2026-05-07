@@ -243,7 +243,7 @@ if selected_player:
                     "innings_designated_hitter": st.column_config.NumberColumn("DH", format="%.1f", help="**Innings Played as Designated Hitter**"),
                     "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
                     "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
-                    "range_factor": st.column_config.NumberColumn("RF/7", format="%d", help="**Range Factor Per Seven Innings**  \n(PO+A)/Inn*7"),
+                    "range_factor": st.column_config.NumberColumn("RF/7", format="%.2f", help="**Range Factor Per Seven Innings**  \n(PO+A)/Inn*7"),
                     "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs. The remaining 0.9 is split evenly between all fielders  \nwho touch the ball leading to an out"),
                     "fielding_run_value": st.column_config.NumberColumn("rawFRV", format="%.1f", help="**Raw Fielding Run Value**"),
                     "designated_hitter_adjustment": st.column_config.NumberColumn("DHA", format="%.1f", help="**Designated Hitter Adjustment**  \nSitting players accrue negative run value as if they were on the field and didn't make any plays.  \nTo balance the team average to zero, an equal amount of positive run value is distributed equally amongst the players in the field."),
