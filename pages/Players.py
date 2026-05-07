@@ -66,6 +66,11 @@ if selected_player:
     # Append it to the original DataFrame
     df_with_total = pd.concat([df, total_row])
 
+    # Pitching dataframe branches off here
+    pitching_mask = (df_with_total['games_pitching'] > 0) | (df_with_total['season'] == "Total")
+    pitching_display_df = df_with_total[pitching_mask]
+    has_pitched = pitching_display_df.loc[pitching_display_df['season'] == 'Total', 'games_pitching'].values[0] > 0
+
     # 1. Define the styling function
     def highlight_total_row(row):
         # Check if the 'season' column for this row is exactly "Total"
@@ -77,6 +82,7 @@ if selected_player:
             return [''] * len(row)
     
     styled_df = df_with_total.style.apply(highlight_total_row, axis=1)
+    styled_pitching_df = pitching_display_df.style.apply(highlight_total_row, axis=1)
     st.set_page_config(page_title=f"{selected_player}", layout="wide", page_icon="🥎")
     
     if not df.empty:
@@ -182,27 +188,28 @@ if selected_player:
                 }
             )
 
-            # Pitching Stats
-            st.write("")
-            st.subheader(":green[Pitching]")
-            st.dataframe(
-                styled_df,
-                height="content",
-                hide_index=True,
-                placeholder="",
-                column_order=["season","games_pitching","innings_pitched","runs_allowed","strikeouts_pitching","runs_allowed_per_seven","strikeouts_per_seven","out_credit_pitching","pitching_run_value"],
-                column_config={
-                    "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
-                    "games_pitching": st.column_config.NumberColumn("G", format="%d", help="**Games Pitched**"),
-                    "innings_pitched": st.column_config.NumberColumn("IP", format="%.1f", help="**Innings Pitched**"),
-                    "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
-                    "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
-                    "runs_allowed_per_seven": st.column_config.NumberColumn("RA7", format="%.2f", help="**Runs Allowed Per Seven Innings**"),
-                    "strikeouts_per_seven": st.column_config.NumberColumn("K/7", format="%.2f", help="**Strikeouts Per Seven Innings**  \nIncludes foul outs"),
-                    "out_credit_pitching": st.column_config.NumberColumn("PC", format="%.1f", help="**Pitching Out Credit**"),
-                    "pitching_run_value": st.column_config.NumberColumn("PRV", format="%.1f", help="**Pitching Run Value**")
-                }
-            )
+            # Pitching Stats only visible if player has ever pitched
+            if has_pitched:
+                st.write("")
+                st.subheader(":green[Pitching]")
+                st.dataframe(
+                    styled_pitching_df,
+                    height="content",
+                    hide_index=True,
+                    placeholder="",
+                    column_order=["season","games_pitching","innings_pitched","runs_allowed","strikeouts_pitching","runs_allowed_per_seven","strikeouts_per_seven","out_credit_pitching","pitching_run_value"],
+                    column_config={
+                        "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
+                        "games_pitching": st.column_config.NumberColumn("G", format="%d", help="**Games Pitched**"),
+                        "innings_pitched": st.column_config.NumberColumn("IP", format="%.1f", help="**Innings Pitched**"),
+                        "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
+                        "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
+                        "runs_allowed_per_seven": st.column_config.NumberColumn("RA7", format="%.2f", help="**Runs Allowed Per Seven Innings**"),
+                        "strikeouts_per_seven": st.column_config.NumberColumn("K/7", format="%.2f", help="**Strikeouts Per Seven Innings**  \nIncludes foul outs"),
+                        "out_credit_pitching": st.column_config.NumberColumn("PC", format="%.1f", help="**Pitching Out Credit**"),
+                        "pitching_run_value": st.column_config.NumberColumn("PRV", format="%.1f", help="**Pitching Run Value**")
+                    }
+                )
 
         with tab_game_log:
             st.markdown("Coming soon")
