@@ -210,6 +210,32 @@ if selected_player:
                         "pitching_run_value": st.column_config.NumberColumn("PRV", format="%.1f", help="**Pitching Run Value**")
                     }
                 )
+                
+            st.write("")
+            st.subheader(":green[Fielding]")
+            st.dataframe(
+                styled_df,
+                height="content",
+                hide_index=True,
+                placeholder="",
+                column_order=[
+                    "season","games_batting","innings_defense","innings_pitched","innings_catcher","innings_first_base","innings_second_base","innings_third_base","innings_shortstop","innings_left_field",
+                    "innings_left_center_field","innings_right_center_field","innings_right_field","innings_designated_hitter","putouts","assists","out_credit_fielding","designated_hitter_adjustment","fielding_run_value"
+                ],
+                column_config={
+                    "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
+                    "games_pitching": st.column_config.NumberColumn("G", format="%d", help="**Games Pitched**"),
+                    "innings_pitched": st.column_config.NumberColumn("IP", format="%.1f", help="**Innings Pitched**"),
+                    "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
+                    "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
+                    "runs_allowed_per_seven": st.column_config.NumberColumn("RA7", format="%.2f", help="**Runs Allowed Per Seven Innings**"),
+                    "strikeouts_per_seven": st.column_config.NumberColumn("K/7", format="%.2f", help="**Strikeouts Per Seven Innings**  \nIncludes foul outs"),
+                    "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs. The remaining 0.9 is split evenly between all fielders  \nwho touch the ball leading to an out"),
+                    "fielding_run_value": st.column_config.NumberColumn("FRV", format="%.1f", help="**Pitching Run Value**")
+                }
+            )
+
+    
 
         with tab_game_log:
             st.markdown("Coming soon")
