@@ -38,6 +38,7 @@ if selected_player:
     # Calculations
     df['strikeout_percentage'] = df['strikeout_percentage'] * 100
     df['walk_percentage'] = df['walk_percentage'] * 100
+    df['fielding_run_value_with_adjustment'] = df['fielding_run_value']+df['designated_hitter_adjustment']
     
     # Create a total row for all columns
     total_row = df.sum(numeric_only=True).to_frame().T
@@ -220,18 +221,30 @@ if selected_player:
                 placeholder="",
                 column_order=[
                     "season","games_batting","innings_defense","innings_pitched","innings_catcher","innings_first_base","innings_second_base","innings_third_base","innings_shortstop","innings_left_field",
-                    "innings_left_center_field","innings_right_center_field","innings_right_field","innings_designated_hitter","putouts","assists","out_credit_fielding","designated_hitter_adjustment","fielding_run_value"
+                    "innings_left_center_field","innings_right_center_field","innings_right_field","innings_designated_hitter","putouts","assists","out_credit_fielding","fielding_run_value",
+                    "designated_hitter_adjustment","fielding_run_value_with_adjustment"
                 ],
                 column_config={
                     "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
-                    "games_pitching": st.column_config.NumberColumn("G", format="%d", help="**Games Pitched**"),
-                    "innings_pitched": st.column_config.NumberColumn("IP", format="%.1f", help="**Innings Pitched**"),
-                    "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
-                    "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
-                    "runs_allowed_per_seven": st.column_config.NumberColumn("RA7", format="%.2f", help="**Runs Allowed Per Seven Innings**"),
-                    "strikeouts_per_seven": st.column_config.NumberColumn("K/7", format="%.2f", help="**Strikeouts Per Seven Innings**  \nIncludes foul outs"),
+                    "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games Played**"),
+                    "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played**"),
+                    "innings_pitched": st.column_config.NumberColumn("P", format="%.1f", help="**Innings Pitched**"),
+                    "innings_catcher": st.column_config.NumberColumn("C", format="%.1f", help="**Innings Played at Catcher**"),
+                    "innings_first_base": st.column_config.NumberColumn("1B", format="%.1f", help="**Innings Played as First Baseman**"),
+                    "innings_second_base": st.column_config.NumberColumn("2B", format="%.1f", help="**Innings Played as Second Baseman**"),
+                    "innings_third_base": st.column_config.NumberColumn("3B", format="%.1f", help="**Innings Played as Third Baseman**"),
+                    "innings_shortstop": st.column_config.NumberColumn("SS", format="%.1f", help="**Innings Played as Shortstop**"),
+                    "innings_left_field": st.column_config.NumberColumn("LF", format="%.1f", help="**Innings Played as Leftfielder**"),
+                    "innings_left_center_field": st.column_config.NumberColumn("LC", format="%.1f", help="**Innings Played as Left Centerfielder**"),
+                    "innings_right_center_field": st.column_config.NumberColumn("RC", format="%.1f", help="**Innings Played as Right Centerfielder**"),
+                    "innings_right_field": st.column_config.NumberColumn("RF", format="%.1f", help="**Innings Played as Rightfielder**"),
+                    "innings_designated_hitter": st.column_config.NumberColumn("DH", format="%.1f", help="**Innings Played as Designated Hitter**"),
+                    "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
+                    "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
                     "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs. The remaining 0.9 is split evenly between all fielders  \nwho touch the ball leading to an out"),
-                    "fielding_run_value": st.column_config.NumberColumn("FRV", format="%.1f", help="**Pitching Run Value**")
+                    "fielding_run_value": st.column_config.NumberColumn("rawFRV", format="%.1f", help="**Raw Fielding Run Value**"),
+                    "designated_hitter_adjustment": st.column_config.NumberColumn("DHA", format="%.1f", help="**Designated Hitter Adjustment**  \nSitting players accrue negative run value as if they were on the field and didn't make any plays.  \nTo balance the team average to zero, an equal amount of positive run value is distributed equally amongst the players in the field."),
+                    "fielding_run_value_with_adjustment": st.column_config.NumberColumn("adjFRV", format="%.1f", help="**Adjusted Fielding Run Value**")
                 }
             )
 
