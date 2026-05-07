@@ -74,6 +74,12 @@ if selected_player:
     pitching_display_df = df_with_total[pitching_mask]
     has_pitched = pitching_display_df.loc[pitching_display_df['season'] == 'Total', 'games_pitching'].values[0] > 0
 
+    # Fielding dataframe branchse off here
+    exclude_seasons = ["Summer 2023", "Fall 2023", "Summer 2024", "Fall 2024"]
+    fielding_mask = (~df_with_total['season'].isin(exclude_seasons)) | (df_with_total['season'] == "Total")
+    fielding_display_df = df_with_total[fielding_mask]
+    has_fielding = fielding_display_df.loc[fielding_display_df['season'] == 'Total', 'innings_defense'].values[0] > 0
+
     # 1. Define the styling function
     def highlight_total_row(row):
         # Check if the 'season' column for this row is exactly "Total"
@@ -86,6 +92,7 @@ if selected_player:
     
     styled_df = df_with_total.style.apply(highlight_total_row, axis=1)
     styled_pitching_df = pitching_display_df.style.apply(highlight_total_row, axis=1)
+    styled_fielding_df = fielding_display_df.style.apply(highlight_total_row, axis=1)
     st.set_page_config(page_title=f"{selected_player}", layout="wide", page_icon="🥎")
     
     if not df.empty:
@@ -217,7 +224,7 @@ if selected_player:
             st.write("")
             st.subheader(":green[Fielding]")
             st.dataframe(
-                styled_df,
+                styled_fielding_df,
                 height="content",
                 hide_index=True,
                 placeholder="",
