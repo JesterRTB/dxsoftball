@@ -57,6 +57,8 @@ if selected_player:
     total_row['walk_percentage'] = total_row['walks']/total_pa*100
     total_row['isolated_power'] = total_row['slugging_percentage']-total_row['batting_average']
     total_row['batting_average_balls_in_play'] = (total_row['hits']-total_row['home_runs'])/(total_row['at_bats']-total_row['strikeouts_batting']-total_row['home_runs']+total_row['sacrifice_flies'])
+    total_row['runs_allowed_per_seven'] = total_row['runs_allowed']/total_row['innings_pitched']*7
+    total_row['strikeouts_per_seven'] = total_row['strikeouts_pitching']/total_row['innings_pitched']*7
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
