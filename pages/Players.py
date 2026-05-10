@@ -96,7 +96,7 @@ if selected_player:
     styled_df = df_with_total.style.apply(highlight_total_row, axis=1)
     styled_pitching_df = pitching_display_df.style.apply(highlight_total_row, axis=1)
     styled_fielding_df = fielding_display_df.style.apply(highlight_total_row, axis=1)
-    st.set_page_config(page_title=f"{selected_player}", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
+    st.set_page_config(page_title=f"{selected_player} Stats", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
     
     if not df.empty:
         # Displaying the high-level profile info
