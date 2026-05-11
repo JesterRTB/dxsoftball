@@ -29,13 +29,13 @@ if all_seasons:
     start_season, end_season = st.select_slider(
         "Select Season Range",
         options=all_seasons,
-        value=(all_seasons[0], all_seasons[-1]) 
+        value=(all_seasons[0], all_seasons[0]) 
     )
-    
-    st.write(f"Showing Leaderboard from **{start_season}** to **{end_season}**")
 
     # --- 3. Call your SQL function ---
     # leaderboard_df = supabase.rpc("get_leaderboard", {
     #     "start_season": start_season, 
     #     "end_season": end_season
     # }).execute()
+
+    tab_overview, tab_standard_batting, tab_advanced_batting, tab_pitching, tab_fielding, tab_value = st.tabs(["Overview", "Standard Batting", "Advanced Batting", "Pitching", "Fielding", "Value"])
