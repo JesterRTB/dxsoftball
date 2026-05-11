@@ -143,7 +143,7 @@ if all_seasons:
             )
 
         with tab_pitching:
-            df = df.sort_values(by="pitching_run_value", ascending=False)
+            df = df.sort_values(by="innings_pitched", ascending=False)
             st.dataframe(
                 df,
                 height="content",
