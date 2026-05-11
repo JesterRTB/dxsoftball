@@ -147,7 +147,7 @@ if all_seasons:
             pitching_df = pitching_df.sort_values(by="innings_pitched", ascending=False)
             if not pitching_df.empty:
                 st.dataframe(
-                    df,
+                    pitching_df,
                     height="content",
                     hide_index=True,
                     placeholder="",
