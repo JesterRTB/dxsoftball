@@ -33,9 +33,37 @@ if all_seasons:
     )
 
     # --- 3. Call your SQL function ---
-    # leaderboard_df = supabase.rpc("get_leaderboard", {
-    #     "start_season": start_season, 
-    #     "end_season": end_season
-    # }).execute()
+    leaderboard_df = supabase.rpc("get_leaderboard", {
+        "start_season": start_season, 
+        "end_season": end_season
+    }).execute()
 
     tab_overview, tab_standard_batting, tab_advanced_batting, tab_pitching, tab_fielding, tab_value = st.tabs(["Overview", "Standard Batting", "Advanced Batting", "Pitching", "Fielding", "Value"])
+
+    with tab_overview:
+        st.dataframe(
+                leaderboard_df,
+                height="content",
+                hide_index=True,
+                placeholder="",
+                column_order=[
+                    "season","games_batting","plate_appearances","runs","home_runs","runs_batted_in","batting_average","on_base_percentage","slugging_percentage",
+                    "on_base_plus_slugging","wrc_plus","wraa","defensive_run_value","wins_above_replacement"
+                ],
+                column_config={
+                    "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
+                    "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
+                    "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
+                    "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
+                    "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
+                    "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
+                    "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \nH/AB"),
+                    "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n(H+BB)/PA"),
+                    "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \nTB/AB"),
+                    "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
+                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus**"),
+                    "wraa": st.column_config.NumberColumn("Bat", format="%.1f", help="**Batting Run Value**"),
+                    "defensive_run_value": st.column_config.NumberColumn("Def", format="%.1f", help="**Defensive Run Value**"),
+                    "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**")
+                }
+            )
