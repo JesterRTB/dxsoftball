@@ -81,7 +81,7 @@ if all_seasons:
         with tab_standard_batting:
             df = df.sort_values(by="batting_average", ascending=False)
             st.dataframe(
-                styled_df,
+                df,
                 height="content",
                 hide_index=True,
                 placeholder="",
