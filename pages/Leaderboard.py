@@ -44,7 +44,7 @@ if all_seasons:
 
     with tab_overview:
         st.dataframe(
-                df_df,
+                df,
                 height="content",
                 hide_index=True,
                 placeholder="",
