@@ -29,7 +29,7 @@ if all_seasons:
     start_season, end_season = st.select_slider(
         "Select Season Range",
         options=all_seasons,
-        value=(all_seasons[0], all_seasons[0]) 
+        value=(all_seasons[-1], all_seasons[-1]) 
     )
 
     # --- 3. Call your SQL function ---
