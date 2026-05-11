@@ -164,7 +164,7 @@ if all_seasons:
             )
             
         with tab_fielding:
-            df = df.sort_values(by="fielding_run_value_with_adjustment", ascending=False)
+            df = df.sort_values(by="innings_defense", ascending=False)
             st.dataframe(
                 df,
                 height="content",
