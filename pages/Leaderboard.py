@@ -32,13 +32,22 @@ if all_seasons:
         value=(all_seasons[-1], all_seasons[-1]) 
     )
 
-    # --- 3. Call your SQL function ---
-    leaderboard_response = supabase.rpc("get_leaderboard", {
-        "start_season": start_season, 
-        "end_season": end_season
-    }).execute()
+    try:
+        leaderboard_response = supabase.rpc("get_leaderboard", {
+            "start_season": start_season, 
+            "end_season": end_season
+        }).execute()
+    
+        df = pd.DataFrame(leaderboard_response.data)
 
-    df = pd.DataFrame(leaderboard_response.data)
+    except Exception as e:
+        st.error("Postgres Error Detected!")
+        # This will print the specific reason (e.g., "invalid input syntax for integer")
+        if hasattr(e, 'details'):
+            st.write(f"**Details:** {e.details}")
+        if hasattr(e, 'message'):
+            st.write(f"**Message:** {e.message}")
+        st.stop() # Stop execution so it doesn't crash later
 
     tab_overview, tab_standard_batting, tab_advanced_batting, tab_pitching, tab_fielding, tab_value = st.tabs(["Overview", "Standard Batting", "Advanced Batting", "Pitching", "Fielding", "Value"])
 
