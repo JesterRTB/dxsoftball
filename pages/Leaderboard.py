@@ -49,11 +49,10 @@ if all_seasons:
                 hide_index=True,
                 placeholder="",
                 column_order=[
-                    "season","games_batting","plate_appearances","runs","home_runs","runs_batted_in","batting_average","on_base_percentage","slugging_percentage",
+                    "games_batting","plate_appearances","runs","home_runs","runs_batted_in","batting_average","on_base_percentage","slugging_percentage",
                     "on_base_plus_slugging","wrc_plus","wraa","defensive_run_value","wins_above_replacement"
                 ],
                 column_config={
-                    "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
                     "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
                     "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
                     "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
