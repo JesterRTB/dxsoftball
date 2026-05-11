@@ -31,24 +31,22 @@ if all_seasons:
         options=all_seasons,
         value=(all_seasons[-1], all_seasons[-1]) 
     )
-
-    try:
-        leaderboard_response = supabase.rpc("get_leaderboard", {
-            "start_season": start_season, 
-            "end_season": end_season
-        }).execute()
     
-        df = pd.DataFrame(leaderboard_response.data)
+    leaderboard_response = supabase.rpc("get_leaderboard", {
+        "start_season": start_season, 
+        "end_season": end_season
+    }).execute()
+    
+    df = pd.DataFrame(leaderboard_response.data)
 
-    except Exception as e:
-        st.error("Postgres Error Detected!")
-        # This will print the specific reason (e.g., "invalid input syntax for integer")
-        if hasattr(e, 'details'):
-            st.write(f"**Details:** {e.details}")
-        if hasattr(e, 'message'):
-            st.write(f"**Message:** {e.message}")
-        st.stop() # Stop execution so it doesn't crash later
-
+    # Calculations
+    df['strikeout_percentage'] = df['strikeout_percentage']*100
+    df['walk_percentage'] = df['walk_percentage']*100
+    df['extra_base_hit_percentage'] = df['extra_base_hits']/df['plate_appearances']*100
+    df['range_factor'] = (df['putouts']+df['assists'])/df['innings_defense']*7
+    df['fielding_run_value_with_adjustment'] = df['fielding_run_value']+df['designated_hitter_adjustment']
+    df['runs_above_replacement'] = df['wraa']+df['defensive_run_value']+df['replacement_runs']
+    
     tab_overview, tab_standard_batting, tab_advanced_batting, tab_pitching, tab_fielding, tab_value = st.tabs(["Overview", "Standard Batting", "Advanced Batting", "Pitching", "Fielding", "Value"])
 
     with tab_overview:
@@ -79,3 +77,6 @@ if all_seasons:
                     "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**")
                 }
             )
+        
+        with tab_standard_batting:
+            df = df.sort_values(by="batting_average", ascending=False)
