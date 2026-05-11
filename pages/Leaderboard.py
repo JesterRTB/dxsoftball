@@ -49,7 +49,7 @@ if all_seasons:
                 hide_index=True,
                 placeholder="",
                 column_order=[
-                    "games_batting","plate_appearances","runs","home_runs","runs_batted_in","batting_average","on_base_percentage","slugging_percentage",
+                    "player","games_batting","plate_appearances","runs","home_runs","runs_batted_in","batting_average","on_base_percentage","slugging_percentage",
                     "on_base_plus_slugging","wrc_plus","wraa","defensive_run_value","wins_above_replacement"
                 ],
                 column_config={
