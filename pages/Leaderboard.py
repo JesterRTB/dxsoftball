@@ -33,16 +33,18 @@ if all_seasons:
     )
 
     # --- 3. Call your SQL function ---
-    leaderboard_df = supabase.rpc("get_leaderboard", {
+    leaderboard_response = supabase.rpc("get_leaderboard", {
         "start_season": start_season, 
         "end_season": end_season
     }).execute()
+
+    df = pd.DataFrame(leaderboard_response.data)
 
     tab_overview, tab_standard_batting, tab_advanced_batting, tab_pitching, tab_fielding, tab_value = st.tabs(["Overview", "Standard Batting", "Advanced Batting", "Pitching", "Fielding", "Value"])
 
     with tab_overview:
         st.dataframe(
-                leaderboard_df,
+                df_df,
                 height="content",
                 hide_index=True,
                 placeholder="",
