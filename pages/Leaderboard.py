@@ -52,6 +52,7 @@ if all_seasons:
     tab_overview, tab_standard_batting, tab_advanced_batting, tab_pitching, tab_fielding, tab_value = st.tabs(["Overview", "Standard Batting", "Advanced Batting", "Pitching", "Fielding", "Value"])
 
     with tab_overview:
+        df = df.sort_values(by="wins_above_replacement", ascending=False)
         st.dataframe(
                 df,
                 height="content",
@@ -62,6 +63,7 @@ if all_seasons:
                     "on_base_plus_slugging","wrc_plus","wraa","defensive_run_value","wins_above_replacement"
                 ],
                 column_config={
+                    "player": st.column_config.Column("Player", help="**Player**"),
                     "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
                     "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
                     "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
