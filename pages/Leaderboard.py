@@ -170,7 +170,7 @@ if all_seasons:
             
         with tab_fielding:
             fielding_df = df[(df['innings_defense'] > 0) | (df['innings_designated_hitter'] > 0)].copy()
-            fielding_df = fielding_df.sort_values(by="innings_defense", ascending=False)
+            fielding_df = fielding_df.sort_values(by="out_credit_fielding", ascending=False)
             df = df.sort_values(by="innings_defense", ascending=False)
             if not fielding_df.empty:
                 st.dataframe(
