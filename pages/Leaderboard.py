@@ -144,7 +144,7 @@ if all_seasons:
 
         with tab_pitching:
             pitching_df = df[df['games_pitching'] > 0].copy()
-            pitching_df = pitching_df.sort_values(by="innings_pitched", ascending=False)
+            pitching_df = pitching_df.sort_values(by="out_credit_pitching", ascending=False)
             if not pitching_df.empty:
                 st.dataframe(
                     pitching_df,
