@@ -322,7 +322,7 @@ if selected_player:
                         "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n(H+BB)/PA"),
                         "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \nTB/AB"),
                         "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
-                        "total_bases": st.column_config.NumberColumn("TB", format="%d", help="**Total Bases**  \n1B+2*2B+3*3B+4*HR"),
+                        "total_bases": st.column_config.NumberColumn("TB", format="%d", help="**Total Bases**  \n1B+2x2B+3x3B+4xHR"),
                         "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**  \nFly ball outs that result in at least one run"),
                         "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**  \nBatted balls that result in multiple outs"),
                         "wrc": st.column_config.NumberColumn("wRC", format="%.0f", help="**Weighted Runs Created**"),
