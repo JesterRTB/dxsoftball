@@ -299,7 +299,7 @@ if selected_player:
                 placeholder="",
                 column_order=[
                     "date","opponent","bat_order","position_played","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks","strikeouts_batting",
-                    "sacrifice_flies","batting_double_plays","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging"
+                    "sacrifice_flies","batting_double_plays","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging","wrc","wrc_plus"
                 ],
                 column_config={
                     "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
