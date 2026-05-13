@@ -332,10 +332,29 @@ if selected_player:
                 )
 
             with tab_gl_fielding:
-                st.write("Fielding Stats")
+                st.dataframe(
+                    game_log_df,
+                    height="content",
+                    hide_index=True,
+                    placeholder="",
+                    column_order=[
+                        "date","opponent","bat_order","position_played","innings_defense","putouts","assists","fielding_double_plays","out_credit_fielding"
+                    ],
+                    column_config={
+                        "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
+                        "opponent": st.column_config.Column("Opponent", help="**Opponent**"),
+                        "bat_order": st.column_config.NumberColumn("BO", alignment="left", format="%.0f", help="**Batting Order**"),
+                        "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
+                        "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played**"),
+                        "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
+                        "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
+                        "fielding_double_plays": st.column_config.NumberColumn("DP", format="%.1f", help="**Double Plays Turned**"),
+                        "out_credit_fielding": st.column_config.NumberColumn("Inn", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs. The remaining 0.9 is split evenly between all fielders  \nwho touch the ball leading to an out"),
+                    }
+                )
 
             with tab_gl_pitching:
-                st.write("Pitching Stats")
+                st.write("Pitching Stats coming soon")
             
     else:
         st.warning("No player found with that name.")
