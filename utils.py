@@ -1,3 +1,4 @@
+import pandas as pd
 from Home import supabase
 
 def fetch_player_data(player_name):
