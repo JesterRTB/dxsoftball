@@ -303,7 +303,7 @@ if selected_player:
                 ],
                 column_config={
                     "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
-                    "opponent": st.column_config.Column("Opp", help="**Opponent**"),
+                    "opponent": st.column_config.Column("Opponent", help="**Opponent**"),
                     "bat_order": st.column_config.NumberColumn("BO", alignment="left", format="%.0f", help="**Batting Order**"),
                     "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
                     "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
