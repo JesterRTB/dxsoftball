@@ -348,8 +348,8 @@ if selected_player:
                         "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played**"),
                         "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
                         "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
-                        "fielding_double_plays": st.column_config.NumberColumn("DP", format="%.1f", help="**Double Plays Turned**"),
-                        "out_credit_fielding": st.column_config.NumberColumn("Inn", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs. The remaining 0.9 is split evenly between all fielders  \nwho touch the ball leading to an out"),
+                        "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
+                        "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs. The remaining 0.9 is split evenly between all fielders  \nwho touch the ball leading to an out"),
                     }
                 )
 
