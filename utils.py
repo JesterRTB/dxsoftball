@@ -1,5 +1,13 @@
 from Home import supabase
 
+def fetch_player_data(player_name):
+    # 'get_player_profile' is the name of the SQL function
+    # The dictionary keys must match the parameter names in your SQL function
+    response = supabase.rpc("get_player_profile", {"target_player": player_name}).execute()
+    
+    # Convert the JSON response directly into a DataFrame
+    return pd.DataFrame(response.data)
+
 def get_all_players():
     # Fetch just the player names from the primary_positions table
     response = supabase.table("primary_positions").select("player").execute()
