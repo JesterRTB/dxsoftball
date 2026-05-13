@@ -291,7 +291,7 @@ if selected_player:
                     "target_season": selected_player_season
                 }).execute()
     
-                game_log_df = pd.Dataframe(res_game_log.data)
+                game_log_df = pd.DataFrame(res_game_log.data)
     
                 st.dataframe(
                     game_log_df,
