@@ -1,24 +1,11 @@
 import streamlit as st
 import pandas as pd
 from Home import supabase
+from utils import get_sorted_seasons
 
 st.set_page_config(page_title="D-X Leaderboard", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
 
 st.subheader(":green[D-Generation X Leaders]")
-
-def get_sorted_seasons():
-    # Fetch unique seasons from your guts or stats table
-    response = supabase.table("guts").select("season").execute()
-    seasons = list(set([row['season'] for row in response.data]))
-    
-    # Custom sorting logic: Year first, then Season order
-    season_order = {"Spring": 1, "Summer": 2, "Fall": 3, "Winter": 4}
-    
-    def sort_key(s):
-        parts = s.split() # e.g., ["Summer", "2023"]
-        return (int(parts[1]), season_order.get(parts[0], 5))
-    
-    return sorted(seasons, key=sort_key)
 
 # --- 2. Implementation ---
 all_seasons = get_sorted_seasons()
