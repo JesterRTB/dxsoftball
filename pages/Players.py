@@ -315,7 +315,7 @@ if selected_player:
                     "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
                     "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases On Balls / Walks**"),
                     "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Batting Strikeouts**  \nIncludes foul outs"),
-                    "sacrifice_flies": st.column_config.NumberColumn("SO", format="%d", help="**Sacrifice Flies**  \nFly ball outs that result in at least one run"),
+                    "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**  \nFly ball outs that result in at least one run"),
                     "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**  \nBatted balls that result in multiple outs"),
                     "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \nH/AB"),
                     "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n(H+BB)/PA"),
