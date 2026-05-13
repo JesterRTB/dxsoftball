@@ -292,43 +292,48 @@ if selected_player:
 
             game_log_df = pd.DataFrame(res_game_log.data)
 
-            st.dataframe(
-                game_log_df,
-                height="content",
-                hide_index=True,
-                placeholder="",
-                column_order=[
-                    "date","opponent","bat_order","position_played","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks","strikeouts_batting",
-                    "sacrifice_flies","batting_double_plays","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging","wrc","wrc_plus","putouts",
-                    "assists","innings_pitched"
-                ],
-                column_config={
-                    "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
-                    "opponent": st.column_config.Column("Opponent", help="**Opponent**"),
-                    "bat_order": st.column_config.NumberColumn("BO", alignment="left", format="%.0f", help="**Batting Order**"),
-                    "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
-                    "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
-                    "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
-                    "doubles": st.column_config.NumberColumn("2B", format="%d", help="**Doubles**"),
-                    "triples": st.column_config.NumberColumn("3B", format="%d", help="**Triples**"),
-                    "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
-                    "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
-                    "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
-                    "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases On Balls / Walks**"),
-                    "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Batting Strikeouts**  \nIncludes foul outs"),
-                    "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**  \nFly ball outs that result in at least one run"),
-                    "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**  \nBatted balls that result in multiple outs"),
-                    "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \nH/AB"),
-                    "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n(H+BB)/PA"),
-                    "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \nTB/AB"),
-                    "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
-                    "wrc": st.column_config.NumberColumn("wRC", format="%.0f", help="**Weighted Runs Created**"),
-                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus**"),
-                    "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
-                    "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
-                    "innings_pitched": st.column_config.NumberColumn("IP", format="%.1f", help="**Innings Pitched**")
-                }
-            )
+            tab_gl_batting, tab_gl_fielding, tab_gl_pitching = st.tabs(["Batting","Fielding","Piching"])
+
+            with tab_gl_batting:
+                st.dataframe(
+                    game_log_df,
+                    height="content",
+                    hide_index=True,
+                    placeholder="",
+                    column_order=[
+                        "date","opponent","bat_order","position_played","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks","strikeouts_batting",
+                        "sacrifice_flies","batting_double_plays","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging","wrc","wrc_plus"
+                    ],
+                    column_config={
+                        "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
+                        "opponent": st.column_config.Column("Opponent", help="**Opponent**"),
+                        "bat_order": st.column_config.NumberColumn("BO", alignment="left", format="%.0f", help="**Batting Order**"),
+                        "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
+                        "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
+                        "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
+                        "doubles": st.column_config.NumberColumn("2B", format="%d", help="**Doubles**"),
+                        "triples": st.column_config.NumberColumn("3B", format="%d", help="**Triples**"),
+                        "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
+                        "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
+                        "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
+                        "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases On Balls / Walks**"),
+                        "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Batting Strikeouts**  \nIncludes foul outs"),
+                        "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**  \nFly ball outs that result in at least one run"),
+                        "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**  \nBatted balls that result in multiple outs"),
+                        "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \nH/AB"),
+                        "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n(H+BB)/PA"),
+                        "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \nTB/AB"),
+                        "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
+                        "wrc": st.column_config.NumberColumn("wRC", format="%.0f", help="**Weighted Runs Created**"),
+                        "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus**")
+                    }
+                )
+
+            with tab_gl_fielding:
+                st.write("Fielding Stats")
+
+            with tab_gl_pitching:
+                st.write("Pitching Stats")
             
     else:
         st.warning("No player found with that name.")
