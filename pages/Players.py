@@ -1,17 +1,13 @@
 import streamlit as st
 import pandas as pd
 from Home import supabase
-from utils import get_all_players, get_player_seasons
+from utils import (
+    fetch_player_data,
+    get_all_players,
+    get_player_seasons
+)
 
 st.set_page_config(page_title="D-X Player Search", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
-    
-def fetch_player_data(player_name):
-    # 'get_player_profile' is the name of the SQL function
-    # The dictionary keys must match the parameter names in your SQL function
-    response = supabase.rpc("get_player_profile", {"target_player": player_name}).execute()
-    
-    # Convert the JSON response directly into a DataFrame
-    return pd.DataFrame(response.data)
 
 # Fetch the list for the selectbox
 players = get_all_players()
