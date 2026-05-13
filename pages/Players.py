@@ -295,7 +295,7 @@ if selected_player:
             st.dataframe(
                 game_log_df,
                 column_order=[
-                    "date","opponent","bat_order","position","plate_appearances"
+                    "date","opponent","bat_order","position_played","plate_appearances"
                 ]
             )
             
