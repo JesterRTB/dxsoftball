@@ -299,7 +299,8 @@ if selected_player:
                 placeholder="",
                 column_order=[
                     "date","opponent","bat_order","position_played","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks","strikeouts_batting",
-                    "sacrifice_flies","batting_double_plays","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging","wrc","wrc_plus"
+                    "sacrifice_flies","batting_double_plays","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging","wrc","wrc_plus","putouts",
+                    "assists","innings_pitched"
                 ],
                 column_config={
                     "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
@@ -322,7 +323,10 @@ if selected_player:
                     "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \nTB/AB"),
                     "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
                     "wrc": st.column_config.NumberColumn("wRC", format="%.0f", help="**Weighted Runs Created**"),
-                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus**")
+                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus**"),
+                    "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
+                    "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
+                    "innings_pitched": st.column_config.NumberColumn("IP", format="%.1f", help="**Innings Pitched**")
                 }
             )
             
