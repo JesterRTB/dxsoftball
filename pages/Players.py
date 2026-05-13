@@ -279,7 +279,15 @@ if selected_player:
             )
 
         with tab_game_log:
-            st.markdown("Coming soon")
+            player_seasons = get_player_seasons(selected_player)
+            selected_player_season = st.selectbox(
+                "Select a season", 
+                options=player_seasons,
+                index=None,
+                width=300,
+                placeholder="Select a season",
+                label_visibility="collapsed"
+            )
             
     else:
         st.warning("No player found with that name.")
