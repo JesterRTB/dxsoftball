@@ -298,7 +298,7 @@ if selected_player:
                 hide_index=True,
                 placeholder="",
                 column_order=[
-                    "date","opponent","bat_order","position_played","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks","batting_strikeouts",
+                    "date","opponent","bat_order","position_played","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks","strikeouts_batting",
                     "batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging"
                 ],
                 column_config={
@@ -314,7 +314,7 @@ if selected_player:
                     "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
                     "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
                     "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases On Balls / Walks**"),
-                    "batting_strikeouts": st.column_config.NumberColumn("SO", format="%d", help="**Batting Strikeouts**  \nIncludes foul outs"),
+                    "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Batting Strikeouts**  \nIncludes foul outs"),
                     "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \nH/AB"),
                     "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n(H+BB)/PA"),
                     "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \nTB/AB"),
