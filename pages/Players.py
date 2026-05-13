@@ -284,6 +284,20 @@ if selected_player:
                 placeholder="Select a season",
                 label_visibility="collapsed"
             )
+
+            res_game_log = supabase.rpc("get_player_game_log", {
+                "target_player": selected_player,
+                "target_season": selected_player_season
+            }).execute()
+
+            game_log_df = pd.Dataframe(res_game_log.data)
+
+            st.dataframe(
+                game_log_df,
+                column_order=[
+                    "date","opponent","bat_order","position","plate_appearances"
+                ]
+            )
             
     else:
         st.warning("No player found with that name.")
