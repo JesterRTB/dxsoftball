@@ -303,7 +303,7 @@ if selected_player:
                 column_config={
                     "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
                     "opponent": st.column_config.Column("Opp", help="**Opponent**"),
-                    "bat_order": st.column_config.NumberColumn("BO", format="%.0f", help="**Batting Order**"),
+                    "bat_order": st.column_config.NumberColumn("BO", alignment="left", format="%.0f", help="**Batting Order**"),
                     "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
                     "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
                     "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
@@ -312,7 +312,8 @@ if selected_player:
                     "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
                     "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
                     "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
-                    "batting_average": st.column_config.NumberColumn("AVG", format="%d", help="**Batting Average  \nH/AB**")
+                    "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average  \nH/AB**"),
+                    "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage  \n(H+BB)/PA**")
                 }
             )
             
