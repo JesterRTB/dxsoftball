@@ -299,7 +299,7 @@ if selected_player:
                 placeholder="",
                 column_order=[
                     "date","opponent","bat_order","position_played","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks","strikeouts_batting",
-                    "batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging"
+                    "sacrifice_flies","batting_double_plays","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging"
                 ],
                 column_config={
                     "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
@@ -315,10 +315,14 @@ if selected_player:
                     "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
                     "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases On Balls / Walks**"),
                     "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Batting Strikeouts**  \nIncludes foul outs"),
+                    "sacrifice_flies": st.column_config.NumberColumn("SO", format="%d", help="**Sacrifice Flies**  \nFly ball outs that result in at least one run"),
+                    "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**  \nBatted balls that result in multiple outs"),
                     "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \nH/AB"),
                     "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n(H+BB)/PA"),
                     "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \nTB/AB"),
-                    "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG")
+                    "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
+                    "wrc": st.column_config.NumberColumn("wRC", format="%.0f", help="**Weighted Runs Created**"),
+                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus**")
                 }
             )
             
