@@ -275,35 +275,46 @@ if selected_player:
             )
 
         with tab_game_log:
-            try:
-                player_seasons = get_player_seasons(selected_player)
-                selected_player_season = st.selectbox(
-                    "Select a season", 
-                    options=player_seasons,
-                    index=0,
-                    width=300,
-                    placeholder="Select a season",
-                    label_visibility="collapsed"
-                )
-    
-                res_game_log = supabase.rpc("get_player_game_log", {
-                    "target_player": selected_player,
-                    "target_season": selected_player_season
-                }).execute()
-    
-                game_log_df = pd.DataFrame(res_game_log.data)
-    
-                st.dataframe(
-                    game_log_df,
-                    column_order=[
-                        "date","opponent","bat_order","position_played","plate_appearances"
-                    ]
-                )
+            player_seasons = get_player_seasons(selected_player)
+            selected_player_season = st.selectbox(
+                "Select a season", 
+                options=player_seasons,
+                index=0,
+                width=300,
+                placeholder="Select a season",
+                label_visibility="collapsed"
+            )
 
-            except Exception as e:
-                st.error(f"Database Error: {e}")
-                if hasattr(e, 'message'):
-                    st.write(e.message)
+            res_game_log = supabase.rpc("get_player_game_log", {
+                "target_player": selected_player,
+                "target_season": selected_player_season
+            }).execute()
+
+            game_log_df = pd.DataFrame(res_game_log.data)
+
+            st.dataframe(
+                game_log_df,
+                height="content",
+                hide_index=True,
+                placeholder="",
+                column_order=[
+                    "date","opponent","bat_order","position_played","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","batting_average"
+                ],
+                column_config={
+                    "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
+                    "opponent": st.column_config.Column("Opp", help="**Opponent**"),
+                    "bat_order": st.column_config.NumberColumn("BO", format="%.0f", help="**Batting Order**"),
+                    "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
+                    "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
+                    "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
+                    "doubles": st.column_config.NumberColumn("2B", format="%d", help="**Doubles**"),
+                    "triples": st.column_config.NumberColumn("3B", format="%d", help="**Triples**"),
+                    "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
+                    "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
+                    "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
+                    "batting_average": st.column_config.NumberColumn("AVG", format="%d", help="**Batting Average  \nH/AB**")
+                }
+            )
             
     else:
         st.warning("No player found with that name.")
