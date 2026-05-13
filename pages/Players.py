@@ -301,7 +301,7 @@ if selected_player:
                     hide_index=True,
                     placeholder="",
                     column_order=[
-                        "date","opponent","bat_order","position_played","plate_appearances","hits","singles","doubles","triples","home_runs","runs","runs_batted_in","walks",
+                        "date","opponent","bat_order","position_played","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks",
                         "strikeouts_batting","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging",
                         "total_bases","sacrifice_flies","batting_double_plays","wrc","wrc_plus"
                     ],
@@ -312,7 +312,6 @@ if selected_player:
                         "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
                         "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
                         "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
-                        "singles": st.column_config.NumberColumn("1B", format="%d", help="**Singles**"),
                         "doubles": st.column_config.NumberColumn("2B", format="%d", help="**Doubles**"),
                         "triples": st.column_config.NumberColumn("3B", format="%d", help="**Triples**"),
                         "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
