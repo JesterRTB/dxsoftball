@@ -275,29 +275,35 @@ if selected_player:
             )
 
         with tab_game_log:
-            player_seasons = get_player_seasons(selected_player)
-            selected_player_season = st.selectbox(
-                "Select a season", 
-                options=player_seasons,
-                index=0,
-                width=300,
-                placeholder="Select a season",
-                label_visibility="collapsed"
-            )
+            try:
+                player_seasons = get_player_seasons(selected_player)
+                selected_player_season = st.selectbox(
+                    "Select a season", 
+                    options=player_seasons,
+                    index=0,
+                    width=300,
+                    placeholder="Select a season",
+                    label_visibility="collapsed"
+                )
+    
+                res_game_log = supabase.rpc("get_player_game_log", {
+                    "target_player": selected_player,
+                    "target_season": selected_player_season
+                }).execute()
+    
+                game_log_df = pd.Dataframe(res_game_log.data)
+    
+                st.dataframe(
+                    game_log_df,
+                    column_order=[
+                        "date","opponent","bat_order","position_played","plate_appearances"
+                    ]
+                )
 
-            res_game_log = supabase.rpc("get_player_game_log", {
-                "target_player": selected_player,
-                "target_season": selected_player_season
-            }).execute()
-
-            game_log_df = pd.Dataframe(res_game_log.data)
-
-            st.dataframe(
-                game_log_df,
-                column_order=[
-                    "date","opponent","bat_order","position_played","plate_appearances"
-                ]
-            )
+            except Exception as e:
+                st.error(f"Database Error: {e}")
+                if hasattr(e, 'message'):
+                    st.write(e.message)
             
     else:
         st.warning("No player found with that name.")
