@@ -279,7 +279,7 @@ if selected_player:
             selected_player_season = st.selectbox(
                 "Select a season", 
                 options=player_seasons,
-                index=None,
+                index=0,
                 width=300,
                 placeholder="Select a season",
                 label_visibility="collapsed"
