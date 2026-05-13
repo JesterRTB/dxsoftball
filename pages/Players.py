@@ -1,15 +1,9 @@
 import streamlit as st
 import pandas as pd
 from Home import supabase
+from utils import get_all_players
 
 st.set_page_config(page_title="D-X Player Search", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
-
-def get_all_players():
-    # Fetch just the player names from the primary_positions table
-    response = supabase.table("primary_positions").select("player").execute()
-    # Extract names into a sorted list
-    player_list = sorted([row['player'] for row in response.data])
-    return player_list
     
 def fetch_player_data(player_name):
     # 'get_player_profile' is the name of the SQL function
