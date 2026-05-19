@@ -115,7 +115,7 @@ if selected_player:
                     "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
                     "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
                     "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
-                    "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \nH/AB"),
+                    "batting_average": st.column_config.NumberColumn("AVG", format=".000", help="**Batting Average**  \nH/AB"),
                     "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n(H+BB)/PA"),
                     "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \nTB/AB"),
                     "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
