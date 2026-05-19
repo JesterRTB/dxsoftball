@@ -326,7 +326,7 @@ if selected_player:
                         "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**  \nFly ball outs that result in at least one run"),
                         "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**  \nBatted balls that result in multiple outs"),
                         "wrc": st.column_config.NumberColumn("wRC", format="%.0f", help="**Weighted Runs Created**"),
-                        "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus**")
+                        "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus**  \nWeighted Runs Created represented as a rate statistic and adjusted to the team's overall performance. 100 is team-average, higher is better")
                     }
                 )
 
