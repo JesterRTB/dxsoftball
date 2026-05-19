@@ -60,7 +60,7 @@ if all_seasons:
                     "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
                     "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus** \nWeighted Runs Created represented as a rate statistic and adjusted to the team's overall offensive performance  \n100 is team-average, higher is better"),
                     "wraa": st.column_config.NumberColumn("Bat", format="%.1f", help="**Batting Run Value**  \nCompared to the team average given an equal amount of plate appearances"),
-                    "defensive_run_value": st.column_config.NumberColumn("Def", format="%.1f", help="**Defensive Run Value**  \nCompared to the team average given an equal amount of defensive innings"),
+                    "defensive_run_value": st.column_config.NumberColumn("Def", format="%.1f", help="**Defensive Run Value**  \nCompared to the team average given an equal amount of defensive innings  \nAlso includes DH Adjustment"),
                     "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**")
                 }
             )
