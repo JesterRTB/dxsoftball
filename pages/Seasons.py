@@ -4,7 +4,7 @@ from Home import supabase
 from utils import (
     fetch_player_data,
     get_all_players,
-    get_player_seasons
+    get_player_seasons,
     get_sorted_seasons
 )
 
