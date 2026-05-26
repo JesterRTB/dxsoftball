@@ -12,8 +12,9 @@ from utils import (
 st.set_page_config(page_title="D-X Seasons", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
 
 st.header("D-Generation X History")
+st.write("**Team Captain:** Mike Jang")
 
-tab_season_overview, tab_schedule, tab_player_stats = st.tabs(["Season Overview", "Schedule", "Player Stats"])
+tab_season_overview, tab_schedule, tab_player_stats = st.tabs(["Season Overview", "Schedule & Results", "Player Stats"])
 
 with tab_season_overview:
     data_season_overview = get_table_data("dx_by_season")
