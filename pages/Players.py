@@ -18,7 +18,7 @@ selected_player = st.selectbox(
     options=players,
     index=None,
     width=300,
-    placeholder="Select a player",
+    placeholder="Mike Jang",
     label_visibility="collapsed"
 )
 
