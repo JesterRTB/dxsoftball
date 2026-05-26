@@ -79,11 +79,18 @@ with tab_season_overview:
             hide_index=True,
             height="content",
             placeholder="",
-            column_order=["season","runs_per_plate_appearance","games",],
+            column_order=["season","games","plate_appearances","runs_per_plate_apperance","walk_percentage","strikeout_percentage",],
             column_config={
                 "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
-                "runs_per_plate_appearance": st.column_config.NumberColumn("RPA", format="%.3f", help="**Runs Per Plate Appearance**"),
                 "games": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
+                "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
+                "runs_per_plate_appearance": st.column_config.NumberColumn("RPA", format="%.3f", help="**Runs Per Plate Appearance**"),
+                "walk_percentage": st.column_config.NumberColumn("BB%", format="%.3f", help="**Walk Percentage**  \n=BB/PA"),
+                "strikeout_percentage": st.column_config.NumberColumn("K%", format="%.3f", help="**Strikeout Percentage**"),
+                "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \n=H/AB"),
+                "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n=(H+BB)/PA"),
+                "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \n=TB/AB"),
+                "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging Percentage**  \n=OBP+SLG")
             }
         )
 
