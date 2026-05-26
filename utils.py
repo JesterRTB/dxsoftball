@@ -59,3 +59,10 @@ def get_player_seasons(player_name):
     
     # 4. Return sorted list (Most recent first usually feels better for game logs)
     return sorted(seasons, key=sort_key, reverse=True)
+
+def get_table_data(table_name):
+    # .select("*") grabs all columns; change to specific columns if preferred
+    response = supabase.table(table_name).select("*").execute()
+    
+    # Extract the raw list of dictionaries from the response object
+    return response.data
