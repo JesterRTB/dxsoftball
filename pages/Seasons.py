@@ -79,7 +79,8 @@ with tab_season_overview:
             hide_index=True,
             height="content",
             placeholder="",
-            column_order=["season","games","plate_appearances","runs_per_plate_apperance","walk_percentage","strikeout_percentage",],
+            column_order=["season","games","plate_appearances","runs_per_plate_apperance","walk_percentage","strikeout_percentage","batting_average","on_base_percentage","slugging_percentage",
+                         "on_base_plus_slugging","isolated_power","batting_average_balls_in_play","team_calculated_war"],
             column_config={
                 "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
                 "games": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
@@ -90,7 +91,10 @@ with tab_season_overview:
                 "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \n=H/AB"),
                 "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n=(H+BB)/PA"),
                 "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \n=TB/AB"),
-                "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging Percentage**  \n=OBP+SLG")
+                "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging Percentage**  \n=OBP+SLG"),
+                "isolated_power": st.column_config.NumberColumn("ISO", format="%.3f", help="**Isolated Power**  \nSLG-AVG"),
+                "batting_average_balls_in_play": st.column_config.NumberColumn("BABIP", format="%.3f", help="**Batting Average on Balls In Play**  \n(H-HR)/(AB-K-HR+SF)"),
+                "team_calculated_war": st.column_config.NumberColumn("WAR", format="%d", help="**Wins Above Replacement**")
             }
         )
 
