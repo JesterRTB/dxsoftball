@@ -20,6 +20,12 @@ with tab_season_overview:
     st.subheader(":green[D-Generation X Season Overview & Team Stats]")
     data_season_overview = get_table_data("dx_by_season")
     df_season_overview = pd.DataFrame(data_season_overview)
+
+    # Calculations
+    df_season_overview['strikeout_percentage'] = df_season_overview['strikeout_percentage']*100
+    df_season_overview['walk_percentage'] = df_season_overview['walk_percentage']*100
+    df_season_overview['extra_base_hit_percentage'] = df_season_overview['extra_base_hits']/df_season_overview['plate_appearances']*100
+    
     tab_overview, tab_team_standard_batting, tab_team_advanced_batting, tab_team_pitching = st.tabs(["Overview", "Team Standard Batting", "Team Advanced Batting", "Team Pitching & Fielding"])
     
     with tab_overview:
@@ -87,7 +93,8 @@ with tab_season_overview:
                 "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
                 "runs_per_plate_appearance": st.column_config.NumberColumn("RPA", format="%.3f", help="**Runs Per Plate Appearance**"),
                 "walk_percentage": st.column_config.NumberColumn("BB%", format="%.1f%%", help="**Walk Percentage**  \n=BB/PA"),
-                "strikeout_percentage": st.column_config.NumberColumn("K%", format="%.1f%%", help="**Strikeout Percentage**"),
+                "strikeout_percentage": st.column_config.NumberColumn("K%", format="%.1f%%", help="**Strikeout Percentage**  \n=SO/PA"),
+                "extra_base_hit_percentage": st.column_config.NumberColumn("XBH%", format="%.1f%%", help="**Extra-Base Hit Percentage**  \n=(2B+3B+HR)/PA"),
                 "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \n=H/AB"),
                 "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n=(H+BB)/PA"),
                 "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \n=TB/AB"),
