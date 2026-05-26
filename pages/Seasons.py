@@ -22,7 +22,21 @@ with tab_season_overview:
         df_season_overview,
         hide_index=True,
         height="content",
-        column_order=["season","games","wins","losses","ties","win_pct","player_runs","runs_allowed","pythag_win_pct","runs_per_plate_apperance","top_player"]
+        placeholder="",
+        column_order=["season","games","wins","losses","ties","win_pct","player_runs","runs_allowed","pythag_win_pct","runs_per_plate_apperance","top_player"],
+        column_config={
+            "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
+            "games": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
+            "wins": st.column_config.NumberColumn("W", format="%d", help="**Wins**"),
+            "losses": st.column_config.NumberColumn("L", format="%d", help="**Losses**"),
+            "ties": st.column_config.NumberColumn("T", format="%d", help="**Ties**"),
+            "win_pct": st.column_config.NumberColumn("W-L%", format="%.3f", help="**Win Percentage**"),
+            "player_runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
+            "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
+            "pythag_win_pct": st.column_config.NumberColumn("pythW-L%", format="%.3f", help="**Pythagorean Win Percentage**  \nExpected win percentage based on run differential  \nR^2/(R^2+RA^2)"),
+            "runs_per_plate_appearance": st.column_config.NumberColumn("RPA", format="%.3f", help="**Runs Per Plate Appearance**"),
+            "top_player": st.column_config.Column("Top Player", help="**Top Player**  \nTeam leader for this season in Wins Above Replacement")
+        }
     )
 
 with tab_schedule:
