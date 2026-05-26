@@ -11,14 +11,18 @@ st.set_page_config(page_title="D-X Player Search", layout="wide", page_icon="htt
 
 # Fetch the list for the selectbox
 players = get_all_players()
+team_captain="Mike Jang"
+
+# Default search to team captain
+default_index = players.index(team_captain) if team_captain in players else 0
 
 # Add a placeholder or "Select a Player" at the top
 selected_player = st.selectbox(
     "Select a player", 
     options=players,
-    index=None,
+    index=default_index,
     width=300,
-    placeholder="Mike Jang",
+    placeholder="Select a player",
     label_visibility="collapsed"
 )
 
