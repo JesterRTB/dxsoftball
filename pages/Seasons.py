@@ -23,7 +23,7 @@ with tab_season_overview:
         hide_index=True,
         height="content",
         placeholder="",
-        column_order=["season","games","wins","losses","ties","win_pct","player_runs","runs_allowed","pythag_win_pct","runs_per_plate_apperance","top_player"],
+        column_order=["season","games","wins","losses","ties","win_pct","player_runs","runs_allowed","pythag_win_pct","runs_per_plate_appearance","top_player"],
         column_config={
             "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
             "games": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
