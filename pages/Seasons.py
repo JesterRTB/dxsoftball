@@ -94,7 +94,7 @@ with tab_season_overview:
                 "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging Percentage**  \n=OBP+SLG"),
                 "isolated_power": st.column_config.NumberColumn("ISO", format="%.3f", help="**Isolated Power**  \nSLG-AVG"),
                 "batting_average_balls_in_play": st.column_config.NumberColumn("BABIP", format="%.3f", help="**Batting Average on Balls In Play**  \n(H-HR)/(AB-K-HR+SF)"),
-                "team_calculated_war": st.column_config.NumberColumn("WAR", format="%d", help="**Wins Above Replacement**")
+                "team_calculated_war": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**")
             }
         )
 
