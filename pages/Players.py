@@ -28,6 +28,7 @@ selected_player = st.selectbox(
 
 if selected_player:
     df = fetch_player_data(selected_player)
+    captain_message = "TEAM CAPTAIN  \n" if selected_player==team_captain else ""
 
     # Calculations
     df['strikeout_percentage'] = df['strikeout_percentage']*100
@@ -96,7 +97,7 @@ if selected_player:
         # Displaying the high-level profile info
         st.header(f"{selected_player}")
         st.markdown(
-            f"""**Position:** {df['position_long'].iloc[0]}  
+            f"""green[{captain_message}]**Position:** {df['position_long'].iloc[0]}  
             **DX Debut:** {df['dx_debut'].iloc[0]}"""
         )
         tab_stats, tab_game_log = st.tabs(["Stats", "Game Log"])
