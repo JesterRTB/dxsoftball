@@ -28,7 +28,7 @@ selected_player = st.selectbox(
 
 if selected_player:
     df = fetch_player_data(selected_player)
-    captain_message = ":green[TEAM CAPTAIN]  \n" if selected_player==team_captain else ""
+    captain_message = ":green[**TEAM CAPTAIN**]  \n" if selected_player==team_captain else ""
 
     # Calculations
     df['strikeout_percentage'] = df['strikeout_percentage']*100
