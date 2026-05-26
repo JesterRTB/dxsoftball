@@ -34,7 +34,7 @@ with tab_season_overview:
             "win_pct": st.column_config.NumberColumn("W-L%", format="%.3f", help="**Win Percentage**"),
             "player_runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
             "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
-            "pythag_win_pct": st.column_config.NumberColumn("pythW-L%", format="%.3f", help="**Pythagorean Win Percentage**  \nExpected win percentage based on run differential  \nR^2/(R^2+RA^2)"),
+            "pythag_win_pct": st.column_config.NumberColumn("pythW-L%", format="%.3f", help="**Pythagorean Win Percentage**  \nExpected win percentage based on run differential  \n=R^2/(R^2+RA^2)"),
             "runs_per_plate_appearance": st.column_config.NumberColumn("RPA", format="%.3f", help="**Runs Per Plate Appearance**"),
             "top_player": st.column_config.Column("Top Player", help="**Top Player**  \nTeam leader for this season in Wins Above Replacement")
         }
