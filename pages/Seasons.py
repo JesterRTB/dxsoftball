@@ -125,7 +125,19 @@ with tab_schedule:
         df_schedule,
         height="content",
         hide_index=True,
-        placeholder=""
+        placeholder="",
+        column_order=["game_id","game_date","game_time","opponent","win_loss","dx_score","opp_score","innings","player_of_the_game"],
+        column_config={
+            "game_id": st.column_config.NumberColumn("G#", format="%d", help="**Game Number**"),
+            "game_date": st.column_config.DateColumn("Date", format="M/D/YY", help="**Game Date**"),
+            "game_time": st.column_config.TimeColumn("Time", format="h:mm A", help="**Game Time**"),
+            "opponent": st.column_config.Column("Opponent", help="**Opponent**"),
+            "win_loss": st.column_config.Column("W-L", help="**Result**"),
+            "dx_score": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
+            "opp_score": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
+            "innings": st.column_config.NumberColumn("R", format="%d", help="**Innings**"),
+            "player_of_the_game": st.column_config.Column("Player of the Game", help="**Player of the Game**  \nPlayer with highest calculated WAR value for this game"),
+        }
     )
 
 with tab_player_stats:
