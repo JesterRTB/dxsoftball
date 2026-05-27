@@ -116,7 +116,7 @@ with tab_schedule:
     )
 
     schedule_response = supabase.rpc("get_season_schedule", {
-        "schedule_season": target_season 
+        "target_season": schedule_season 
     }).execute()
 
     df_schedule = pd.DataFrame(schedule_response.data)
