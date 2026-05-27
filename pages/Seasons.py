@@ -135,7 +135,7 @@ with tab_schedule:
             "win_loss": st.column_config.Column("W-L", help="**Result**"),
             "dx_score": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
             "opp_score": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
-            "innings": st.column_config.NumberColumn("R", format="%d", help="**Innings**"),
+            "innings": st.column_config.NumberColumn("Inn", format="%d", help="**Innings**"),
             "player_of_the_game": st.column_config.Column("Player of the Game", help="**Player of the Game**  \nPlayer with highest calculated WAR value for this game"),
         }
     )
