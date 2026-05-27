@@ -8,7 +8,7 @@ st.set_page_config(page_title="D-X Leaderboard", layout="wide", page_icon="https
 st.subheader(":green[D-Generation X Leaders]")
 
 # --- 2. Implementation ---
-all_seasons = get_sorted_seasons()
+all_seasons = get_sorted_seasons()[::-1]
 
 if all_seasons:
     # Use select_slider to pick a RANGE (tuple)
