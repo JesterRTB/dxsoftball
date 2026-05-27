@@ -130,6 +130,8 @@ with tab_team_pitching:
         }
     )
 
+st.write("")
+st.subheader(":green[D-Generation X Records by Season]")
 schedule_season = st.selectbox(
         "Select a season",
         all_seasons,
@@ -141,8 +143,6 @@ schedule_season = st.selectbox(
 tab_schedule, tab_player_stats = st.tabs(["Schedule & Results", "Player Stats"])
 
 with tab_schedule:
-    st.subheader(":green[D-Generation X Game-by-Game Schedule]")
-
     schedule_response = supabase.rpc("get_season_schedule", {
         "target_season": schedule_season 
     }).execute()
@@ -169,8 +169,6 @@ with tab_schedule:
     )
 
 with tab_player_stats:
-    st.subheader(":green[D-Generation X Player Stats by Season]")
-
     stats_response = supabase.rpc("get_leaderboard", {
         "start_season": schedule_season, 
         "end_season": schedule_season
