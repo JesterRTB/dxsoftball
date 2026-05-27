@@ -13,6 +13,7 @@ st.set_page_config(page_title="D-X Seasons", layout="wide", page_icon="https://i
 
 st.header("D-Generation X History")
 st.write("**Team Captain:** Mike Jang")
+all_seasons = get_sorted_seasons()
 
 tab_season_overview, tab_schedule, tab_player_stats = st.tabs(["Season Overview", "Schedule & Results", "Player Stats"])
 
@@ -106,7 +107,13 @@ with tab_season_overview:
         )
 
 with tab_schedule:
-    st.write("Coming soon")
+    schedule_season = st.selectbox(
+        "Select a season",
+        all_seasons,
+        index=all_seasons[-1],
+        lael_visibility="collapsed",
+        width=300
+    )
 
 with tab_player_stats:
     st.write("Coming soon")
