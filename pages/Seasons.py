@@ -26,6 +26,8 @@ with tab_season_overview:
     df_season_overview['strikeout_percentage'] = df_season_overview['strikeout_percentage']*100
     df_season_overview['walk_percentage'] = df_season_overview['walk_percentage']*100
     df_season_overview['extra_base_hit_percentage'] = df_season_overview['extra_base_hits']/df_season_overview['plate_appearances']*100
+    df_season_overview['ra7'] = df_season_overview['runs_allowed']/df_season_overview['innings_pitched']*7
+    df_season_overview['k7'] = df_season_overview['strikeouts_pitching']/df_season_overview['innings_pitched']*7
     
     tab_overview, tab_team_standard_batting, tab_team_advanced_batting, tab_team_pitching = st.tabs(["Overview", "Team Standard Batting", "Team Advanced Batting", "Team Pitching & Fielding"])
     
@@ -103,6 +105,30 @@ with tab_season_overview:
                 "isolated_power": st.column_config.NumberColumn("ISO", format="%.3f", help="**Isolated Power**  \nSLG-AVG"),
                 "batting_average_balls_in_play": st.column_config.NumberColumn("BABIP", format="%.3f", help="**Batting Average on Balls In Play**  \n(H-HR)/(AB-K-HR+SF)"),
                 "team_calculated_war": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**")
+            }
+        )
+
+    with tab_team_pitching:
+        st.dataframe(
+            df_season_overview,
+            hide_index=True,
+            height="content",
+            placeholder="",
+            column_order=["season","games","innings_pitched","runs_allowed","strikeouts_pitching","ra7","k7","out_credit_pitching",
+                          "putouts","assists","fielding_double_plays","out_credit_fielding"],
+            column_config={
+                "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
+                "games": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
+                "innings_pitched": st.column_config.NumberColumn("IP", format="%.1f", help="**Innings Pitched**"),
+                "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
+                "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**"),
+                "ra7": st.column_config.NumberColumn("RA7", format="%.2f", help="**Runs Allowed per Seven Innings**  \n=RA/IPx7"),
+                "k7": st.column_config.NumberColumn("K/7", format="%.2f", help="**Strikeouts per Seven Innings**  \n=K/IPx7"),
+                "out_credit_pitching": st.column_config.NumberColumn("PC", format="%.1f", help="**Pitching Out Credit**  \nPitchers receive 0.1 for every out and an additional 0.9 for strikeouts"),
+                "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
+                "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
+                "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays**"),
+                "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs. The remaining 0.9 is split between all fielders who touch the ball leading to an out")
             }
         )
 
