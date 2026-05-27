@@ -130,8 +130,6 @@ with tab_team_pitching:
         }
     )
 
-tab_schedule, tab_player_stats = st.tabs(["Schedule & Results", "Player Stats"])
-
 schedule_season = st.selectbox(
         "Select a season",
         all_seasons,
@@ -139,6 +137,8 @@ schedule_season = st.selectbox(
         label_visibility="collapsed",
         width=300
     )
+
+tab_schedule, tab_player_stats = st.tabs(["Schedule & Results", "Player Stats"])
 
 with tab_schedule:
     st.subheader(":green[D-Generation X Game-by-Game Schedule]")
