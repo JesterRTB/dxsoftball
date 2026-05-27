@@ -175,7 +175,7 @@ if selected_player:
                 placeholder="",
                 column_order=[
                     "season","plate_appearances","walk_percentage","strikeout_percentage","extra_base_hit_percentage","batting_average","on_base_percentage","slugging_percentage",
-                    "on_base_plus_slugging","","isolated_power","batting_average_balls_in_play","wrc","wraa","woba","wrc_plus"
+                    "on_base_plus_slugging","ops_plus","isolated_power","batting_average_balls_in_play","wrc","wraa","woba","wrc_plus"
                 ],
                 column_config={
                     "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
