@@ -15,7 +15,7 @@ st.header("D-Generation X History")
 st.write("**Team Captain:** Mike Jang")
 all_seasons = get_sorted_seasons()
 
-st.write("")
+st.divider()
 st.subheader(":green[D-Generation X Season Overview & Team Stats]")
 data_season_overview = get_table_data("dx_by_season")
 df_season_overview = pd.DataFrame(data_season_overview)
@@ -130,7 +130,7 @@ with tab_team_pitching:
         }
     )
 
-st.write("")
+st.divider()
 st.subheader(":green[D-Generation X Records by Season]")
 schedule_season = st.selectbox(
         "Select a season",
