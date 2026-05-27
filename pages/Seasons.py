@@ -110,8 +110,8 @@ with tab_schedule:
     schedule_season = st.selectbox(
         "Select a season",
         all_seasons,
-        index=all_seasons[-1],
-        lael_visibility="collapsed",
+        index=len(all_seasons)-1,
+        label_visibility="collapsed",
         width=300
     )
 
