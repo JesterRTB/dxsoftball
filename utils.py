@@ -28,7 +28,8 @@ def get_sorted_seasons():
         parts = s.split() # e.g., ["Summer", "2023"]
         return (int(parts[1]), season_order.get(parts[0], 5))
     
-    return sorted(seasons, key=sort_key)
+    # Setting reverse=True flips the output to Newest -> Oldest safely
+    return sorted(seasons, key=sort_key, reverse=True)
 
 def get_player_seasons(player_name):
     # 1. Query the stats view instead of the guts table
