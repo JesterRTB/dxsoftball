@@ -107,6 +107,7 @@ with tab_season_overview:
         )
 
 with tab_schedule:
+    st.subheader(":green[D-Generation X Game-by-Game Schedule]")
     schedule_season = st.selectbox(
         "Select a season",
         all_seasons,
