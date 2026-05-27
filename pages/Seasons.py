@@ -128,7 +128,7 @@ with tab_schedule:
         placeholder="",
         column_order=["game_id","game_date","game_time","opponent","win_loss","dx_score","opp_score","innings","player_of_the_game"],
         column_config={
-            "game_id": st.column_config.NumberColumn("G#", format="%d", help="**Game Number**"),
+            "game_id": st.column_config.NumberColumn("G#", format="%d", pinned=True, help="**Game Number**"),
             "game_date": st.column_config.DateColumn("Date", format="M/D/YY", help="**Game Date**"),
             "game_time": st.column_config.TimeColumn("Time", format="h:mm A", help="**Game Time**"),
             "opponent": st.column_config.Column("Opponent", help="**Opponent**"),
