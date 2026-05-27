@@ -28,12 +28,6 @@ with tab_season_overview:
     df_season_overview['extra_base_hit_percentage'] = df_season_overview['extra_base_hits']/df_season_overview['plate_appearances']*100
     df_season_overview['ra7'] = df_season_overview['runs_allowed']/df_season_overview['innings_pitched']*7
     df_season_overview['k7'] = df_season_overview['strikeouts_pitching']/df_season_overview['innings_pitched']*7
-    df_stats['strikeout_percentage'] = df_stats['strikeout_percentage']*100
-    df_stats['walk_percentage'] = df_stats['walk_percentage']*100
-    df_stats['extra_base_hit_percentage'] = df_stats['extra_base_hits']/df_stats['plate_appearances']*100
-    df_stats['range_factor'] = (df_stats['putouts']+df_stats['assists'])/df_stats['innings_defense']*7
-    df_stats['fielding_run_value_with_adjustment'] = df_stats['fielding_run_value']+df_stats['designated_hitter_adjustment']
-    df_stats['runs_above_replacement'] = df_stats['wraa']+df_stats['defensive_run_value']+df_stats['replacement_runs']
     
     tab_overview, tab_team_standard_batting, tab_team_advanced_batting, tab_team_pitching = st.tabs(["Overview", "Team Standard Batting", "Team Advanced Batting", "Team Pitching & Fielding"])
     
@@ -189,6 +183,14 @@ with tab_player_stats:
     }).execute()
     
     df_stats = pd.DataFrame(stats_response_response.data)
+
+    # Calculations
+    df_stats['strikeout_percentage'] = df_stats['strikeout_percentage']*100
+    df_stats['walk_percentage'] = df_stats['walk_percentage']*100
+    df_stats['extra_base_hit_percentage'] = df_stats['extra_base_hits']/df_stats['plate_appearances']*100
+    df_stats['range_factor'] = (df_stats['putouts']+df_stats['assists'])/df_stats['innings_defense']*7
+    df_stats['fielding_run_value_with_adjustment'] = df_stats['fielding_run_value']+df_stats['designated_hitter_adjustment']
+    df_stats['runs_above_replacement'] = df_stats['wraa']+df_stats['defensive_run_value']+df_stats['replacement_runs']
 
     tab_stats_overview, tab_stats_standard_batting, tab_stats_advanced_batting, tab_stats_pitching, tab_stats_fielding, tab_stats_value = st.tabs(["Overview", "Standard Batting", "Advanced Batting", "Pitching", "Fielding", "Value"])
 
