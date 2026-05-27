@@ -15,7 +15,7 @@ st.header("D-Generation X History")
 st.write("**Team Captain:** Mike Jang")
 all_seasons = get_sorted_seasons()
 
-
+st.write("")
 st.subheader(":green[D-Generation X Season Overview & Team Stats]")
 data_season_overview = get_table_data("dx_by_season")
 df_season_overview = pd.DataFrame(data_season_overview)
@@ -140,7 +140,7 @@ schedule_season = st.selectbox(
         width=300
     )
 
-tab_schedule, tab_player_stats = st.tabs(["Schedule & Results", "Player Stats"])
+tab_schedule, tab_box_scores, tab_player_stats = st.tabs(["Schedule & Results", "Box Scores", "Player Stats"])
 
 with tab_schedule:
     schedule_response = supabase.rpc("get_season_schedule", {
@@ -167,6 +167,9 @@ with tab_schedule:
             "player_of_the_game": st.column_config.Column("Player of the Game", help="**Player of the Game**  \nPlayer with highest calculated run value for this game"),
         }
     )
+
+with tab_box_scores:
+    st.write(":rainbow[Working on it!]")
 
 with tab_player_stats:
     stats_response = supabase.rpc("get_leaderboard", {
