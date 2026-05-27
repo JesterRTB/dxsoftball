@@ -119,13 +119,13 @@ if all_seasons:
                     "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n(H+BB)/PA"),
                     "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \nTB/AB"),
                     "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
-                    "ops_plus": st.column_config.NumberColumn("OPS+", format="%.0f", help="**Adjusted On-Base Plus Slugging Plus**  \nOPS adjusted to the team average. 100 is average, higher is better  \n=100*((OBP/tmOBP)+(SLG/tmSLG)-1)"),
+                    "ops_plus": st.column_config.NumberColumn("OPS+", format="%.0f", help="**Adjusted OPS+**  \nOPS adjusted to the team average. 100 is average, higher is better  \n=100*((OBP/tmOBP)+(SLG/tmSLG)-1)"),
                     "isolated_power": st.column_config.NumberColumn("ISO", format="%.3f", help="**Isolated Power**  \nSLG-AVG"),
                     "batting_average_balls_in_play": st.column_config.NumberColumn("BABIP", format="%.3f", help="**Batting Average on Balls In Play**  \n(H-HR)/(AB-K-HR+SF)"),
                     "wrc": st.column_config.NumberColumn("wRC", format="%.0f", help="**Weighted Runs Created**"),
                     "wraa": st.column_config.NumberColumn("wRAA", format="%.1f", help="**Weighted Runs Above Average**"),
                     "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help="**Weighted On-Base Average**"),
-                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus**  \nWeighted Runs Created represented as a rate statistic and adjusted to the team's overall offensive performance  \n100 is team-average, higher is better")
+                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted wRC+**  \nWeighted Runs Created represented as a rate statistic and adjusted to the team's overall offensive performance  \n100 is team-average, higher is better")
                 }
             )
 
