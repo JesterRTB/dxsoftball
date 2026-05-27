@@ -115,5 +115,18 @@ with tab_schedule:
         width=300
     )
 
+    schedule_response = supabase.rpc("get_season_schedule", {
+        "schedule_season": target_season 
+    }).execute()
+
+    df_schedule = pd.DataFrame(schedule_response.data)
+
+    st.dataframe(
+        df_schedule,
+        height="content",
+        hide_index=True,
+        placeholder=""
+    )
+
 with tab_player_stats:
     st.write("Coming soon")
