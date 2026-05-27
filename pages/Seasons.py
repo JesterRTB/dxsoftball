@@ -182,7 +182,7 @@ with tab_player_stats:
         "end_season": stats_season
     }).execute()
     
-    df_stats = pd.DataFrame(stats_response_response.data)
+    df_stats = pd.DataFrame(stats_response.data)
 
     # Calculations
     df_stats['strikeout_percentage'] = df_stats['strikeout_percentage']*100
