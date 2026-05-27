@@ -170,7 +170,7 @@ with tab_schedule:
 with tab_player_stats:
     st.subheader(":green[D-Generation X Player Stats by Season]")
     stats_season = st.selectbox(
-        "Select a season",
+        "Select another season",
         all_seasons,
         index=0,
         label_visibility="collapsed",
