@@ -193,7 +193,7 @@ if selected_player:
                     "wrc": st.column_config.NumberColumn("wRC", format="%.0f", help="**Weighted Runs Created**"),
                     "wraa": st.column_config.NumberColumn("wRAA", format="%.1f", help="**Weighted Runs Above Average**"),
                     "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help="**Weighted On-Base Average**"),
-                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted Weighted Runs Created Plus**  \nWeighted Runs Created represented as a rate statistic and adjusted to the team's overall offensive performance  \n100 is team-average, higher is better")
+                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted wRC+**  \nWeighted Runs Created represented as a rate statistic and adjusted to the team's overall offensive performance  \n100 is team-average, higher is better")
                 }
             )
 
