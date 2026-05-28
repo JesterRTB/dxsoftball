@@ -294,7 +294,8 @@ with tab_box_scores:
             column_order=linescore_orders,
             column_config=linescore_config,
             hide_index=True,
-            height="content"
+            height="content",
+            width=800
         )
         
         st.caption(
