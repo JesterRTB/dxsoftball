@@ -199,6 +199,13 @@ with tab_box_scores:
     total_row_box = df_box.sum(numeric_only=True).to_frame().T
     df_box_with_total = pd.concat([df_box, total_row_box])
 
+    # Create new columns for total row
+    total_row_box['player'] = "Total"
+    total_row_box['batting_average'] = total_row_box['hits']/total_row_box['at_bats']
+    total_row['on_base_plus_slugging'] = (total_row_box['hits']+total_row_box['walks'])/total_row_box['plate_appearances'] + total_row_box['total_bases']/total_row_box['at_bats']
+    total_box_woba_points = (df_box['woba']*df_box['plate_appearances']).sum()
+    total_row_box['woba'] = total_box_woba_points/total_row_box['plate_appearances']
+
     tab_box_score_batting, tab_box_score_pitching = st.tabs(["Batting", "Pitching & Fielding"])
 
     with tab_box_score_batting:
@@ -206,7 +213,7 @@ with tab_box_scores:
             df_box_with_total,
             height="content",
             hide_index=True,
-            use_container_width=True,
+            placeholder="",
             column_order=[
                 "player","player_position","runs","at_bats","hits","doubles","triples","home_runs","runs_batted_in","walks","strikeouts_batting","sacrifice_flies",
                 "batting_double_plays","batting_average","on_base_plus_slugging","woba"
@@ -236,7 +243,7 @@ with tab_box_scores:
             df_box_with_total,
             height="content",
             hide_index=True,
-            use_container_width=True,
+            placeholder="",
             column_order=[
                 "player","player_position","innings_pitched","runs_allowed","strikeouts_pitching",
                 "innings_defense","putouts","assists","fielding_double_plays"
