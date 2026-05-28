@@ -169,7 +169,48 @@ with tab_schedule:
     )
 
 with tab_box_scores:
-    st.write(":rainbow[Working on it!]")
+    # Format game date for selectbox
+    df_schedule['formatted_date'] = pd.to_datetime(df_schedule['game_date']).dt.strftime('%-m/%-d/%y')
+
+    # Build a helper dictionary mapping game_id -> "game_id. game_date vs opponent"
+    game_options_map = {
+        row['game_id']: f"{row['game_id']}. {row['formatted_date']} vs {row['opponent']}"
+        for _, row in df_schedule.iterrows()
+    }
+
+    # Create the detailed Game Selectbox
+    selected_game_id = st.selectbox(
+        "Select a game to view box score",
+        options=list(game_options_map.keys()), # The actual value returned (int8)
+        format_func=lambda x: game_options_map[x], # How it reads in the UI dropdown
+        width=400,
+        key="game_id_selector"
+    )
+
+    # Query and Render Box Score
+    box_response = supabase.rpc("get_box_score", {
+        "target_season": schedule_season,
+        "target_game_id": int(selected_game_id)
+    }).execute()
+
+    df_box = pd.DataFrame(box_response.data)
+
+    # Scale data percentages for cleaner visual layout
+    df_box['strikeout_percentage'] *= 100
+    df_box['walk_percentage'] *= 100
+    
+    st.dataframe(
+        df_box,
+        height="content",
+        hide_index=True,
+        use_container_width=True,
+        column_order=[
+            "bat_order", "player", "player_position", "plate_appearances", "at_bats", 
+            "runs", "hits", "singles", "doubles", "triples", "home_runs", 
+            "runs_batted_in", "walks", "strikeouts_batting", "batting_average", 
+            "wins_above_no_replacement", "wins_above_replacement"
+        ]
+    )
 
 with tab_player_stats:
     stats_response = supabase.rpc("get_leaderboard", {
