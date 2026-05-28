@@ -196,12 +196,14 @@ with tab_box_scores:
     }).execute()
 
     df_box = pd.DataFrame(box_response.data)
+    total_row_box = df_box.sum(numeric_only=True).to_frame().T
+    df_box_with_total = pd.concat([df_box, total_row])
 
     tab_box_score_batting, tab_box_score_pitching = st.tabs(["Batting", "Pitching & Fielding"])
 
     with tab_box_score_batting:
         st.dataframe(
-            df_box,
+            df_box_with_total,
             height="content",
             hide_index=True,
             use_container_width=True,
@@ -231,7 +233,7 @@ with tab_box_scores:
 
     with tab_box_score_pitching:
         st.dataframe(
-            df_box,
+            df_box_with_total,
             height="content",
             hide_index=True,
             use_container_width=True,
