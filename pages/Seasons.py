@@ -202,7 +202,7 @@ with tab_box_scores:
     # Create new columns for total row
     total_row_box['player'] = "Total"
     total_row_box['batting_average'] = total_row_box['hits']/total_row_box['at_bats']
-    total_row['on_base_plus_slugging'] = (total_row_box['hits']+total_row_box['walks'])/total_row_box['plate_appearances'] + total_row_box['total_bases']/total_row_box['at_bats']
+    total_row_box['on_base_plus_slugging'] = (total_row_box['hits']+total_row_box['walks'])/total_row_box['plate_appearances'] + total_row_box['total_bases']/total_row_box['at_bats']
     total_box_woba_points = (df_box['woba']*df_box['plate_appearances']).sum()
     total_row_box['woba'] = total_box_woba_points/total_row_box['plate_appearances']
 
