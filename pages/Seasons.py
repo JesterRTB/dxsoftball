@@ -195,9 +195,11 @@ with tab_box_scores:
         "target_game_id": int(selected_game_id)
     }).execute()
 
+    # Declare df
     df_box = pd.DataFrame(box_response.data)
+
+    # Declare total row
     total_row_box = df_box.sum(numeric_only=True).to_frame().T
-    df_box_with_total = pd.concat([df_box, total_row_box])
 
     # Create new columns for total row
     total_row_box['player'] = "Total"
@@ -205,6 +207,9 @@ with tab_box_scores:
     total_row_box['on_base_plus_slugging'] = (total_row_box['hits']+total_row_box['walks'])/total_row_box['plate_appearances'] + total_row_box['total_bases']/total_row_box['at_bats']
     total_box_woba_points = (df_box['woba']*df_box['plate_appearances']).sum()
     total_row_box['woba'] = total_box_woba_points/total_row_box['plate_appearances']
+
+    # Append total row to df
+    df_box_with_total = pd.concat([df_box, total_row_box])
 
     tab_box_score_batting, tab_box_score_pitching = st.tabs(["Batting", "Pitching & Fielding"])
 
