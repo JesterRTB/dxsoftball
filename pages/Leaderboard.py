@@ -48,7 +48,7 @@ if all_seasons:
                     "on_base_plus_slugging","wrc_plus","wraa","defensive_run_value","wins_above_replacement"
                 ],
                 column_config={
-                    "player": st.column_config.Column("Player", help="**Player**"),
+                    "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
                     "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
                     "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
                     "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
@@ -77,7 +77,7 @@ if all_seasons:
                     "walks","strikeouts_batting","sacrifice_flies","batting_double_plays","batting_triple_plays","batting_average"
                 ],
                 column_config={
-                    "player": st.column_config.Column("Player", help="**Player**"),
+                    "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
                     "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
                     "at_bats": st.column_config.NumberColumn("AB", format="%d", help="**At-Bats**"),
                     "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
@@ -110,7 +110,7 @@ if all_seasons:
                     "on_base_plus_slugging","ops_plus","isolated_power","batting_average_balls_in_play","wrc","wraa","woba","wrc_plus"
                 ],
                 column_config={
-                    "player": st.column_config.Column("Player", help="**Player**"),
+                    "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
                     "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
                     "walk_percentage": st.column_config.NumberColumn("BB%", format="%.1f%%", help="**Walk Percentage**  \nBB/PA"),
                     "strikeout_percentage": st.column_config.NumberColumn("K%", format="%.1f%%", help="**Strikeout Percentage**  \nK/PA  \nIncludes foul outs"),
@@ -140,7 +140,7 @@ if all_seasons:
                     placeholder="",
                     column_order=["player","games_pitching","innings_pitched","runs_allowed","strikeouts_pitching","runs_allowed_per_seven","strikeouts_per_seven","out_credit_pitching","pitching_run_value"],
                     column_config={
-                        "player": st.column_config.Column("Player", help="**Player**"),
+                        "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
                         "games_pitching": st.column_config.NumberColumn("G", format="%d", help="**Games Pitched**"),
                         "innings_pitched": st.column_config.NumberColumn("IP", format="%.1f", help="**Innings Pitched**"),
                         "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
@@ -171,7 +171,7 @@ if all_seasons:
                         "fielding_run_value","designated_hitter_adjustment","fielding_run_value_with_adjustment"
                     ],
                     column_config={
-                        "player": st.column_config.Column("Player", help="**Player**"),
+                        "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
                         "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games Played**"),
                         "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played as Pitcher**"),
                         "innings_pitched": st.column_config.NumberColumn("P", format="%.1f", help="**Innings Pitched**"),
@@ -208,7 +208,7 @@ if all_seasons:
                 placeholder="",
                 column_order=["player","wraa","pitching_run_value","fielding_run_value","designated_hitter_adjustment","defensive_run_value","replacement_runs","runs_above_replacement","wins_above_replacement"],
                 column_config={
-                    "player": st.column_config.Column("Player", help="**Player**"),
+                    "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
                     "wraa": st.column_config.NumberColumn("Batting", format="%.1f", help="**Batting Run Value** \nCompared to the team average given an equal amount of plate appearances"),
                     "pitching_run_value": st.column_config.NumberColumn("Pitching", format="%.1f", help="**Pitching Run Value**"),
                     "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help="**Raw Fielding Run Value**  \nCompared to the team average given an equal amount of defensive innings"),
