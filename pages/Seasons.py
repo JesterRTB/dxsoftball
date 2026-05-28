@@ -181,8 +181,10 @@ with tab_box_scores:
     # Create the detailed Game Selectbox
     selected_game_id = st.selectbox(
         "Select a game to view box score",
-        options=list(game_options_map.keys()), # The actual value returned (int8)
-        format_func=lambda x: game_options_map[x], # How it reads in the UI dropdown
+        options=list(game_options_map.keys()),
+        format_func=lambda x: game_options_map[x],
+        index=len(game_options_map)-1,
+        label_visibility="collapsed",
         width=400,
         key="game_id_selector"
     )
