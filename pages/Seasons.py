@@ -209,6 +209,7 @@ with tab_box_scores:
         column_config={
             "player": st.column_config.Column("Player", help="**Player**"),
             "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
+            "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
             "at_bats": st.column_config.NumberColumn("AB", format="%d", help="**At-Bats**"),
             "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
             "doubles": st.column_config.NumberColumn("2B", format="%d", help="**Doubles**"),
