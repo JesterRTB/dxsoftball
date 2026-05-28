@@ -248,7 +248,7 @@ with tab_box_scores:
                 "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played**"),
                 "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
                 "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
-                "fiedling_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
+                "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
             }
         )
 
