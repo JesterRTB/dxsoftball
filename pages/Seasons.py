@@ -269,7 +269,11 @@ with tab_box_scores:
 
     # 3. Render the Scoreboard Header UI Grid
     box_title = f"D-Generation X vs {game_meta["opponent"]}" if game_meta["side"] == "Away" else f"{game_meta["opponent"]} vs D-Generation X"
-    st.write(f"### {box_title}: {game_meta["game_date"]}")
+    game_date_obj = pd.to_datetime(game_meta["game_date"])
+    game_time_obj = pd.to_datetime(game_meta["game_time"])
+    formatted_game_date = game_date_obj.strftime("%B %-d, %Y")
+    formatted_game_time = game_time_obj.strftime("%-i:%M %p")
+    st.write(f"### {box_title}: {formatted_game_date}")
     
     # Establish scannable column layouts for the grid columns
     linescore_orders = ["Team"] + [str(i) for i in range(1, loop_innings + 1)] + ["R"]
@@ -286,7 +290,7 @@ with tab_box_scores:
     )
     
     st.caption(
-        f"""**Time:** {game_meta['game_time']}  
+        f"""**Time:** {formatted_game_time}  
         **Location:** {game_meta['city']}, {game_meta['state']}  
         **Venue:** {game_meta['ballpark']}"""
     )
