@@ -196,10 +196,6 @@ with tab_box_scores:
     }).execute()
 
     df_box = pd.DataFrame(box_response.data)
-
-    # Scale data percentages for cleaner visual layout
-    df_box['strikeout_percentage'] *= 100
-    df_box['walk_percentage'] *= 100
     
     st.dataframe(
         df_box,
@@ -207,11 +203,26 @@ with tab_box_scores:
         hide_index=True,
         use_container_width=True,
         column_order=[
-            "bat_order", "player", "player_position", "plate_appearances", "at_bats", 
-            "runs", "hits", "singles", "doubles", "triples", "home_runs", 
-            "runs_batted_in", "walks", "strikeouts_batting", "batting_average", 
-            "wins_above_no_replacement", "wins_above_replacement"
-        ]
+            "player","player_position","runs","at_bats","hits","doubles","triples","home_runs","runs_batted_in","walks","strikeouts_batting","sacrifice_flies",
+            "batting_double_plays","batting_average","on_base_plus_slugging","woba"
+        ],
+        column_config={
+            "player": st.column_config.Column("Player", help="**Player**"),
+            "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
+            "at_bats": st.column_config.NumberColumn("AB", format="%d", help="**At-Bats**"),
+            "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
+            "doubles": st.column_config.NumberColumn("2B", format="%d", help="**Doubles**"),
+            "triples": st.column_config.NumberColumn("3B", format="%d", help="**Triples**"),
+            "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
+            "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
+            "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases on Balls / Walks**"),
+            "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
+            "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**"),
+            "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**"),
+            "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \nH/AB"),
+            "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
+            "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help="**Weighted On-Base Average**")
+        }
     )
 
 with tab_player_stats:
