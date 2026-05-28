@@ -178,7 +178,7 @@ with tab_box_scores:
         row['game_id']: (
             f"G#{row['game_id']} - {row['formatted_date']} vs {row['opponent']}"
             if pd.notna(row['game_date']) and row['formatted_date'] != "nan"
-            else f"G#{row['game_id']}: vs {row['opponent']}"
+            else f"G#{row['game_id']} vs {row['opponent']}"
         )
         for _, row in df_schedule.iterrows()
     }
