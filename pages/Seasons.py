@@ -197,7 +197,7 @@ with tab_box_scores:
 
     df_box = pd.DataFrame(box_response.data)
     total_row_box = df_box.sum(numeric_only=True).to_frame().T
-    df_box_with_total = pd.concat([df_box, total_row])
+    df_box_with_total = pd.concat([df_box, total_row_box])
 
     tab_box_score_batting, tab_box_score_pitching = st.tabs(["Batting", "Pitching & Fielding"])
 
