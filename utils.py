@@ -1,6 +1,22 @@
 import pandas as pd
 from Home import supabase
 
+def create_row_highlighter(target_column, target_value, bg_color="rgba(128, 128, 128, 0.2)", bold=True):
+    """
+    Generates a dynamic row highlighting function for pandas Styler.
+    """
+    style_string = f"background-color: {bg_color};"
+    if bold:
+        style_string += " font-weight: bold;"
+
+    def highlight_row(row):
+        # Dynamically check the column and value you specified
+        if row[target_column] == target_value:
+            return [style_string] * len(row)
+        return [''] * len(row)
+        
+    return highlight_row
+
 def fetch_player_data(player_name):
     # 'get_player_profile' is the name of the SQL function
     # The dictionary keys must match the parameter names in your SQL function
