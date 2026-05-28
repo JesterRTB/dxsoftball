@@ -269,7 +269,7 @@ with tab_box_scores:
 
     # 3. Render the Scoreboard Header UI Grid
     box_title = f"D-Generation X vs {game_meta["opponent"]}" if game_meta["side"] == "Away" else f"{game_meta["opponent"]} vs D-Generation X"
-    st.write(f"{box_title}")
+    st.write(f"### {box_title}")
     
     # Establish scannable column layouts for the grid columns
     linescore_orders = ["Team"] + [str(i) for i in range(1, loop_innings + 1)] + ["R"]
