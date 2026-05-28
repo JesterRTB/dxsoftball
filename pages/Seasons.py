@@ -227,6 +227,67 @@ with tab_box_scores:
         axis=1
     )
 
+    # 1. Isolate game-level metadata from the first row of your box score data
+    game_meta = df_box.iloc[0]
+    
+    # Determine team names based on who is Home and Away
+    if game_meta["side"] == "Away":
+        away_team = "D-Generation X"
+        home_team = str(game_meta["opponent"])
+    else:
+        away_team = str(game_meta["opponent"])
+        home_team = "D-Generation X"
+
+    # 2. Dynamically gather scores for played innings (filtering out any unplayed/null innings)
+    num_innings = int(game_meta["innings"])
+    
+    # Cap standard tracking loop at a maximum of 9 or the actual extra-inning length
+    loop_innings = max(9, num_innings)
+    
+    line_score_data = []
+    for team_prefix, team_name, total_key in [("away_", away_team, "opp_score" if game_meta["side"] == "Home" else "dx_score"), 
+                                              ("home_", home_team, "dx_score" if game_meta["side"] == "Home" else "opp_score")]:
+        
+        row_dict = {"Team": team_name}
+        
+        # Build individual inning scores
+        for i in range(1, loop_innings + 1):
+            score_val = game_meta.get(f"{team_prefix}{i}_score")
+            
+            # If the inning wasn't played, leave it clean/blank. 
+            # Handle the bottom of the 9th walk-off exception ("X") safely if values are null.
+            if pd.isna(score_val) or score_val == "" or i > num_innings:
+                row_dict[str(i)] = "-" if i <= num_innings else ""
+            else:
+                row_dict[str(i)] = str(int(score_val))
+                
+        # Append the final calculated game total column
+        row_dict["R"] = int(game_meta[total_key])
+        line_score_data.append(row_dict)
+
+    df_line_score = pd.DataFrame(line_score_data)
+
+    # 3. Render the Scoreboard Header UI Grid
+    st.write("### 🔢 Linescore")
+    
+    # Establish scannable column layouts for the grid columns
+    linescore_orders = ["Team"] + [str(i) for i in range(1, loop_innings + 1)] + ["R"]
+    linescore_config = {str(i): st.column_config.Column(width="small", alignment="center") for i in range(1, loop_innings + 1)}
+    linescore_config["Team"] = st.column_config.Column(pinned=True, width="medium")
+    linescore_config["R"] = st.column_config.NumberColumn("R", format="%d", width="small", alignment="center", pinned=False)
+
+    st.dataframe(
+        df_line_score,
+        column_order=linescore_orders,
+        column_config=linescore_config,
+        hide_index=True,
+        height=110, # Keeps the vertical box tightly packed
+        use_container_width=False
+    )
+    
+    st.caption(f"📍 **Ballpark:** {game_meta['ballpark']} — {game_meta['city']}, {game_meta['state']}")
+    st.divider()
+
     tab_box_score_batting, tab_box_score_pitching = st.tabs(["Batting", "Pitching & Fielding"])
 
     with tab_box_score_batting:
