@@ -196,35 +196,61 @@ with tab_box_scores:
     }).execute()
 
     df_box = pd.DataFrame(box_response.data)
-    
-    st.dataframe(
-        df_box,
-        height="content",
-        hide_index=True,
-        use_container_width=True,
-        column_order=[
-            "player","player_position","runs","at_bats","hits","doubles","triples","home_runs","runs_batted_in","walks","strikeouts_batting","sacrifice_flies",
-            "batting_double_plays","batting_average","on_base_plus_slugging","woba"
-        ],
-        column_config={
-            "player": st.column_config.Column("Player", help="**Player**"),
-            "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
-            "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
-            "at_bats": st.column_config.NumberColumn("AB", format="%d", help="**At-Bats**"),
-            "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
-            "doubles": st.column_config.NumberColumn("2B", format="%d", help="**Doubles**"),
-            "triples": st.column_config.NumberColumn("3B", format="%d", help="**Triples**"),
-            "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
-            "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
-            "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases on Balls / Walks**"),
-            "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
-            "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**"),
-            "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**"),
-            "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \nH/AB"),
-            "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
-            "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help="**Weighted On-Base Average**")
-        }
-    )
+
+    tab_box_score_batting, tab_box_score_pitching = st.tabs(["Batting", "Pitching & Fielding"])
+
+    with tab_box_score_batting:
+        st.dataframe(
+            df_box,
+            height="content",
+            hide_index=True,
+            use_container_width=True,
+            column_order=[
+                "player","player_position","runs","at_bats","hits","doubles","triples","home_runs","runs_batted_in","walks","strikeouts_batting","sacrifice_flies",
+                "batting_double_plays","batting_average","on_base_plus_slugging","woba"
+            ],
+            column_config={
+                "player": st.column_config.Column("Player", help="**Player**"),
+                "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
+                "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
+                "at_bats": st.column_config.NumberColumn("AB", format="%d", help="**At-Bats**"),
+                "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
+                "doubles": st.column_config.NumberColumn("2B", format="%d", help="**Doubles**"),
+                "triples": st.column_config.NumberColumn("3B", format="%d", help="**Triples**"),
+                "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
+                "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
+                "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases on Balls / Walks**"),
+                "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
+                "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**"),
+                "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**"),
+                "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \nH/AB"),
+                "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
+                "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help="**Weighted On-Base Average**")
+            }
+        )
+
+    with tab_box_score_pitching:
+        st.dataframe(
+            df_box,
+            height="content",
+            hide_index=True,
+            use_container_width=True,
+            column_order=[
+                "player","player_position","innings_pitched","runs_allowed","strikeouts_pitching",
+                "innings_defense","putouts","assists","fielding_double_plays"
+            ],
+            column_config={
+                "player": st.column_config.Column("Player", help="**Player**"),
+                "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
+                "innings_pitched": st.column_config.NumberColumn("IP", format="%.1f", help="**Innings Pitched**"),
+                "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
+                "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**"),
+                "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played**"),
+                "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
+                "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
+                "fiedling_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
+            }
+        )
 
 with tab_player_stats:
     stats_response = supabase.rpc("get_leaderboard", {
