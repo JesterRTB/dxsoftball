@@ -257,7 +257,7 @@ with tab_box_scores:
             # If the inning wasn't played, leave it clean/blank. 
             # Handle the bottom of the 9th walk-off exception ("X") safely if values are null.
             if pd.isna(score_val) or score_val == "" or i > num_innings:
-                row_dict[str(i)] = "-" if i <= num_innings else ""
+                row_dict[str(i)] = "X" if i <= num_innings else ""
             else:
                 row_dict[str(i)] = str(int(score_val))
                 
@@ -281,8 +281,7 @@ with tab_box_scores:
         column_order=linescore_orders,
         column_config=linescore_config,
         hide_index=True,
-        height=110, # Keeps the vertical box tightly packed
-        use_container_width=False
+        height="content"
     )
     
     st.caption(f"📍 **Ballpark:** {game_meta['ballpark']} — {game_meta['city']}, {game_meta['state']}")
