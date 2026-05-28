@@ -268,7 +268,8 @@ with tab_box_scores:
     df_line_score = pd.DataFrame(line_score_data)
 
     # 3. Render the Scoreboard Header UI Grid
-    st.write("### 🔢 Linescore")
+    box_title = f"D-Generation X vs {game_meta["opponent"]}" if game_meta["side"] == "Away" else f"{game_meta["opponent"]} vs D-Generation X"
+    st.write(f"{box_title}")
     
     # Establish scannable column layouts for the grid columns
     linescore_orders = ["Team"] + [str(i) for i in range(1, loop_innings + 1)] + ["R"]
@@ -284,8 +285,11 @@ with tab_box_scores:
         height="content"
     )
     
-    st.caption(f"📍 **Ballpark:** {game_meta['ballpark']} — {game_meta['city']}, {game_meta['state']}")
-    st.divider()
+    st.caption(
+        f"""**Time:** {game_meta['game_time']}  
+        **Location:** {game_meta['city']}, {game_meta['state']}  
+        **Venue:** {game_meta['ballpark']}"""
+    )
 
     tab_box_score_batting, tab_box_score_pitching = st.tabs(["Batting", "Pitching & Fielding"])
 
