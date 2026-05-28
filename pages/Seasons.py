@@ -200,7 +200,15 @@ with tab_box_scores:
     df_box = pd.DataFrame(box_response.data)
 
     # Declare total row
-    total_row_box = df_box.sum(numeric_only=True).to_frame().T
+    total_row_box = pd.DataFrame(index=[0], columns=df_box.columns)
+
+    # Compute numeric sums
+    numeric_sums = df_box.sum(numeric_only=True)
+    for col in numeric_sums.index:
+        total_row_box[col] = numeric_sums[col]
+
+    # Fill non-numeric cells with empty string
+    total_row_box = total_row_box.fillna("")
 
     # Create new columns for total row
     total_row_box['player'] = "Total"
