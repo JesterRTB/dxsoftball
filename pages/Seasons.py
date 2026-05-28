@@ -219,7 +219,7 @@ with tab_box_scores:
     total_row_box['woba'] = total_box_woba_points/total_row_box['plate_appearances']
 
     # Append total row to df
-    df_box_with_total = pd.concat([df_box, total_row_box])
+    df_box_with_total = pd.concat([df_box, total_row_box], ignore_index=True)
 
     # Style the total row
     styled_df_box = df_box_with_total.style.apply(
