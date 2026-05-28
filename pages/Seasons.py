@@ -272,7 +272,7 @@ with tab_box_scores:
     game_date_obj = pd.to_datetime(game_meta["game_date"])
     game_time_obj = pd.to_datetime(game_meta["game_time"])
     formatted_game_date = game_date_obj.strftime("%B %-d, %Y")
-    formatted_game_time = game_time_obj.strftime("%-i:%M %p")
+    formatted_game_time = game_time_obj.strftime("%-I:%M %p")
     st.write(f"### {box_title}: {formatted_game_date}")
     
     # Establish scannable column layouts for the grid columns
