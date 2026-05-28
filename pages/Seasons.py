@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from Home import supabase
 from utils import (
+    create_row_highlighter,
     fetch_player_data,
     get_all_players,
     get_player_seasons,
@@ -211,11 +212,17 @@ with tab_box_scores:
     # Append total row to df
     df_box_with_total = pd.concat([df_box, total_row_box])
 
+    # Style the total row
+    styled_df_box = df_box_with_total.style.apply(
+        create_row_highlighter(target_column="player", target_value="Total"),
+        axis=1
+    )
+
     tab_box_score_batting, tab_box_score_pitching = st.tabs(["Batting", "Pitching & Fielding"])
 
     with tab_box_score_batting:
         st.dataframe(
-            df_box_with_total,
+            styled_df_box,
             height="content",
             hide_index=True,
             placeholder="",
@@ -245,7 +252,7 @@ with tab_box_scores:
 
     with tab_box_score_pitching:
         st.dataframe(
-            df_box_with_total,
+            styled_df_box,
             height="content",
             hide_index=True,
             placeholder="",
