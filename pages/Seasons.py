@@ -286,7 +286,7 @@ with tab_box_scores:
         # Establish scannable column layouts for the grid columns
         linescore_orders = ["Team"] + [str(i) for i in range(1, loop_innings + 1)] + ["R"]
         linescore_config = {str(i): st.column_config.Column(width=35, alignment="center") for i in range(1, loop_innings + 1)}
-        linescore_config["Team"] = st.column_config.Column(pinned=True, width=150)
+        linescore_config["Team"] = st.column_config.Column(pinned=True)
         linescore_config["R"] = st.column_config.NumberColumn("R", format="%d", width="small", alignment="center", pinned=False)
     
         st.dataframe(
