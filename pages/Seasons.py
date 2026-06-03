@@ -517,7 +517,7 @@ with tab_player_stats:
                     column_config={
                         "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
                         "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games Played**"),
-                        "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played as Pitcher**"),
+                        "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played**"),
                         "innings_pitched": st.column_config.NumberColumn("P", format="%.1f", help="**Innings Pitched**"),
                         "innings_catcher": st.column_config.NumberColumn("C", format="%.1f", help="**Innings Played as Catcher**"),
                         "innings_first_base": st.column_config.NumberColumn("1B", format="%.1f", help="**Innings Played as First Baseman**"),
