@@ -59,7 +59,7 @@ def format_baseball_innings(val):
     leftover_outs = total_outs % 3
     
     if leftover_outs == 0:
-        return f"{final_innings}"
+        return f"{final_innings}.0"
         
     return f"{final_innings}.{leftover_outs}"
 
