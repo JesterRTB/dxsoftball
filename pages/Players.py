@@ -38,6 +38,7 @@ if selected_player:
     df['range_factor'] = (df['putouts']+df['assists'])/df['innings_defense']*7
     df['fielding_run_value_with_adjustment'] = df['fielding_run_value']+df['designated_hitter_adjustment']
     df['runs_above_replacement'] = df['wraa']+df['defensive_run_value']+df['replacement_runs']
+    df['games_fielding'] = df['games_batting']
     
     # Create a total row for all columns
     total_row = df.sum(numeric_only=True).to_frame().T
@@ -61,6 +62,7 @@ if selected_player:
     total_row['runs_allowed_per_seven'] = total_row['runs_allowed']/total_row['innings_pitched']*7
     total_row['strikeouts_per_seven'] = total_row['strikeouts_pitching']/total_row['innings_pitched']*7
     total_row['range_factor'] = (total_row['putouts']+total_row['assists'])/total_row['innings_defense']*7
+    total_row['games_fielding'] = 
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
@@ -75,13 +77,11 @@ if selected_player:
 
     # Fielding dataframe branchse off here
     exclude_seasons = ["Summer 2023", "Fall 2023", "Summer 2024", "Fall 2024"]
+    excluded_games_count = df.loc[df['season'].isin(exclude_seasons), 'games_batting'].sum()
+    total_row['games_fielding'] = total_row['games_batting'] - excluded_games_count
     fielding_mask = (~df_with_total['season'].isin(exclude_seasons)) | (df_with_total['season'] == "Total")
     fielding_display_df = df_with_total[fielding_mask]
     has_fielding = fielding_display_df.loc[fielding_display_df['season'] == 'Total', 'innings_defense'].values[0] > 0
-    df_with_total['games_fielding'] = df_with_total.apply(
-        lambda row: 0 if row['season'] in exclude_seasons else row['games_batting'], 
-        axis=1
-    )
 
     # 1. Define the styling function
     def highlight_total_row(row):
