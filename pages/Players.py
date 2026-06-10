@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from Home import supabase
 from utils import (
+    blank_zero_formatter,
     fetch_player_data,
     get_all_players,
     get_player_seasons
@@ -91,6 +92,20 @@ if selected_player:
     styled_df = df_with_total.style.apply(highlight_total_row, axis=1)
     styled_pitching_df = pitching_display_df.style.apply(highlight_total_row, axis=1)
     styled_fielding_df = fielding_display_df.style.apply(highlight_total_row, axis=1)
+    styled_fielding_df = fielding_display_df.style.format({
+        "innings_pitched": lambda x: blank_zero_formatter(x, precision=1),
+        "innings_catcher": lambda x: blank_zero_formatter(x, precision=1),
+        "innings_first_base": lambda x: blank_zero_formatter(x, precision=1),
+        "innings_second_base": lambda x: blank_zero_formatter(x, precision=1),
+        "innings_third_base": lambda x: blank_zero_formatter(x, precision=1),
+        "innings_shortstop": lambda x: blank_zero_formatter(x, precision=1),
+        "innings_left_field": lambda x: blank_zero_formatter(x, precision=1),
+        "innings_left_center_field": lambda x: blank_zero_formatter(x, precision=1),
+        "innings_right_center_field": lambda x: blank_zero_formatter(x, precision=1),
+        "innings_right_field": lambda x: blank_zero_formatter(x, precision=1),
+        "innings_designated_hitter": lambda x: blank_zero_formatter(x, precision=1)
+    })
+    
     st.set_page_config(page_title=f"{selected_player} Stats", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
     
     if not df.empty:
