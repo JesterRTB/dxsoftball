@@ -70,9 +70,10 @@ if selected_player:
     # Create a "Per 10 Games" row for all columns
     per_10_row = total_row.copy()
     per_10_row['season'] = "10 Game Avg"
+    total_games = float(total_row['games_batting'].values[0])
     for col in per_10_row.columns:
         if col not in ['player','season']:
-            per_10_row[col] = (per_10_row[col] / games_batting) * 10
+            per_10_row[col] = (per_10_row[col] / total_games) * 10
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
