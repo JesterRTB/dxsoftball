@@ -91,8 +91,7 @@ if selected_player:
     
     styled_df = df_with_total.style.apply(highlight_total_row, axis=1)
     styled_pitching_df = pitching_display_df.style.apply(highlight_total_row, axis=1)
-    styled_fielding_df = fielding_display_df.style.apply(highlight_total_row, axis=1)
-    styled_fielding_df = styled_fielding_df.style.format({
+    styled_fielding_df = fielding_display_df.style.apply(highlight_total_row, axis=1).format({
         "innings_pitched": lambda x: blank_zero_formatter(x, precision=1),
         "innings_catcher": lambda x: blank_zero_formatter(x, precision=1),
         "innings_first_base": lambda x: blank_zero_formatter(x, precision=1),
