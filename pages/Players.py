@@ -313,7 +313,7 @@ if selected_player:
                 column_config={
                     "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
                     "games_fielding": st.column_config.NumberColumn("G", format="%d", help="**Games Played**"),
-                    "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played as Pitcher**"),
+                    "innings_defense": st.column_config.NumberColumn("Inn", help="**Defensive Innings Played**"),
                     "innings_pitched": st.column_config.NumberColumn("P", help="**Innings Pitched**"),
                     "innings_catcher": st.column_config.NumberColumn("C", help="**Innings Played as Catcher**"),
                     "innings_first_base": st.column_config.NumberColumn("1B", help="**Innings Played as First Baseman**"),
