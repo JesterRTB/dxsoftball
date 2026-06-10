@@ -329,26 +329,26 @@ if selected_player:
                         "fielding_run_value_with_adjustment"
                     ],
                     column_config={
-                        "season": st.column_config.Column("Season", pinned=True),
-                        "games_fielding": st.column_config.NumberColumn("G", format="%d"),
-                        "innings_defense": st.column_config.NumberColumn("Inn", help="Defensive Innings Played"),
-                        "innings_pitched": st.column_config.NumberColumn("P", help="Innings Played as Pitcher"),
-                        "innings_catcher": st.column_config.NumberColumn("C", help="Innings Played as Catcher"),
-                        "innings_first_base": st.column_config.NumberColumn("1B", help="Innings Played as First Baseman"),
-                        "innings_second_base": st.column_config.NumberColumn("2B", help="Innings Played as Second Baseman"),
-                        "innings_third_base": st.column_config.NumberColumn("3B", help="Innings Played as Third Baseman"),
-                        "innings_shortstop": st.column_config.NumberColumn("SS", help="Innings Played as Shortstop"),
-                        "innings_left_field": st.column_config.NumberColumn("LF", help="Innings Played as Leftfielder"),
-                        "innings_left_center_field": st.column_config.NumberColumn("LC", help="Innings Played as Left Centerfielder"),
-                        "innings_right_center_field": st.column_config.NumberColumn("RC", help="Innings Played as Right Centerfielder"),
-                        "innings_right_field": st.column_config.NumberColumn("RF", help="Innings Played as Rightfielder"),
-                        "innings_designated_hitter": st.column_config.NumberColumn("DH", help="Innings Played as Designated Hitter"),
+                        "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
+                        "games_fielding": st.column_config.NumberColumn("G", format="%d", help="**Defensive Games Played**  \nPitching and fielding stats tracked since Summer 2025),
+                        "innings_defense": st.column_config.NumberColumn("Inn", help="**Defensive Innings Played**"),
+                        "innings_pitched": st.column_config.NumberColumn("P", help="**Innings Played as Pitcher**"),
+                        "innings_catcher": st.column_config.NumberColumn("C", help="**Innings Played as Catcher**"),
+                        "innings_first_base": st.column_config.NumberColumn("1B", help="**Innings Played as First Baseman**"),
+                        "innings_second_base": st.column_config.NumberColumn("2B", help="**Innings Played as Second Baseman**"),
+                        "innings_third_base": st.column_config.NumberColumn("3B", help="**Innings Played as Third Baseman**"),
+                        "innings_shortstop": st.column_config.NumberColumn("SS", help="**Innings Played as Shortstop**"),
+                        "innings_left_field": st.column_config.NumberColumn("LF", help="**Innings Played as Leftfielder**"),
+                        "innings_left_center_field": st.column_config.NumberColumn("LC", help="**Innings Played as Left Centerfielder**"),
+                        "innings_right_center_field": st.column_config.NumberColumn("RC", help="**Innings Played as Right Centerfielder**"),
+                        "innings_right_field": st.column_config.NumberColumn("RF", help="**Innings Played as Rightfielder**"),
+                        "innings_designated_hitter": st.column_config.NumberColumn("DH", help="**Innings Played as Designated Hitter**"),
                         "putouts": st.column_config.NumberColumn("PO", format="%d"),
                         "assists": st.column_config.NumberColumn("A", format="%d"),
                         "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d"),
                         "range_factor": st.column_config.NumberColumn("RF/7", format="%.2f"),
                         "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f"),
-                        "fielding_run_value_with_adjustment": st.column_config.NumberColumn("FRV", format="%.1f", help="Fielding Run Value")
+                        "fielding_run_value_with_adjustment": st.column_config.NumberColumn("DRV", format="%.1f", help="**Defensive Run Value**")
                     }
                 )
 
