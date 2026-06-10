@@ -93,6 +93,12 @@ if selected_player:
     per_10_row['games_pitching'] = 10
     per_10_row['games_fielding'] = 10
     per_10_row['innings_pitched'] = total_row['innings_pitched']/total_row['games_pitching']*10
+    per_10_row['runs_allowed'] = total_row['runs_allowed']/total_row['games_pitching']*10
+    per_10_row['strikeouts_pitching'] = total_row['strikeouts_pitching']/total_row['games_pitching']*10
+    per_10_row['runs_allowed_per_seven'] = total_row['runs_allowed']/total_row['innings_pitched']*7
+    per_10_row['strikeouts_per_seven'] = total_row['strikeouts_pitching']/total_row['innings_pitched']*7
+    per_10_row['out_credit_pitching'] = total_row['out_credit_pitching']/total_row['games_pitching']*10
+    per_10_row['pitching_run_value'] = total_row['pitching_run_value']/total_row['games_pitching']*10
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
