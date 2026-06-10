@@ -99,6 +99,26 @@ if selected_player:
     per_10_row['strikeouts_per_seven'] = total_row['strikeouts_pitching']/total_row['innings_pitched']*7
     per_10_row['out_credit_pitching'] = total_row['out_credit_pitching']/total_row['games_pitching']*10
     per_10_row['pitching_run_value'] = total_row['pitching_run_value']/total_row['games_pitching']*10
+    per_10_row['innings_defense'] = total_row['innings_defense']/total_row['games_fielding']*10
+    per_10_row['innings_catcher'] = total_row['innings_catcher']/total_row['games_fielding']*10
+    per_10_row['innings_first_base'] = total_row['innings_first_base']/total_row['games_fielding']*10
+    per_10_row['innings_second_base'] = total_row['innings_second_base']/total_row['games_fielding']*10
+    per_10_row['innings_third_base'] = total_row['innings_third_base']/total_row['games_fielding']*10
+    per_10_row['innings_shortstop'] = total_row['innings_shortstop']/total_row['games_fielding']*10
+    per_10_row['innings_left_field'] = total_row['innings_left_field']/total_row['games_fielding']*10
+    per_10_row['innings_left_center_field'] = total_row['innings_left_center_field']/total_row['games_fielding']*10
+    per_10_row['innings_right_center_field'] = total_row['innings_right_center_field']/total_row['games_fielding']*10
+    per_10_row['innings_right_field'] = total_row['innings_right_field']/total_row['games_fielding']*10
+    per_10_row['innings_designated_hitter'] = total_row['innings_designated_hitter']/total_row['games_fielding']*10
+    per_10_row['innings_putouts'] = total_row['innings_putouts']/total_row['games_fielding']*10
+    per_10_row['innings_assists'] = total_row['innings_assists']/total_row['games_fielding']*10
+    per_10_row['innings_fielding_double_plays'] = total_row['innings_fielding_double_plays']/total_row['games_fielding']*10
+    per_10_row['innings_out_credit_fielding'] = total_row['innings_out_credit_fielding']/total_row['games_fielding']*10
+    per_10_row['innings_fielding_run_value'] = total_row['innings_fielding_run_value']/total_row['games_fielding']*10
+    per_10_row['innings_designated_hitter_adjustment'] = total_row['innings_designated_hitter_adjustment']/total_row['games_fielding']*10
+    per_10_row['innings_fielding_run_value_with_adjustment'] = total_row['innings_fielding_run_value_with_adjustment']/total_row['games_fielding']*10
+    per_10_row['range_factor'] = (total_row['putouts']+total_row['assists'])/total_row['innings_defense']*7
+    per_10_row['defensive_run_value'] = total_row['defensive_run_value']/total_row['games_fielding']*10
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
