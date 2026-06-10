@@ -3,6 +3,7 @@ import pandas as pd
 from Home import supabase
 from utils import (
     blank_zero_formatter,
+    create_row_highlighter,
     fetch_player_data,
     get_all_players,
     get_player_seasons
@@ -92,18 +93,12 @@ if selected_player:
     fielding_mask = (~df_with_avg['season'].isin(exclude_seasons)) | (df_with_avg['season'] == "Total")
     fielding_display_df = df_with_avg[fielding_mask]
     has_fielding = fielding_display_df.loc[fielding_display_df['season'] == 'Total', 'innings_defense'].values[0] > 0
-
-    # 1. Define the styling function
-    def highlight_total_row(row):
-        # Check if the 'season' column for this row is exactly "Total"
-        if row['season'] == "Total":
-            # Apply a subtle gray tint with 20% opacity
-            return ['background-color: rgba(128, 128, 128, 0.2); font-weight: bold;'] * len(row)
-        else:
-            # Return empty strings (no style) for other rows
-            return [''] * len(row)
     
-    styled_df = df_with_avg.style.apply(highlight_total_row, axis=1)
+    styled_df = (
+        df_with_avg.style
+        .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
+        .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg", bg_color="rgba(128, 128, 128, 0.1)"), axis=1)
+    )
     styled_pitching_df = pitching_display_df.style.apply(highlight_total_row, axis=1)
     styled_fielding_df = fielding_display_df.style.apply(highlight_total_row, axis=1).format({
         "innings_pitched": lambda x: blank_zero_formatter(x, precision=1),
