@@ -66,21 +66,29 @@ if selected_player:
     total_row['runs_allowed_per_seven'] = total_row['runs_allowed']/total_row['innings_pitched']*7
     total_row['strikeouts_per_seven'] = total_row['strikeouts_pitching']/total_row['innings_pitched']*7
     total_row['range_factor'] = (total_row['putouts']+total_row['assists'])/total_row['innings_defense']*7
+
+    # Create a "Per 10 Games" row for all columns
+    per_10_row = total_row.copy()
+    per_10_row['season'] = "10 Game Avg"
+    for col in per_10_row.columns:
+        if col not in ['player','season']:
+            per_10_row[col] = (per_10_row[col] / games_batting) * 10
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
     
     # Append it to the original DataFrame
     df_with_total = pd.concat([df, total_row])
+    df_with_avg = pd.concat([df_with_total, per_10_row])
 
     # Pitching dataframe branches off here
-    pitching_mask = (df_with_total['games_pitching'] > 0) | (df_with_total['season'] == "Total")
-    pitching_display_df = df_with_total[pitching_mask]
+    pitching_mask = (df_with_avg['games_pitching'] > 0) | (df_with_avg['season'] == "Total")
+    pitching_display_df = df_with_avg[pitching_mask]
     has_pitched = pitching_display_df.loc[pitching_display_df['season'] == 'Total', 'games_pitching'].values[0] > 0
 
     # Fielding dataframe branchse off here
-    fielding_mask = (~df_with_total['season'].isin(exclude_seasons)) | (df_with_total['season'] == "Total")
-    fielding_display_df = df_with_total[fielding_mask]
+    fielding_mask = (~df_with_avg['season'].isin(exclude_seasons)) | (df_with_avg['season'] == "Total")
+    fielding_display_df = df_with_avg[fielding_mask]
     has_fielding = fielding_display_df.loc[fielding_display_df['season'] == 'Total', 'innings_defense'].values[0] > 0
 
     # 1. Define the styling function
@@ -93,7 +101,7 @@ if selected_player:
             # Return empty strings (no style) for other rows
             return [''] * len(row)
     
-    styled_df = df_with_total.style.apply(highlight_total_row, axis=1)
+    styled_df = df_with_avg.style.apply(highlight_total_row, axis=1)
     styled_pitching_df = pitching_display_df.style.apply(highlight_total_row, axis=1)
     styled_fielding_df = fielding_display_df.style.apply(highlight_total_row, axis=1).format({
         "innings_pitched": lambda x: blank_zero_formatter(x, precision=1),
