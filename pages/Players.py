@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 from Home import supabase
 from utils import (
-    blank_zero_formatter,
     create_row_highlighter,
     fetch_player_data,
+    format_baseball_innings,
     get_all_players,
     get_player_seasons
 )
@@ -147,23 +147,24 @@ if selected_player:
         pitching_display_df.style
         .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
         .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg"), axis=1)
+        .format({"innings_pitched": format_baseball_innings})
     )
     styled_fielding_df = (
         fielding_display_df.style
         .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
         .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg"), axis=1)
         .format({
-            "innings_pitched": lambda x: blank_zero_formatter(x, precision=1),
-            "innings_catcher": lambda x: blank_zero_formatter(x, precision=1),
-            "innings_first_base": lambda x: blank_zero_formatter(x, precision=1),
-            "innings_second_base": lambda x: blank_zero_formatter(x, precision=1),
-            "innings_third_base": lambda x: blank_zero_formatter(x, precision=1),
-            "innings_shortstop": lambda x: blank_zero_formatter(x, precision=1),
-            "innings_left_field": lambda x: blank_zero_formatter(x, precision=1),
-            "innings_left_center_field": lambda x: blank_zero_formatter(x, precision=1),
-            "innings_right_center_field": lambda x: blank_zero_formatter(x, precision=1),
-            "innings_right_field": lambda x: blank_zero_formatter(x, precision=1),
-            "innings_designated_hitter": lambda x: blank_zero_formatter(x, precision=1)
+            "innings_pitched": format_baseball_innings,
+            "innings_catcher": format_baseball_innings,
+            "innings_first_base": format_baseball_innings,
+            "innings_second_base": format_baseball_innings,
+            "innings_third_base": format_baseball_innings,
+            "innings_shortstop": format_baseball_innings,
+            "innings_left_field": format_baseball_innings,
+            "innings_left_center_field": format_baseball_innings,
+            "innings_right_center_field": format_baseball_innings,
+            "innings_right_field": format_baseball_innings,
+            "innings_designated_hitter": format_baseball_innings
         })
     )
     
