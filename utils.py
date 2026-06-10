@@ -29,35 +29,28 @@ def fetch_player_data(player_name):
 
 # Inside utils.py
 
+# Inside utils.py
+
 def format_baseball_innings(val):
     """
-    Converts a raw cumulative float into standard baseball notation (.1 or .2).
+    Converts a fractional decimal inning value (e.g., 58.3908) into standard
+    baseball notation (58.1). Whole frames display with a .0 suffix.
     Returns "-" if the value is 0, NaN, or None.
     """
     import pandas as pd
-    import math
     
-    # --- UPDATED FALLBACK CHECK ---
     if pd.isna(val) or val == 0:
         return "-"
         
-    # 1. Break the raw number into its whole and decimal parts
-    whole_part = math.floor(val)
-    decimal_part = round(val - whole_part, 2)
-    
-    # 2. Convert everything to total outs (thirds of an inning)
-    if decimal_part >= 0.3:
-        # If data was entered as raw literal decimals (e.g., .7 for 7 outs)
-        literal_outs = round(decimal_part * 10)
-        total_outs = (whole_part * 3) + literal_outs
-    else:
-        # Standard fractional calculation (e.g., 57.6667 -> 57 and 2 outs)
-        total_outs = round(val * 3)
+    # 1. Convert the entire fractional number directly into total thirds (outs)
+    # 58.3908 * 3 = 175.1724 -> rounded to nearest whole integer = 175 outs
+    total_outs = round(val * 3)
         
-    # 3. Reconstruct the standard baseball string notation
+    # 2. Reconstruct the standard baseball string notation splitting by 3
     final_innings = total_outs // 3
     leftover_outs = total_outs % 3
     
+    # 3. Handle string formatting output configurations
     if leftover_outs == 0:
         return f"{final_innings}.0"
         
