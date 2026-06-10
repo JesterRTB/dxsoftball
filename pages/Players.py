@@ -288,7 +288,7 @@ if selected_player:
                     column_config={
                         "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
                         "games_pitching": st.column_config.NumberColumn("G", format="%d", help="**Games Pitched**"),
-                        "innings_pitched": st.column_config.NumberColumn("IP", format="%.1f", help="**Innings Pitched**"),
+                        "innings_pitched": st.column_config.NumberColumn("IP", help="**Innings Pitched**"),
                         "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
                         "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
                         "runs_allowed_per_seven": st.column_config.NumberColumn("RA7", format="%.2f", help="**Runs Allowed Per Seven Innings**"),
