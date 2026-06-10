@@ -99,11 +99,13 @@ if selected_player:
         .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
         .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg", bg_color="rgba(128, 128, 128, 0.1)"), axis=1)
     )
-    styled_pitching_df = pitching_display_df.style
+    styled_pitching_df = (
+        pitching_display_df.style
         .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
         .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg", bg_color="rgba(128, 128, 128, 0.1)"), axis=1)
     )
-    styled_fielding_df = fielding_display_df.style
+    styled_fielding_df = (
+        fielding_display_df.style
         .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
         .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg", bg_color="rgba(128, 128, 128, 0.1)"), axis=1)
         .format({
@@ -119,6 +121,7 @@ if selected_player:
             "innings_right_field": lambda x: blank_zero_formatter(x, precision=1),
             "innings_designated_hitter": lambda x: blank_zero_formatter(x, precision=1)
         })
+    )
     
     st.set_page_config(page_title=f"{selected_player} Stats", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
     
