@@ -206,6 +206,7 @@ if selected_player:
                 styled_df,
                 height="content",
                 hide_index=True,
+                placeholder="",
                 column_order=[
                     "season","games_batting","plate_appearances","runs","home_runs","runs_batted_in","batting_average","on_base_percentage","slugging_percentage",
                     "on_base_plus_slugging","wrc_plus","wraa","defensive_run_value","wins_above_replacement"
@@ -234,6 +235,7 @@ if selected_player:
                 styled_df,
                 height="content",
                 hide_index=True,
+                placeholder="",
                 column_order=[
                     "season","games_batting","at_bats","plate_appearances","hits","singles","doubles","triples","home_runs","total_bases","runs","runs_batted_in",
                     "walks","strikeouts_batting","sacrifice_flies","batting_double_plays","batting_triple_plays","batting_average"
@@ -266,6 +268,7 @@ if selected_player:
                 styled_df,
                 height="content",
                 hide_index=True,
+                placeholder="",
                 column_order=[
                     "season","plate_appearances","walk_percentage","strikeout_percentage","extra_base_hit_percentage","batting_average","on_base_percentage","slugging_percentage",
                     "on_base_plus_slugging","ops_plus","isolated_power","batting_average_balls_in_play","wrc","wraa","woba","wrc_plus"
@@ -297,6 +300,7 @@ if selected_player:
                     styled_pitching_df,
                     height="content",
                     hide_index=True,
+                    placeholder="",
                     column_order=["season","games_pitching","innings_pitched","runs_allowed","strikeouts_pitching","runs_allowed_per_seven","strikeouts_per_seven","out_credit_pitching","pitching_run_value"],
                     column_config={
                         "season": st.column_config.Column("Season", pinned=True),
@@ -318,6 +322,7 @@ if selected_player:
                     styled_fielding_df,
                     height="content",
                     hide_index=True,
+                    placeholder="",
                     column_order=[
                         "season","games_fielding","innings_defense","innings_pitched","innings_catcher","innings_first_base","innings_second_base","innings_third_base","innings_shortstop","innings_left_field",
                         "innings_left_center_field","innings_right_center_field","innings_right_field","innings_designated_hitter","putouts","assists","fielding_double_plays","range_factor","out_credit_fielding",
@@ -326,7 +331,18 @@ if selected_player:
                     column_config={
                         "season": st.column_config.Column("Season", pinned=True),
                         "games_fielding": st.column_config.NumberColumn("G", format="%d"),
-                        "innings_defense": st.column_config.NumberColumn("Inn"),
+                        "innings_defense": st.column_config.NumberColumn("Inn", help="Defensive Innings Played"),
+                        "innings_pitched": st.column_config.NumberColumn("IP", help="Innings Pitched"),
+                        "innings_catcher": st.column_config.NumberColumn("C", help="Innings Played as Catcher"),
+                        "innings_first_base": st.column_config.NumberColumn("1B", help="Innings Played as First Baseman"),
+                        "innings_second_base": st.column_config.NumberColumn("2B", help="Innings Played as Second Baseman"),
+                        "innings_third_base": st.column_config.NumberColumn("3B", help="Innings Played as Third Baseman"),
+                        "innings_shortstop": st.column_config.NumberColumn("SS", help="Innings Played as Shortstop"),
+                        "innings_left_field": st.column_config.NumberColumn("LF", help="Innings Played as Leftfielder"),
+                        "innings_left_center_field": st.column_config.NumberColumn("LC", help="Innings Played as Left Centerfielder"),
+                        "innings_right_center_field": st.column_config.NumberColumn("RC", help="Innings Played as Right Centerfielder"),
+                        "innings_right_field": st.column_config.NumberColumn("RF", help="Innings Played as Rightfielder"),
+                        "innings_designated_hitter": st.column_config.NumberColumn("DH", help="Innings Played as Designated Hitter"),
                         "putouts": st.column_config.NumberColumn("PO", format="%d"),
                         "assists": st.column_config.NumberColumn("A", format="%d"),
                         "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d"),
@@ -344,6 +360,7 @@ if selected_player:
                 styled_df,
                 height="content",
                 hide_index=True,
+                placeholder="",
                 column_order=["season","wraa","pitching_run_value","fielding_run_value","designated_hitter_adjustment","defensive_run_value","replacement_runs","runs_above_replacement","wins_above_replacement"],
                 column_config={
                     "season": st.column_config.Column("Season", pinned=True),
@@ -383,6 +400,7 @@ if selected_player:
                     game_log_df,
                     height="content",
                     hide_index=True,
+                    placeholder="",
                     column_order=[
                         "date","opponent","bat_order","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks",
                         "strikeouts_batting","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging",
@@ -418,6 +436,7 @@ if selected_player:
                     game_log_df,
                     height="content",
                     hide_index=True,
+                    placeholder="",
                     column_order=[
                         "date","opponent","position_played","innings_defense","putouts","assists","fielding_double_plays","out_credit_fielding"
                     ],
