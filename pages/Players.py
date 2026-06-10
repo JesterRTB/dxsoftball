@@ -330,7 +330,7 @@ if selected_player:
                     ],
                     column_config={
                         "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
-                        "games_fielding": st.column_config.NumberColumn("G", format="%d", help="**Defensive Games Played**  \nPitching and fielding stats tracked since Summer 2025),
+                        "games_fielding": st.column_config.NumberColumn("G", format="%d", help="**Defensive Games Played**  \nPitching and fielding stats tracked since Summer 2025"),
                         "innings_defense": st.column_config.NumberColumn("Inn", help="**Defensive Innings Played**"),
                         "innings_pitched": st.column_config.NumberColumn("P", help="**Innings Played as Pitcher**"),
                         "innings_catcher": st.column_config.NumberColumn("C", help="**Innings Played as Catcher**"),
