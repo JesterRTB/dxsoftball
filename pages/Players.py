@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 from Home import supabase
 from utils import (
-    blank_zero_formatter,
     create_row_highlighter,
     fetch_player_data,
     format_baseball_innings,
