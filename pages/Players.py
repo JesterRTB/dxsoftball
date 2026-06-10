@@ -160,20 +160,20 @@ if selected_player:
     styled_df = (
         df_with_avg.style
         .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
-        .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg", bg_color="rgba(128, 128, 128, 0.1)"), axis=1)
+        .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg"), axis=1)
     )
     
     styled_pitching_df = (
         pitching_display_df.style
         .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
-        .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg", bg_color="rgba(128, 128, 128, 0.1)"), axis=1)
+        .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg"), axis=1)
         .format({"innings_pitched": format_baseball_innings})
     )
     
     styled_fielding_df = (
         fielding_display_df.style
         .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
-        .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg", bg_color="rgba(128, 128, 128, 0.1)"), axis=1)
+        .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg"), axis=1)
         .format({
             "innings_pitched": format_baseball_innings,
             "innings_defense": format_baseball_innings,
