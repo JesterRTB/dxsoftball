@@ -99,8 +99,14 @@ if selected_player:
         .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
         .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg", bg_color="rgba(128, 128, 128, 0.1)"), axis=1)
     )
-    styled_pitching_df = pitching_display_df.style.apply(highlight_total_row, axis=1)
-    styled_fielding_df = fielding_display_df.style.apply(highlight_total_row, axis=1).format({
+    styled_pitching_df = pitching_display_df.style
+        .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
+        .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg", bg_color="rgba(128, 128, 128, 0.1)"), axis=1)
+    )
+    styled_fielding_df = fielding_display_df.style
+        .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
+        .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg", bg_color="rgba(128, 128, 128, 0.1)"), axis=1)
+        .format({
         "innings_pitched": lambda x: blank_zero_formatter(x, precision=1),
         "innings_catcher": lambda x: blank_zero_formatter(x, precision=1),
         "innings_first_base": lambda x: blank_zero_formatter(x, precision=1),
