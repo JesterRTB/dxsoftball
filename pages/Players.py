@@ -78,6 +78,10 @@ if selected_player:
     fielding_mask = (~df_with_total['season'].isin(exclude_seasons)) | (df_with_total['season'] == "Total")
     fielding_display_df = df_with_total[fielding_mask]
     has_fielding = fielding_display_df.loc[fielding_display_df['season'] == 'Total', 'innings_defense'].values[0] > 0
+    df_with_total['games_fielding'] = df_with_total.apply(
+        lambda row: 0 if row['season'] in exclude_seasons else row['games_batting'], 
+        axis=1
+    )
 
     # 1. Define the styling function
     def highlight_total_row(row):
@@ -248,7 +252,7 @@ if selected_player:
                 ],
                 column_config={
                     "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
-                    "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games Played**"),
+                    "games_fielding": st.column_config.NumberColumn("G", format="%d", help="**Games Played**"),
                     "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played as Pitcher**"),
                     "innings_pitched": st.column_config.NumberColumn("P", help="**Innings Pitched**"),
                     "innings_catcher": st.column_config.NumberColumn("C", help="**Innings Played as Catcher**"),
