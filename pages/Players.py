@@ -31,6 +31,9 @@ if selected_player:
     df = fetch_player_data(selected_player)
     captain_message = ":green[**TEAM CAPTAIN**]  \n" if selected_player==team_captain else ""
 
+    exclude_seasons = ["Summer 2023", "Fall 2023", "Summer 2024", "Fall 2024"]
+    excluded_games_count = df.loc[df['season'].isin(exclude_seasons), 'games_batting'].sum()
+
     # Calculations
     df['strikeout_percentage'] = df['strikeout_percentage']*100
     df['walk_percentage'] = df['walk_percentage']*100
@@ -43,6 +46,7 @@ if selected_player:
     # Create a total row for all columns
     total_row = df.sum(numeric_only=True).to_frame().T
     total_row['season'] = "Total"
+    total_row['games_fielding'] = total_row['games_batting'] - excluded_games_count
     total_row['batting_average'] = total_row['hits']/total_row['at_bats']
     total_row['on_base_percentage'] = (total_row['hits']+total_row['walks'])/total_row['plate_appearances']
     total_row['slugging_percentage'] = total_row['total_bases']/total_row['at_bats']
@@ -75,9 +79,6 @@ if selected_player:
     has_pitched = pitching_display_df.loc[pitching_display_df['season'] == 'Total', 'games_pitching'].values[0] > 0
 
     # Fielding dataframe branchse off here
-    exclude_seasons = ["Summer 2023", "Fall 2023", "Summer 2024", "Fall 2024"]
-    excluded_games_count = df.loc[df['season'].isin(exclude_seasons), 'games_batting'].sum()
-    total_row['games_fielding'] = total_row['games_batting'] - excluded_games_count
     fielding_mask = (~df_with_total['season'].isin(exclude_seasons)) | (df_with_total['season'] == "Total")
     fielding_display_df = df_with_total[fielding_mask]
     has_fielding = fielding_display_df.loc[fielding_display_df['season'] == 'Total', 'innings_defense'].values[0] > 0
