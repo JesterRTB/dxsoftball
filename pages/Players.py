@@ -75,6 +75,12 @@ if selected_player:
     for col in per_10_row.columns:
         if col not in ['player','season']:
             per_10_row[col] = (per_10_row[col] / total_games) * 10
+
+    # Alt "Per 10 Games" calculations
+    per_10_row['batting_average'] = total_row['hits']/total_row['at_bats']
+    per_10_row['on_base_percentage'] = (total_row['hits']+total_row['walks'])/total_row['plate_appearances']
+    per_10_row['slugging_percentage'] = total_row['total_bases']/total_row['at_bats']
+    per_10_row['on_base_plus_slugging'] = total_row['on_base_percentage']+total_row['slugging_percentage']
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
