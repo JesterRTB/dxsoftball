@@ -1,6 +1,18 @@
 import pandas as pd
 from Home import supabase
 
+def blank_zero_formatter(val, precision=1):
+    """
+    Formats a numeric value to a variable number of decimal places.
+    Returns an empty string if the value is 0, NaN, or None.
+    """
+    import pandas as pd
+    if pd.isna(val) or val == 0:
+        return ""
+        
+    # Dynamically inject the precision number into the float format token
+    return f"{val:.{precision}f}"
+
 def create_row_highlighter(target_column, target_value, bg_color="rgba(128, 128, 128, 0.2)", bold=True):
     """
     Generates a dynamic row highlighting function for pandas Styler.
