@@ -77,6 +77,7 @@ if selected_player:
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
+    per_10_row.index = ['10 Game Avg']
     
     # Append it to the original DataFrame
     df_with_total = pd.concat([df, total_row])
