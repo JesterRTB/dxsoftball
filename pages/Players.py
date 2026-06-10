@@ -62,7 +62,6 @@ if selected_player:
     total_row['runs_allowed_per_seven'] = total_row['runs_allowed']/total_row['innings_pitched']*7
     total_row['strikeouts_per_seven'] = total_row['strikeouts_pitching']/total_row['innings_pitched']*7
     total_row['range_factor'] = (total_row['putouts']+total_row['assists'])/total_row['innings_defense']*7
-    total_row['games_fielding'] = 
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
