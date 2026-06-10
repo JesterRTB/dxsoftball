@@ -90,6 +90,9 @@ if selected_player:
     per_10_row['isolated_power'] = total_row['slugging_percentage']-total_row['batting_average']
     per_10_row['batting_average_balls_in_play'] = (total_row['hits']-total_row['home_runs'])/(total_row['at_bats']-total_row['strikeouts_batting']-total_row['home_runs']+total_row['sacrifice_flies'])
     per_10_row['woba'] = total_woba_points/total_pa
+    per_10_row['games_pitching'] = 10
+    per_10_row['games_fielding'] = 10
+    per_10_row['innings_pitched'] = total_row['innings_pitched']/total_row['games_pitching']*10
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
