@@ -9,7 +9,7 @@ from utils import (
     get_player_seasons
 )
 
-# This must run exactly once, right at the top of the script
+# Set page configuration
 st.set_page_config(page_title="D-X Player Search", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
 
 # Fetch the list for the selectbox
@@ -191,6 +191,9 @@ if selected_player:
     )
     
     if not df.empty:
+        # Reset page configuration
+        st.set_page_config(page_title=f"{selected_player} D-X Profile & Stats", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
+        
         st.header(f"{selected_player}")
         st.markdown(
             f"""{captain_message}**Position:** {df['position_long'].iloc[0]}  
