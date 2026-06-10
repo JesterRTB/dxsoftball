@@ -8,7 +8,7 @@ def blank_zero_formatter(val, precision=1):
     """
     import pandas as pd
     if pd.isna(val) or val == 0:
-        return ""
+        return "-"
         
     # Dynamically inject the precision number into the float format token
     return f"{val:.{precision}f}"
