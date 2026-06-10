@@ -326,7 +326,7 @@ if selected_player:
                     column_order=[
                         "season","games_fielding","innings_defense","innings_pitched","innings_catcher","innings_first_base","innings_second_base","innings_third_base","innings_shortstop","innings_left_field",
                         "innings_left_center_field","innings_right_center_field","innings_right_field","innings_designated_hitter","putouts","assists","fielding_double_plays","range_factor","out_credit_fielding",
-                        "fielding_run_value_with_adjustment"
+                        "fielding_run_value"
                     ],
                     column_config={
                         "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
@@ -348,7 +348,7 @@ if selected_player:
                         "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d"),
                         "range_factor": st.column_config.NumberColumn("RF/7", format="%.2f"),
                         "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f"),
-                        "fielding_run_value_with_adjustment": st.column_config.NumberColumn("DRV", format="%.1f", help="**Defensive Run Value**")
+                        "fielding_run_value": st.column_config.NumberColumn("FRV", format="%.1f", help="**Fielding Run Value**  \nCompared to the team average given an equal amount of defensive innings played")
                     }
                 )
 
