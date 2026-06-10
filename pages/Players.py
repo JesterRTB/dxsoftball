@@ -83,6 +83,13 @@ if selected_player:
     per_10_row['on_base_plus_slugging'] = total_row['on_base_percentage']+total_row['slugging_percentage']
     per_10_row['wrc_plus'] = total_wrc_points/total_pa
     per_10_row['defensive_run_value'] = total_row['defensive_run_value']/total_row['games_fielding']*10
+    per_10_row['strikeout_percentage'] = total_row['strikeouts_batting']/total_pa*100
+    per_10_row['walk_percentage'] = total_row['walks']/total_pa*100
+    per_10_row['extra_base_hit_percentage'] = total_row['extra_base_hits']/total_pa*100
+    per_10_row['ops_plus'] = total_ops_points/total_pa
+    per_10_row['isolated_power'] = total_row['slugging_percentage']-total_row['batting_average']
+    per_10_row['batting_average_balls_in_play'] = (total_row['hits']-total_row['home_runs'])/(total_row['at_bats']-total_row['strikeouts_batting']-total_row['home_runs']+total_row['sacrifice_flies'])
+    per_10_row['woba'] = total_woba_points/total_pa
     
     # Give the index a name like 'Career Total'
     total_row.index = ['Total']
