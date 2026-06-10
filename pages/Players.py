@@ -365,10 +365,10 @@ if selected_player:
                     "wraa": st.column_config.NumberColumn("Batting", format="%.1f"),
                     "pitching_run_value": st.column_config.NumberColumn("Pitching", format="%.1f"),
                     "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f"),
-                    "designated_hitter_adjustment": st.column_config.NumberColumn("Positional", format="%.1f"),
-                    "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f"),
+                    "designated_hitter_adjustment": st.column_config.NumberColumn("Positional", format="%.1f", help="**Positional Adjustment**"),
+                    "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \n=Pitching+Fielding+Positional"),
                     "replacement_runs": st.column_config.NumberColumn("Replacement", format="%.1f"),
-                    "runs_above_replacement": st.column_config.NumberColumn("RAR", format="%.1f"),
+                    "runs_above_replacement": st.column_config.NumberColumn("RAR", format="%.1f", help="**Runs Above Replacement**  \n=Batting+Defense+Replacement"),
                     "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f")
                 }
             )
