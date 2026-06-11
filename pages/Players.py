@@ -437,7 +437,7 @@ if selected_player:
                 })
             )
 
-            tab_gl_batting, tab_gl_fielding, tab_gl_pitching = st.tabs(["Batting","Fielding","Piching"])
+            tab_gl_batting, tab_gl_pitching = st.tabs(["Batting","Pitching & Fielding"])
 
             with tab_gl_batting:
                 st.dataframe(
@@ -476,28 +476,6 @@ if selected_player:
                     }
                 )
 
-            with tab_gl_fielding:
-                st.dataframe(
-                    styled_game_log_df,
-                    height="content",
-                    hide_index=True,
-                    placeholder="",
-                    column_order=[
-                        "date","opponent","final_result","position_played","innings_defense","putouts","assists","fielding_double_plays","out_credit_fielding"
-                    ],
-                    column_config={
-                        "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
-                        "opponent": st.column_config.Column("Opponent", help="**Opponent*"),
-                        "final_result": st.column_config.Column("Result", help="**Game Result**"),
-                        "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
-                        "innings_defense": st.column_config.NumberColumn("Inn", help="**Defensive Innings Played**"),
-                        "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
-                        "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
-                        "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
-                        "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**")
-                    }
-                )
-
             with tab_gl_pitching:
                 st.dataframe(
                     styled_game_log_df,
@@ -505,7 +483,8 @@ if selected_player:
                     hide_index=True,
                     placeholder="",
                     column_order=[
-                        "date","opponent","final_result","position_played","innings_pitched","runs_allowed","strikeouts_pitching","out_credit_pitching"
+                        "date","opponent","final_result","position_played","innings_pitched","runs_allowed","strikeouts_pitching","out_credit_pitching",
+                        "innings_defense","putouts","assists","fielding_double_plays","out_credit_fielding"
                     ],
                     column_config={
                         "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
@@ -515,7 +494,12 @@ if selected_player:
                         "innings_pitched": st.column_config.NumberColumn("IP", help="**Innings Pitched**"),
                         "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
                         "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**"),
-                        "out_credit_pitching": st.column_config.NumberColumn("PC", format="%.1f", help="**Pitching Out Credit**")
+                        "out_credit_pitching": st.column_config.NumberColumn("PC", format="%.1f", help="**Pitching Out Credit**"),
+                        "innings_defense": st.column_config.NumberColumn("Inn", help="**Defensive Innings Played**"),
+                        "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
+                        "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
+                        "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
+                        "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**")
                     }
                 )
             
