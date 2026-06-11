@@ -427,6 +427,7 @@ if selected_player:
             }).execute()
 
             game_log_df = pd.DataFrame(res_game_log.data)
+            game_log_df['final_result'] = game_log_df['game_result'] + ", " + game_log_df['dx_score'].astype(str) + "-" + game_log_df['opp_score'].astype(str)
             styled_game_log_df = (
                 game_log_df.style
                 .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
@@ -445,13 +446,14 @@ if selected_player:
                     hide_index=True,
                     placeholder="",
                     column_order=[
-                        "date","opponent","bat_order","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks",
+                        "date","opponent","final_result","bat_order","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks",
                         "strikeouts_batting","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging",
                         "total_bases","sacrifice_flies","batting_double_plays","wrc","wrc_plus"
                     ],
                     column_config={
                         "date": st.column_config.Column("Date", pinned=True),
                         "opponent": st.column_config.Column("Opponent"),
+                        "final_result": st.column_config.Column("Result", help="**Game Result**"),
                         "bat_order": st.column_config.NumberColumn("BO", alignment="left", format="%.0f"),
                         "plate_appearances": st.column_config.NumberColumn("PA", format="%d"),
                         "hits": st.column_config.NumberColumn("H", format="%d"),
@@ -481,11 +483,12 @@ if selected_player:
                     hide_index=True,
                     placeholder="",
                     column_order=[
-                        "date","opponent","position_played","innings_defense","putouts","assists","fielding_double_plays","out_credit_fielding"
+                        "date","opponent","final_result","position_played","innings_defense","putouts","assists","fielding_double_plays","out_credit_fielding"
                     ],
                     column_config={
                         "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
                         "opponent": st.column_config.Column("Opponent", help="**Opponent*"),
+                        "final_result": st.column_config.Column("Result", help="**Game Result**"),
                         "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
                         "innings_defense": st.column_config.NumberColumn("Inn", help="**Defensive Innings Played**"),
                         "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
@@ -502,11 +505,12 @@ if selected_player:
                     hide_index=True,
                     placeholder="",
                     column_order=[
-                        "date","opponent","position_played","innings_pitched","runs_allowed","strikeouts_pitching","out_credit_pitching"
+                        "date","opponent","final_result","position_played","innings_pitched","runs_allowed","strikeouts_pitching","out_credit_pitching"
                     ],
                     column_config={
                         "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
                         "opponent": st.column_config.Column("Opponent", help="**Opponent*"),
+                        "final_result": st.column_config.Column("Result", help="**Game Result**"),
                         "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
                         "innings_pitched": st.column_config.NumberColumn("IP", help="**Innings Pitched**"),
                         "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
