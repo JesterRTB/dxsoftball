@@ -305,7 +305,7 @@ if selected_player:
                     height="content",
                     hide_index=True,
                     placeholder="",
-                    column_order=["season","games_pitching","innings_pitched","runs_allowed","strikeouts_pitching","runs_allowed_per_seven","strikeouts_per_seven","out_credit_pitching",""],
+                    column_order=["season","games_pitching","innings_pitched","runs_allowed","strikeouts_pitching","runs_allowed_per_seven","strikeouts_per_seven","out_credit_pitching","pitching_run_value"],
                     column_config={
                         "season": st.column_config.Column("Season", pinned=True),
                         "games_pitching": st.column_config.NumberColumn("G", format="%d"),
@@ -315,7 +315,7 @@ if selected_player:
                         "runs_allowed_per_seven": st.column_config.NumberColumn("RA7", format="%.2f"),
                         "strikeouts_per_seven": st.column_config.NumberColumn("K/7", format="%.2f"),
                         "out_credit_pitching": st.column_config.NumberColumn("PC", format="%.1f"),
-                        "pitching_run_value": st.column_config.NumberColumn("PRV", format="%.1f")
+                        "pitching_run_value": st.column_config.NumberColumn("PRV", format="%.1f", help="**Pitching Run Value**")
                     }
                 )
                 
