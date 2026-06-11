@@ -228,7 +228,7 @@ if selected_player:
                 # Flattened strings to prevent parse breaks
                 box_style = "background-color: #111111; border: 2px solid #00FF00; border-radius: 8px; width: 160px; height: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; font-family: 'Arial Black', Impact, sans-serif;"
                 name_style = "color: #FFFFFF; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; padding: 0 4px; white-space: nowrap; width: 150px;"
-                num_style = "color: #00FF00; font-size: 42px; line-height: 44px; margin-top: -2px;"
+                num_style = "color: #111111; -webkit-text-fill-color: #111111; -webkit-text-stroke: 1.5px #00FF00; font-size: 44px; line-height: 44px; margin-top: 4px; font-weight: 900;"
             
                 # Assemble the HTML string
                 jersey_badge_html = f'<div style="{box_style}"><div style="{name_style}">{jersey_name}</div><div style="{num_style}">{jersey_number}</div></div>'
