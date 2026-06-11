@@ -177,7 +177,7 @@ if selected_player:
         .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
         .apply(create_row_highlighter(target_column="season", target_value="10 Game Avg"), axis=1)
         .format({
-            "innings_pitched": format_baseball_innings,
+            "innings_pitcher": format_baseball_innings,
             "innings_defense": format_baseball_innings,
             "innings_catcher": format_baseball_innings,
             "innings_first_base": format_baseball_innings,
