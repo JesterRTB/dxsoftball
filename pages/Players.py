@@ -226,7 +226,7 @@ if selected_player:
 
             if has_jersey_data:
                 # Flattened strings to prevent parse breaks
-                box_style = "background-color: #111111; border: 2px solid #00FF00; border-radius: 8px; width: 150px; height: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; font-family: 'Arial Black', Impact, sans-serif;"
+                box_style = "background-color: #111111; border: 2px solid #00FF00; border-radius: 8px; width: 400px; height: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; font-family: 'Arial Black', Impact, sans-serif;"
                 name_style = "color: #FFFFFF; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; padding: 0 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 90px;"
                 num_style = "color: #00FF00; font-size: 42px; line-height: 44px; margin-top: -2px;"
             
