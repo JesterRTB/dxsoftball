@@ -15,6 +15,7 @@ st.set_page_config(page_title="D-X Player Search", layout="wide", page_icon="htt
 # Fetch the list for the selectbox
 players = get_all_players()
 team_captain = "Mike Jang"
+dx_logo = "https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png"
 
 # Default search to team captain
 default_index = players.index(team_captain) if team_captain in players else 0
@@ -30,6 +31,9 @@ selected_player = st.selectbox(
 
 if selected_player:
     df = fetch_player_data(selected_player)
+    avatar_url = df["avatar_url"].iloc[0] if "avatar_url" in df.columns else None
+    if not avatar_url or pd.isna(avatar_url) or str(avatar_url).strip() in ["", "-", "None"]:
+        avatar_url = dx_logo
     captain_message = ":green[**TEAM CAPTAIN**]  \n" if selected_player == team_captain else ""
 
     exclude_seasons = ["Summer 2023", "Fall 2023", "Summer 2024", "Fall 2024"]
@@ -200,7 +204,7 @@ if selected_player:
 
         col_image, col_bio = st.columns([0.2, 0.8], gap="medium")
         with col_image:
-            st.image("https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
+            st.image(avatar_url)
 
         with col_bio:
             st.header(f"{selected_player}")
