@@ -428,8 +428,14 @@ if selected_player:
 
             game_log_df = pd.DataFrame(res_game_log.data)
             game_log_df['final_result'] = game_log_df['game_result'] + ", " + game_log_df['dx_score'].astype(str) + "-" + game_log_df['opp_score'].astype(str)
+
+            total_row_gl = df.sum(numeric_only=True).to_frame().T
+
+            total_row_gl.index = ['Total']
+            df_gl_with_total = pd.concat([df, total_row])
+            
             styled_game_log_df = (
-                game_log_df.style
+                df_gl_with_total.style
                 .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
                 .format({
                     "innings_defense": format_baseball_innings,
