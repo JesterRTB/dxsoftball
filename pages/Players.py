@@ -34,6 +34,17 @@ if selected_player:
     avatar_url = df["avatar_url"].iloc[0] if "avatar_url" in df.columns else None
     if not avatar_url or pd.isna(avatar_url) or str(avatar_url).strip() in ["", "-", "None"]:
         avatar_url = dx_logo
+
+    # Pull the jersey values from the dataframe first row safely
+    jersey_name = df["jersey_name"].iloc[0] if "jersey_name" in df.columns else None
+    jersey_number = df["jersey_number"].iloc[0] if "jersey_number" in df.columns else None
+    
+    # Check if BOTH jersey values exist and are valid before drawing the badge
+    has_jersey_data = (
+        pd.notna(jersey_name) and str(jersey_name).strip() not in ["", "-", "None"] and
+        pd.notna(jersey_number) and str(jersey_number).strip() not in ["", "-", "None"]
+    )
+    
     captain_message = ":green[**TEAM CAPTAIN**]  \n" if selected_player == team_captain else ""
 
     exclude_seasons = ["Summer 2023", "Fall 2023", "Summer 2024", "Fall 2024"]
@@ -212,6 +223,49 @@ if selected_player:
                 f"""{captain_message}**Position:** {df['position_long'].iloc[0]}  
                 **DX Debut:** {df['dx_debut'].iloc[0]}"""
             )
+
+            if has_jersey_data:
+                # 3. Construct the HTML/CSS for the square jersey badge
+                jersey_badge_html = f"""
+                <div style="
+                    background-color: #111111;
+                    border: 2px solid #00FF00;
+                    border-radius: 8px;
+                    width: 100px;
+                    height: 100px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    font-family: 'Arial Black', Impact, sans-serif;
+                    box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+                    margin-bottom: 15px;
+                ">
+                    <div style="
+                        color: #FFFFFF;
+                        font-size: 11px;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        padding: 0 4px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        width: 90px;
+                    ">{jersey_name}</div>
+                    
+                    <div style="
+                        color: #00FF00;
+                        font-size: 42px;
+                        line-height: 44px;
+                        margin-top: -2px;
+                    ">{jersey_number}</div>
+                </div>
+                """
+                
+                # Render the badge
+                st.markdown(jersey_badge_html, unsafe_allow_html=True)
+    
         tab_stats, tab_game_log = st.tabs(["Stats", "Game Log"])
         with tab_stats:
             st.subheader(":green[Overview]")
