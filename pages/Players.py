@@ -197,12 +197,17 @@ if selected_player:
     if not df.empty:
         # Reset page configuration
         st.set_page_config(page_title=f"{selected_player} D-X Profile & Stats", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
-        
-        st.header(f"{selected_player}")
-        st.markdown(
-            f"""{captain_message}**Position:** {df['position_long'].iloc[0]}  
-            **DX Debut:** {df['dx_debut'].iloc[0]}"""
-        )
+
+        col_image, col_bio = st.columns([0.2, 0.8])
+        with col_image:
+            st.image("https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
+
+        with col_bio:
+            st.header(f"{selected_player}")
+            st.markdown(
+                f"""{captain_message}**Position:** {df['position_long'].iloc[0]}  
+                **DX Debut:** {df['dx_debut'].iloc[0]}"""
+            )
         tab_stats, tab_game_log = st.tabs(["Stats", "Game Log"])
         with tab_stats:
             st.subheader(":green[Overview]")
