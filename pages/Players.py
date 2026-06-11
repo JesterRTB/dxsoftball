@@ -427,12 +427,20 @@ if selected_player:
             }).execute()
 
             game_log_df = pd.DataFrame(res_game_log.data)
+            styled_game_log_df = (
+                game_log_df.style
+                .apply(create_row_highlighter(target_column="season", target_value="Total"), axis=1)
+                .format({
+                    "innings_defense": format_baseball_innings,
+                    "innings_pitched": format_baseball_innings
+                })
+            )
 
             tab_gl_batting, tab_gl_fielding, tab_gl_pitching = st.tabs(["Batting","Fielding","Piching"])
 
             with tab_gl_batting:
                 st.dataframe(
-                    game_log_df,
+                    styled_game_log_df,
                     height="content",
                     hide_index=True,
                     placeholder="",
@@ -468,7 +476,7 @@ if selected_player:
 
             with tab_gl_fielding:
                 st.dataframe(
-                    game_log_df,
+                    styled_game_log_df,
                     height="content",
                     hide_index=True,
                     placeholder="",
@@ -488,7 +496,24 @@ if selected_player:
                 )
 
             with tab_gl_pitching:
-                st.write("Pitching Stats coming soon")
+                st.dataframe(
+                    styled_game_log_df,
+                    height="content",
+                    hide_index=True,
+                    placeholder="",
+                    column_order=[
+                        "date","opponent","position_played","innings_pitched","runs_allowed","strikeouts_pitching","out_credit_pitching"
+                    ],
+                    column_config={
+                        "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
+                        "opponent": st.column_config.Column("Opponent", help="**Opponent*"),
+                        "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
+                        "innings_pitched": st.column_config.NumberColumn("IP", help="**Innings Pitched**"),
+                        "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
+                        "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**"),
+                        "out_credit_pitching": st.column_config.NumberColumn("PC", format="%.1f", help="**Pitching Out Credit**")
+                    }
+                )
             
     else:
         st.warning("No player found with that name.")
