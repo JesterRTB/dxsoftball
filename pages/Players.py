@@ -471,7 +471,7 @@ if selected_player:
                     placeholder="",
                     column_order=[
                         "date","opponent","final_result","bat_order","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks",
-                        "strikeouts_batting","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging",
+                        "strikeouts_batting","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging","ops_plus"
                         "total_bases","sacrifice_flies","batting_double_plays","wrc","wrc_plus"
                     ],
                     column_config={
@@ -492,10 +492,12 @@ if selected_player:
                         "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f"),
                         "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f"),
                         "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f"),
+                        "ops_plus": st.column_config.NumberColumn("OPS+", format="%d", help="**Adjusted OPS+**"),
                         "total_bases": st.column_config.NumberColumn("TB", format="%d"),
                         "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d"),
                         "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d"),
                         "wrc": st.column_config.NumberColumn("wRC", format="%.0f"),
+                        "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help="**Weighted On-Base Average**"),
                         "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f")
                     }
                 )
