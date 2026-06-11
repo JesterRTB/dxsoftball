@@ -43,6 +43,7 @@ if selected_player:
     df['fielding_run_value_with_adjustment'] = df['fielding_run_value'] + df['designated_hitter_adjustment']
     df['runs_above_replacement'] = df['wraa'] + df['defensive_run_value'] + df['replacement_runs']
     df['games_fielding'] = df['games_batting']
+    df['innings_pitcher'] = df['innings_pitched']
     
     # Create a total row for all columns
     total_row = df.sum(numeric_only=True).to_frame().T
@@ -113,6 +114,7 @@ if selected_player:
     
     per_10_row['defensive_run_value'] = (total_row['defensive_run_value'] / g_fielding * 10) if g_fielding > 0 else 0
     per_10_row['innings_defense'] = (total_row['innings_defense'] / g_fielding * 10) if g_fielding > 0 else 0
+    per_10_row['innings_pitcher'] = (total_row['innings_pitcher'] / g_fielding * 10) if g_fielding > 0 else 0
     per_10_row['innings_catcher'] = (total_row['innings_catcher'] / g_fielding * 10) if g_fielding > 0 else 0
     per_10_row['innings_first_base'] = (total_row['innings_first_base'] / g_fielding * 10) if g_fielding > 0 else 0
     per_10_row['innings_second_base'] = (total_row['innings_second_base'] / g_fielding * 10) if g_fielding > 0 else 0
@@ -332,7 +334,7 @@ if selected_player:
                         "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
                         "games_fielding": st.column_config.NumberColumn("G", format="%d", help="**Defensive Games Played**  \nPitching and fielding stats tracked since Summer 2025"),
                         "innings_defense": st.column_config.NumberColumn("Inn", help="**Defensive Innings Played**"),
-                        "innings_pitched": st.column_config.NumberColumn("P", help="**Innings Played as Pitcher**"),
+                        "innings_pitcher": st.column_config.NumberColumn("P", help="**Innings Played as Pitcher**"),
                         "innings_catcher": st.column_config.NumberColumn("C", help="**Innings Played as Catcher**"),
                         "innings_first_base": st.column_config.NumberColumn("1B", help="**Innings Played as First Baseman**"),
                         "innings_second_base": st.column_config.NumberColumn("2B", help="**Innings Played as Second Baseman**"),
