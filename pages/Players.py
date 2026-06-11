@@ -235,6 +235,7 @@ if selected_player:
                 # Render the badge
                 st.markdown(jersey_badge_html, unsafe_allow_html=True)
     
+        st.write("")
         tab_stats, tab_game_log = st.tabs(["Stats", "Game Log"])
         with tab_stats:
             st.subheader(":green[Overview]")
