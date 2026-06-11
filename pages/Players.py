@@ -225,43 +225,13 @@ if selected_player:
             )
 
             if has_jersey_data:
-                # 3. Construct the HTML/CSS for the square jersey badge
-                jersey_badge_html = f"""
-                <div style="
-                    background-color: #111111;
-                    border: 2px solid #00FF00;
-                    border-radius: 8px;
-                    width: 100px;
-                    height: 100px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    text-align: center;
-                    font-family: 'Arial Black', Impact, sans-serif;
-                    box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-                    margin-bottom: 15px;
-                ">
-                    <div style="
-                        color: #FFFFFF;
-                        font-size: 11px;
-                        text-transform: uppercase;
-                        letter-spacing: 1px;
-                        padding: 0 4px;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        width: 90px;
-                    ">{jersey_name}</div>
-                    
-                    <div style="
-                        color: #00FF00;
-                        font-size: 42px;
-                        line-height: 44px;
-                        margin-top: -2px;
-                    ">{jersey_number}</div>
-                </div>
-                """
+                # Flattened strings to prevent parse breaks
+                box_style = "background-color: #111111; border: 2px solid #00FF00; border-radius: 8px; width: 100px; height: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; font-family: 'Arial Black', Impact, sans-serif; box-shadow: 2px 2px 8px rgba(0,0,0,0.5); margin-bottom: 15px;"
+                name_style = "color: #FFFFFF; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; padding: 0 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 90px;"
+                num_style = "color: #00FF00; font-size: 42px; line-height: 44px; margin-top: -2px;"
+            
+                # Assemble the HTML string
+                jersey_badge_html = f'<div style="{box_style}"><div style="{name_style}">{jersey_name}</div><div style="{num_style}">{jersey_number}</div></div>'
                 
                 # Render the badge
                 st.markdown(jersey_badge_html, unsafe_allow_html=True)
