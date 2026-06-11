@@ -484,14 +484,14 @@ if selected_player:
                         "date","opponent","position_played","innings_defense","putouts","assists","fielding_double_plays","out_credit_fielding"
                     ],
                     column_config={
-                        "date": st.column_config.Column("Date", pinned=True),
-                        "opponent": st.column_config.Column("Opponent"),
-                        "position_played": st.column_config.Column("Pos"),
-                        "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f"),
-                        "putouts": st.column_config.NumberColumn("PO", format="%d"),
-                        "assists": st.column_config.NumberColumn("A", format="%d"),
-                        "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d"),
-                        "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f")
+                        "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
+                        "opponent": st.column_config.Column("Opponent", help="**Opponent*"),
+                        "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
+                        "innings_defense": st.column_config.NumberColumn("Inn", help="**Defensive Innings Played**"),
+                        "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
+                        "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
+                        "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
+                        "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**")
                     }
                 )
 
