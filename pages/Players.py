@@ -429,7 +429,7 @@ if selected_player:
             game_log_df = pd.DataFrame(res_game_log.data)
             game_log_df['final_result'] = game_log_df['game_result'] + ", " + game_log_df['dx_score'].astype(str) + "-" + game_log_df['opp_score'].astype(str)
 
-            total_row_gl = df.sum(numeric_only=True).to_frame().T
+            total_row_gl = game_log_df.sum(numeric_only=True).to_frame().T
             total_row_gl['date'] = "Total"
 
             total_row_gl.index = ['Total']
