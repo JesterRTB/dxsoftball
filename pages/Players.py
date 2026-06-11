@@ -471,8 +471,8 @@ if selected_player:
                     placeholder="",
                     column_order=[
                         "date","opponent","final_result","bat_order","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks",
-                        "strikeouts_batting","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging","ops_plus"
-                        "total_bases","sacrifice_flies","batting_double_plays","wrc","wrc_plus"
+                        "strikeouts_batting","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging","ops_plus",
+                        "total_bases","sacrifice_flies","batting_double_plays","wrc","woba","wrc_plus"
                     ],
                     column_config={
                         "date": st.column_config.Column("Date", pinned=True),
