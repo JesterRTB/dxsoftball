@@ -436,6 +436,18 @@ if selected_player:
             total_row_gl['date'] = "Total"
             total_row_gl['final_result'] = f"{game_log_wins}-{game_log_losses}-{game_log_ties}"
             total_row_gl['bat_order'] = ""
+            total_row_gl['batting_average'] = total_row_gl['hits'] / total_row_gl['at_bats']
+            total_row_gl['on_base_percentage'] = (total_row_gl['hits'] + total_row_gl['walks']) / total_row_gl['plate_appearances']
+            total_row_gl['slugging_percentage'] = total_row_gl['total_bases'] / total_row_gl['at_bats']
+            total_row_gl['on_base_plus_slugging'] = total_row_gl['on_base_percentage'] + total_row_gl['slugging_percentage']
+            
+            gl_ops_points = (game_log_df['ops_plus'] * game_log_df['plate_appearances']).sum()
+            gl_woba_points = (game_log_df['woba'] * game_log_df['plate_appearances']).sum()
+            gl_wrc_points = (game_log_df['wrc_plus'] * game_log_df['plate_appearances']).sum()
+
+            total_row_gl['ops_plus'] = gl_ops_points / total_row_gl['plate_appearances']
+            total_row_gl['woba'] = gl_woba_points / total_row_gl['plate_appearances']
+            total_row_gl['wrc_plus'] = gl_wrc_points / total_row_gl['plate_appearances']
 
             total_row_gl.index = ['Total']
             df_gl_with_total = pd.concat([game_log_df, total_row_gl])
