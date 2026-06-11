@@ -44,6 +44,7 @@ if selected_player:
     df['runs_above_replacement'] = df['wraa'] + df['defensive_run_value'] + df['replacement_runs']
     df['games_fielding'] = df['games_batting']
     df['innings_pitcher'] = df['innings_pitched']
+    df['pitching_run_value_per'] = df['pitching_run_value']
     
     # Create a total row for all columns
     total_row = df.sum(numeric_only=True).to_frame().T
@@ -133,6 +134,7 @@ if selected_player:
     per_10_row['designated_hitter_adjustment'] = (total_row['designated_hitter_adjustment'] / g_fielding * 10) if g_fielding > 0 else 0
     per_10_row['fielding_run_value_with_adjustment'] = (total_row['fielding_run_value_with_adjustment'] / g_fielding * 10) if g_fielding > 0 else 0
     per_10_row['range_factor'] = ((total_row['putouts'] + total_row['assists']) / inn_defense * 7) if inn_defense > 0 else 0
+    per_10_row['pitching_run_value_per'] = (total_row['pitching_run_value'] / g_fielding * 10) if g_pitching > 0 else 0
     
     # Give the index unified names
     total_row.index = ['Total']
@@ -303,7 +305,7 @@ if selected_player:
                     height="content",
                     hide_index=True,
                     placeholder="",
-                    column_order=["season","games_pitching","innings_pitched","runs_allowed","strikeouts_pitching","runs_allowed_per_seven","strikeouts_per_seven","out_credit_pitching","pitching_run_value"],
+                    column_order=["season","games_pitching","innings_pitched","runs_allowed","strikeouts_pitching","runs_allowed_per_seven","strikeouts_per_seven","out_credit_pitching",""],
                     column_config={
                         "season": st.column_config.Column("Season", pinned=True),
                         "games_pitching": st.column_config.NumberColumn("G", format="%d"),
@@ -361,11 +363,11 @@ if selected_player:
                 height="content",
                 hide_index=True,
                 placeholder="",
-                column_order=["season","wraa","pitching_run_value","fielding_run_value","designated_hitter_adjustment","defensive_run_value","replacement_runs","runs_above_replacement","wins_above_replacement"],
+                column_order=["season","wraa","pitching_run_value_per","fielding_run_value","designated_hitter_adjustment","defensive_run_value","replacement_runs","runs_above_replacement","wins_above_replacement"],
                 column_config={
                     "season": st.column_config.Column("Season", pinned=True),
                     "wraa": st.column_config.NumberColumn("Batting", format="%.1f"),
-                    "pitching_run_value": st.column_config.NumberColumn("Pitching", format="%.1f"),
+                    "pitching_run_value_per": st.column_config.NumberColumn("Pitching", format="%.1f"),
                     "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f"),
                     "designated_hitter_adjustment": st.column_config.NumberColumn("Positional", format="%.1f", help="**Positional Adjustment**"),
                     "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \n=Pitching+Fielding+Positional"),
