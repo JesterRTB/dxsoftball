@@ -428,7 +428,7 @@ if selected_player:
 
             game_log_df = pd.DataFrame(res_game_log.data)
             game_log_df['final_result'] = game_log_df['game_result'] + ", " + game_log_df['dx_score'].astype(str) + "-" + game_log_df['opp_score'].astype(str)
-            game_log_df['wrc_plus'] = game_log_df['wrc_plus'].clip(lower=-100)
+            game_log_df['wrc_plus_display'] = game_log_df['wrc_plus'].clip(lower=-100)
             game_log_wins = (game_log_df['game_result'] == 'W').sum()
             game_log_losses = (game_log_df['game_result'] == 'L').sum()
             game_log_ties = (game_log_df['game_result'] == 'T').sum()
@@ -448,7 +448,7 @@ if selected_player:
 
             total_row_gl['ops_plus'] = gl_ops_points / total_row_gl['plate_appearances']
             total_row_gl['woba'] = gl_woba_points / total_row_gl['plate_appearances']
-            total_row_gl['wrc_plus'] = gl_wrc_points / total_row_gl['plate_appearances']
+            total_row_gl['wrc_plus_display'] = gl_wrc_points / total_row_gl['plate_appearances']
 
             total_row_gl.index = ['Total']
             df_gl_with_total = pd.concat([game_log_df, total_row_gl])
@@ -473,7 +473,7 @@ if selected_player:
                     column_order=[
                         "date","opponent","final_result","bat_order","plate_appearances","hits","doubles","triples","home_runs","runs","runs_batted_in","walks",
                         "strikeouts_batting","batting_average","on_base_percentage","slugging_percentage","on_base_plus_slugging",
-                        "total_bases","sacrifice_flies","batting_double_plays","wrc","woba","wrc_plus"
+                        "total_bases","sacrifice_flies","batting_double_plays","wrc","woba","wrc_plus_display"
                     ],
                     column_config={
                         "date": st.column_config.Column("Date", pinned=True),
