@@ -213,8 +213,10 @@ if selected_player:
         st.set_page_config(page_title=f"{selected_player} D-X Profile & Stats", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
 
         col_image, col_bio = st.columns([0.2, 0.8], gap="medium")
+        
         with col_image:
-            st.image(avatar_url)
+            with st.container(border=True):
+                st.image(avatar_url)
 
         with col_bio:
             st.header(f"{selected_player}")
