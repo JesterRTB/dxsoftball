@@ -215,7 +215,7 @@ if selected_player:
         col_image, col_bio = st.columns([0.2, 0.8], gap="medium")
         
         with col_image:
-            with st.container(border=True):
+            with st.container(border=True, gap="xxsmall"):
                 st.image(avatar_url)
 
         with col_bio:
