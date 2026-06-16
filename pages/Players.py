@@ -478,7 +478,7 @@ if selected_player:
                         "date": st.column_config.Column("Date", pinned=True),
                         "opponent": st.column_config.Column("Opponent"),
                         "final_result": st.column_config.Column("Result", help="**Game Result**"),
-                        "bat_order": st.column_config.NumberColumn("BO", alignment="left", width=20, format="%d"),
+                        "bat_order": st.column_config.NumberColumn("BO", alignment="left", width=40, format="%d"),
                         "plate_appearances": st.column_config.NumberColumn("PA", format="%d"),
                         "hits": st.column_config.NumberColumn("H", format="%d"),
                         "doubles": st.column_config.NumberColumn("2B", format="%d"),
