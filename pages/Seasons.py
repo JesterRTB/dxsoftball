@@ -88,7 +88,7 @@ with tab_team_advanced_batting:
         height="content",
         placeholder="",
         column_order=["season","games","plate_appearances","runs_per_plate_appearance","walk_percentage","strikeout_percentage","extra_base_hit_percentage","batting_average","on_base_percentage",
-                      "slugging_percentage","on_base_plus_slugging","isolated_power","batting_average_balls_in_play","woba","team_calculated_war"],
+                      "slugging_percentage","on_base_plus_slugging","isolated_power","batting_average_balls_in_play","team_calculated_war"],
         column_config={
             "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
             "games": st.column_config.NumberColumn("G", format="%d", help="**Games**"),
