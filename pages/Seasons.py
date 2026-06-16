@@ -334,12 +334,12 @@ with tab_box_scores:
                 "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**"),
                 "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**"),
                 "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \n=H/AB"),
-                "on_base_percentage": st.column_config.NumberColumn("AVG", format="%.3f", help="**On-Base Percentage**  \n=(H+BB)/PA"),
-                "slugging_percentage": st.column_config.NumberColumn("AVG", format="%.3f", help="**Slugging Percentage**  \n=TB/AB"),
+                "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n=(H+BB)/PA"),
+                "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \n=TB/AB"),
                 "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
-                "wrc": st.column_config.NumberColumn("wRC", format="%.3f", help="**Weighted Runs Created**"),
+                "wrc": st.column_config.NumberColumn("wRC", format="%d", help="**Weighted Runs Created**"),
                 "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help="**Weighted On-Base Average**"),
-                "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.3f", help="**Adjusted wRC+**")
+                "wrc_plus": st.column_config.NumberColumn("wRC+", format="%d", help="**Adjusted wRC+**")
             }
         )
 
