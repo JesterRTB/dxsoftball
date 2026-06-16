@@ -218,9 +218,13 @@ with tab_box_scores:
     total_row_box['player'] = "Total"
     total_row_box['player_position'] = ""
     total_row_box['batting_average'] = total_row_box['hits']/total_row_box['at_bats']
+    total_row_box['on_base_percentage'] = (total_row_box['hits']+total_row_box['walks'])/total_row_box['plate_appearances']
+    total_row_box['slugging_percentage'] = total_row_box['total_bases']/total_row_box['at_bats']
     total_row_box['on_base_plus_slugging'] = (total_row_box['hits']+total_row_box['walks'])/total_row_box['plate_appearances'] + total_row_box['total_bases']/total_row_box['at_bats']
     total_box_woba_points = (df_box['woba']*df_box['plate_appearances']).sum()
+    total_box_wrc_points = (df_box['wrc_plus']*df_box['plate_appearances']).sum()
     total_row_box['woba'] = total_box_woba_points/total_row_box['plate_appearances']
+    total_row_box['wrc_plus'] = total_box_wrc_points/total_row_box['plate_appearances']
 
     # Append total row to df
     df_box_with_total = pd.concat([df_box, total_row_box], ignore_index=True)
@@ -317,7 +321,7 @@ with tab_box_scores:
             placeholder="",
             column_order=[
                 "player","player_position","runs","at_bats","hits","doubles","triples","home_runs","runs_batted_in","walks","strikeouts_batting","batting_average","on_base_percentage",
-                "slugging_percentage","on_base_plus_slugging","sacrifice_flies","batting_double_plays","wrc","woba","wrc_plus"
+                "slugging_percentage","on_base_plus_slugging","total_bases","sacrifice_flies","batting_double_plays","wrc","woba","wrc_plus"
             ],
             column_config={
                 "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
@@ -331,6 +335,7 @@ with tab_box_scores:
                 "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
                 "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases on Balls / Walks**"),
                 "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
+                "total_bases": st.column_config.NumberColumn("TB", format="%d", help="**Total Bases**  \n=1B+2x2B+3x3B+4xHR"),
                 "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**"),
                 "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**"),
                 "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \n=H/AB"),
