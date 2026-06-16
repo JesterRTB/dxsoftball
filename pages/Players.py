@@ -499,7 +499,7 @@ if selected_player:
                         "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d"),
                         "wrc": st.column_config.NumberColumn("wRC", format="%.0f"),
                         "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help="**Weighted On-Base Average**"),
-                        "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f")
+                        "wrc_plus_display": st.column_config.NumberColumn("wRC+", format="%.0f")
                     }
                 )
 
