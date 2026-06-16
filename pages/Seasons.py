@@ -316,8 +316,8 @@ with tab_box_scores:
             hide_index=True,
             placeholder="",
             column_order=[
-                "player","player_position","runs","at_bats","hits","doubles","triples","home_runs","runs_batted_in","walks","strikeouts_batting","sacrifice_flies",
-                "batting_double_plays","batting_average","on_base_plus_slugging","woba"
+                "player","player_position","runs","at_bats","hits","doubles","triples","home_runs","runs_batted_in","walks","strikeouts_batting","batting_average","on_base_percentage",
+                "slugging_percentage","on_base_plus_slugging","sacrifice_flies","batting_double_plays","wrc","woba","wrc_plus"
             ],
             column_config={
                 "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
