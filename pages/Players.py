@@ -428,6 +428,7 @@ if selected_player:
 
             game_log_df = pd.DataFrame(res_game_log.data)
             game_log_df['final_result'] = game_log_df['game_result'] + ", " + game_log_df['dx_score'].astype(str) + "-" + game_log_df['opp_score'].astype(str)
+            game_log_df['wrc_plus'] = game_log_df['wrc_plus'].clip(lower=-100)
             game_log_wins = (game_log_df['game_result'] == 'W').sum()
             game_log_losses = (game_log_df['game_result'] == 'L').sum()
             game_log_ties = (game_log_df['game_result'] == 'T').sum()
