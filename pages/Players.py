@@ -399,14 +399,14 @@ if selected_player:
                 column_order=["season","wraa","pitching_run_value_per","fielding_run_value","designated_hitter_adjustment","defensive_run_value","replacement_runs","runs_above_replacement","wins_above_replacement"],
                 column_config={
                     "season": st.column_config.Column("Season", pinned=True),
-                    "wraa": st.column_config.NumberColumn("Batting", format="%.1f"),
-                    "pitching_run_value_per": st.column_config.NumberColumn("Pitching", format="%.1f"),
-                    "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f"),
-                    "designated_hitter_adjustment": st.column_config.NumberColumn("Positional", format="%.1f", help="**Positional Adjustment**"),
-                    "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \n=Pitching+Fielding+Positional"),
-                    "replacement_runs": st.column_config.NumberColumn("Replacement", format="%.1f"),
+                    "wraa": st.column_config.NumberColumn("Batting", format="%.1f", help="**Batting Run Value**  \nCompared to the team average given an equal amount of plate appearances  \nAlso referred to as Weighted Runs Above Average (wRAA)"),
+                    "pitching_run_value_per": st.column_config.NumberColumn("Pitching", format="%.1f", help="**Pitching Run Value**"),
+                    "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help="**Fielding Run Value**  \nCompared to the team average given an equal amount of defensive innings played"),
+                    "designated_hitter_adjustment": st.column_config.NumberColumn("DH Adjustment", format="%.1f", help="**Designated Hitter Adjustment**  \nSitting players accrue negative run value as if they were on the field and didn't make any plays. To balance the team average to zero, an equal amount of positive run value is distributed equally amongst the players in the field."),
+                    "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \n=Pitching+Fielding+DH Adjustment"),
+                    "replacement_runs": st.column_config.NumberColumn("Replacement", format="%.1f", help="**Replacement Run Value**  \nRuns credited to players based on playing time (plate appearances) and team performance (runs scored vs. runs allowed)"),
                     "runs_above_replacement": st.column_config.NumberColumn("RAR", format="%.1f", help="**Runs Above Replacement**  \n=Batting+Defense+Replacement"),
-                    "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f")
+                    "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**  \nAn approximation of total wins contributed  \n=RAR/RPW  \n(Runs Per Win (RPW) value varies by season but is typically in the mid 20s")
                 }
             )
 
