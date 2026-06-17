@@ -320,7 +320,7 @@ if selected_player:
                     "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n=(H+BB)/PA"),
                     "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \n=TB/AB"),
                     "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \n=OBP+SLG"),
-                    "ops_plus": st.column_config.NumberColumn("OPS+", format="%.0f", help="**Adjusted OPS+**  \nOPS adjusted to the team average. 100 is average, higher is better  \n=100*((OBP/tmOBP)+(SLG/tmSLG)-1)"),
+                    "ops_plus": st.column_config.NumberColumn("OPS+", format="%.0f", help="**Adjusted OPS+**  \nOPS scaled where 100 is team-average, higher is better  \n=100*((OBP/tmOBP)+(SLG/tmSLG)-1)"),
                     "isolated_power": st.column_config.NumberColumn("ISO", format="%.3f", help="**Isolated Power**  \n=SLG-AVG"),
                     "batting_average_balls_in_play": st.column_config.NumberColumn("BABIP", format="%.3f", help="**Batting Average on Balls In Play**  \n=(H-HR)/(AB-K-HR+SF)"),
                     "wrc": st.column_config.NumberColumn("wRC", format="%.0f", help="**Weighted Runs Created**  \nRuns created based on wOBA"),
