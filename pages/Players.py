@@ -406,7 +406,7 @@ if selected_player:
                     "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \n=Pitching+Fielding+DH Adjustment"),
                     "replacement_runs": st.column_config.NumberColumn("Replacement", format="%.1f", help="**Replacement Run Value**  \nRuns credited to players based on playing time (plate appearances) and team performance (runs scored vs. runs allowed)"),
                     "runs_above_replacement": st.column_config.NumberColumn("RAR", format="%.1f", help="**Runs Above Replacement**  \n=Batting+Defense+Replacement"),
-                    "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**  \nAn approximation of total wins contributed  \n=RAR/RPW  \n(Runs Per Win (RPW) value varies by season but is typically in the mid 20s")
+                    "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**  \nAn approximation of total wins contributed  \n=RAR/RPW  \nRuns Per Win (RPW) value varies by season but is typically in the mid 20s")
                 }
             )
 
