@@ -380,11 +380,11 @@ if selected_player:
                         "innings_right_center_field": st.column_config.NumberColumn("RC", help="**Innings Played as Right Centerfielder**"),
                         "innings_right_field": st.column_config.NumberColumn("RF", help="**Innings Played as Rightfielder**"),
                         "innings_designated_hitter": st.column_config.NumberColumn("DH", help="**Innings Played as Designated Hitter**"),
-                        "putouts": st.column_config.NumberColumn("PO", format="%d"),
-                        "assists": st.column_config.NumberColumn("A", format="%d"),
-                        "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d"),
-                        "range_factor": st.column_config.NumberColumn("RF/7", format="%.2f"),
-                        "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f"),
+                        "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
+                        "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
+                        "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
+                        "range_factor": st.column_config.NumberColumn("RF/7", format="%.2f", help="**Range Factor Per Seven Innings**  \n=(PO+A)/Inn*7"),
+                        "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs. The remaining 0.9 is split evenly between all fielders who touch the ball leading to an out"),
                         "fielding_run_value": st.column_config.NumberColumn("FRV", format="%.1f", help="**Fielding Run Value**  \nCompared to the team average given an equal amount of defensive innings played")
                     }
                 )
