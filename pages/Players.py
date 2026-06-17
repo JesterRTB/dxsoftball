@@ -286,7 +286,7 @@ if selected_player:
                     "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
                     "singles": st.column_config.NumberColumn("1B", format="%d", help="**Singles**"),
                     "doubles": st.column_config.NumberColumn("2B", format="%d", help="**Doubles**"),
-                    "triples": st.column_config.NumberColumn("3B", format="%d, help="**Triples**"),
+                    "triples": st.column_config.NumberColumn("3B", format="%d", help="**Triples**"),
                     "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**  \nIncludes over-the-fence and inside-the-park home runs"),
                     "total_bases": st.column_config.NumberColumn("TB", format="%d", help="**Total Bases**  \n=1B+2x2B+3x3B+4xHR"),
                     "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
