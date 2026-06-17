@@ -428,7 +428,7 @@ with tab_player_stats:
                 placeholder="",
                 column_order=[
                     "player","games_batting","at_bats","plate_appearances","hits","singles","doubles","triples","home_runs","total_bases","runs","runs_batted_in",
-                    "walks","strikeouts_batting","sacrifice_flies","batting_double_plays","batting_triple_plays","batting_average"
+                    "walks","strikeouts_batting","sacrifice_flies","batting_double_plays","batting_average"
                 ],
                 column_config={
                     "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
@@ -447,7 +447,6 @@ with tab_player_stats:
                     "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
                     "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**"),
                     "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**"),
-                    "batting_triple_plays": st.column_config.NumberColumn("HITP", format="%d", help="**Hit Into Triple Plays**"),
                     "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \nH/AB")
                 }
             )
