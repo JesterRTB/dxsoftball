@@ -4,6 +4,7 @@ from Home import supabase
 from utils import (
     create_row_highlighter,
     fetch_player_data,
+    format_baseball_innings,
     get_all_players,
     get_player_seasons,
     get_sorted_seasons,
