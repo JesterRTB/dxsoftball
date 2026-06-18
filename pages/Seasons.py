@@ -203,6 +203,7 @@ with tab_box_scores:
 
     # Declare df
     df_box = pd.DataFrame(box_response.data)
+    df_box['runs_above_average'] = df_box['wraa'] + df_box['defensive_run_value']
 
     # Declare total row
     total_row_box = pd.DataFrame(index=[0], columns=df_box.columns)
@@ -379,7 +380,7 @@ with tab_box_scores:
             hide_index=True,
             placeholder="",
             column_order=[
-                "player","player_position","wraa","pitching_run_value","fielding_run_value","designated_hitter_adjustment","defensive_run_value","wins_above_no_replacement"
+                "player","player_position","wraa","pitching_run_value","fielding_run_value","designated_hitter_adjustment","defensive_run_value","runs_above_average"
             ],
             column_config={
                 "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
@@ -389,7 +390,7 @@ with tab_box_scores:
                 "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help="**Fielding Run Value**"),
                 "designated_hitter_adjustment": st.column_config.NumberColumn("DH Adjustment", format="%.1f", help="**Designated Hitter Adjustment**"),
                 "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \n=Pitching+Fielding+DH Adjustment"),
-                "wins_above_no_replacement": st.column_config.NumberColumn("WAA", format="%.1f", help="**Wins Above Average**")
+                "runs_above_average": st.column_config.NumberColumn("Run Value", format="%.1f", help="**Run Value**  \nRuns contributed in this game compared to the season-average player")
             }
         )
 
