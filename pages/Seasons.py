@@ -390,7 +390,7 @@ with tab_box_scores:
                 "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help="**Fielding Run Value**"),
                 "designated_hitter_adjustment": st.column_config.NumberColumn("DH Adjustment", format="%.1f", help="**Designated Hitter Adjustment**"),
                 "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \n=Pitching+Fielding+DH Adjustment"),
-                "runs_above_average": st.column_config.NumberColumn("Run Value", format="%.1f", help="**Run Value**  \nRuns contributed in this game compared to the season-average player")
+                "runs_above_average": st.column_config.NumberColumn("Run Value", format="%.1f", help="**Run Value**  \nRuns contributed in this game compared to the season-average player given an equal amount of playing time")
             }
         )
 
