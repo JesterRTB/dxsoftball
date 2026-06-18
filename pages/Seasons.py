@@ -312,7 +312,7 @@ with tab_box_scores:
     else:
         st.info("Linescore unavailable because game metadata has not been logged")
         
-    tab_box_score_batting, tab_box_score_pitching = st.tabs(["Batting", "Pitching & Fielding"])
+    tab_box_score_batting, tab_box_score_pitching, tab_box_score_value = st.tabs(["Batting", "Pitching & Fielding", "Value"])
 
     with tab_box_score_batting:
         st.dataframe(
@@ -369,6 +369,27 @@ with tab_box_scores:
                 "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
                 "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
                 "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
+            }
+        )
+
+    with tab_box_score_value:
+        st.dataframe(
+            styled_df_box,
+            height="content",
+            hide_index=True,
+            placeholder="",
+            column_order=[
+                "player","player_position","wraa","pitching_run_value","fielding_run_value","designated_hitter_adjustment","defensive_run_value","wins_above_no_replacement"
+            ],
+            column_config={
+                "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
+                "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
+                "wraa": st.column_config.NumberColumn("Batting", format="%.1f", help="**Batting Run Value**"),
+                "pitching_run_value": st.column_config.NumberColumn("Pitching", format="%.1f", help="**Pitching Run Value**"),
+                "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help="**Fielding Run Value**"),
+                "designated_hitter_adjustment": st.column_config.NumberColumn("DH Adjustment", format="%.1f", help="**Designated Hitter Adjustment**"),
+                "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \n=Pitching+Fielding+DH Adjustment"),
+                "wins_above_no_replacement": st.column_config.NumberColumn("WAA", format="%.1f", help="**Wins Above Average**")
             }
         )
 
