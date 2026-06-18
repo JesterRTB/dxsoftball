@@ -357,8 +357,8 @@ with tab_box_scores:
             hide_index=True,
             placeholder="",
             column_order=[
-                "player","player_position","innings_pitched","runs_allowed","strikeouts_pitching",
-                "innings_defense","putouts","assists","fielding_double_plays"
+                "player","player_position","innings_pitched","runs_allowed","strikeouts_pitching","out_credit_pitching",
+                "innings_defense","putouts","assists","fielding_double_plays","out_credit_fielding","out_credit_total"
             ],
             column_config={
                 "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
@@ -366,10 +366,13 @@ with tab_box_scores:
                 "innings_pitched": st.column_config.NumberColumn("IP", format="%.1f", help="**Innings Pitched**"),
                 "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
                 "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**"),
+                "out_credit_pitching": st.column_config.NumberColumn("PC", format="%.1f", help="**Pitching Out Credit**  \nPitchers receive 0.1 for all outs and an additional 0.9 for strikeouts"),
                 "innings_defense": st.column_config.NumberColumn("Inn", format="%.1f", help="**Defensive Innings Played**"),
                 "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
                 "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
                 "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
+                "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs and the remaining 0.9 is split evenly by all fielders who touch the ball leading to a putout"),
+                "out_credit_total": st.column_config.NumberColumn("DC", format="%.1f", help="**Defensive Out Credit**  \n=PC+FC"),
             }
         )
 
