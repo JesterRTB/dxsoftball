@@ -385,12 +385,12 @@ with tab_box_scores:
             column_config={
                 "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
                 "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
-                "wraa": st.column_config.NumberColumn("Batting", format="%.1f", help="**Batting Run Value**"),
+                "wraa": st.column_config.NumberColumn("Batting", format="%.1f", help="**Batting Run Value** \nCompared to the season-average player given an equal amount of plate appearances"),
                 "pitching_run_value": st.column_config.NumberColumn("Pitching", format="%.1f", help="**Pitching Run Value**"),
-                "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help="**Fielding Run Value**"),
-                "designated_hitter_adjustment": st.column_config.NumberColumn("DH Adjustment", format="%.1f", help="**Designated Hitter Adjustment**"),
-                "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \n=Pitching+Fielding+DH Adjustment"),
-                "runs_above_average": st.column_config.NumberColumn("Run Value", format="%.1f", help="**Run Value**  \nRuns contributed in this game compared to the season-average player given an equal amount of playing time")
+                "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help="**Fielding Run Value**  \nCompared to the season-average player given an equal amount of defensive innings played"),
+                "designated_hitter_adjustment": st.column_config.NumberColumn("DH Adjustment", format="%.1f", help="**Designated Hitter Adjustment**  \nSitting players accrue negative run value as if they were on the field and didn't make any plays. To balance the team average to zero, an equal amount of positive run value is distributed equally amongst the players in the field."),
+                "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \nCompared to the season-average player given an equal amount of defensive playing time  \n=Pitching+Fielding+DH Adjustment"),
+                "runs_above_average": st.column_config.NumberColumn("Run Value", format="%.1f", help="**Run Value**  \nRuns contributed in this game compared to the season-average player given an equal amount of playing time  \n=Batting+Defense")
             }
         )
 
