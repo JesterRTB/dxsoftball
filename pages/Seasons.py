@@ -326,7 +326,7 @@ with tab_box_scores:
                 "slugging_percentage","on_base_plus_slugging","total_bases","sacrifice_flies","batting_double_plays","wrc","woba","wrc_plus"
             ],
             column_config={
-                "player": st.column_config.Column("Player", pinned=True, width=200, help="**Player**"),
+                "player": st.column_config.Column("Player", pinned=True, width=120, help="**Player**"),
                 "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
                 "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
                 "at_bats": st.column_config.NumberColumn("AB", format="%d", help="**At-Bats**"),
