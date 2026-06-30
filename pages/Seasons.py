@@ -29,11 +29,8 @@ df_season_overview['extra_base_hit_percentage'] = df_season_overview['extra_base
 df_season_overview['ra7'] = df_season_overview['runs_allowed']/df_season_overview['innings_pitched']*7
 df_season_overview['k7'] = df_season_overview['strikeouts_pitching']/df_season_overview['innings_pitched']*7
 styled_df_season_overview = df_season_overview.style.format({
-        "innings_pitched": format_baseball_innings
-    }).apply(
-        create_row_highlighter(target_column="player", target_value="Total"),
-        axis=1
-    )
+    "innings_pitched": format_baseball_innings
+})
 
 tab_overview, tab_team_standard_batting, tab_team_advanced_batting, tab_team_pitching = st.tabs(["Overview", "Team Standard Batting", "Team Advanced Batting", "Team Pitching & Fielding"])
 
