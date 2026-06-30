@@ -455,9 +455,8 @@ with tab_player_stats:
     total_row_df_stats['isolated_power'] = total_row_df_stats['slugging_percentage'] - total_row_df_stats['batting_average']
     total_row_df_stats['batting_average_balls_in_play'] = (total_row_df_stats['hits'] - total_row_df_stats['home_runs']) / (total_row_df_stats['at_bats'] - total_row_df_stats['strikeouts_batting'] - total_row_df_stats['home_runs'] + total_row_df_stats['sacrifice_flies'])
     total_row_df_stats['extra_base_hit_percentage'] = total_row_df_stats['extra_base_hits'] / total_row_df_stats['plate_appearances'] * 100
-    total_row_df_stats['runs_allowed_per_seven'] = total_row_df_stats['runs_allowed'] / total_row_df_stats['innings_pitched'] * 7
-    total_row_df_stats['strikeouts_per_seven'] = total_row_df_stats['strikeouts_pitching'] / total_row_df_stats['innings_pitched'] * 7
-    total_row_df_stats['range_factor'] = (total_row_df_stats['putouts'] + total_row_df_stats['assists']) / total_row_df_stats['innings_defense'] * 7
+    
+    
 
     # Append total row to df
     df_stats_with_total = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
@@ -643,6 +642,8 @@ with tab_player_stats:
             total_row_pitching_df_stats = total_row_pitching_df_stats.fillna("")
         
             total_row_pitching_df_stats['player'] = "Total"
+            total_row_pitching_df_stats['runs_allowed_per_seven'] = total_row_pitching_df_stats['runs_allowed'] / total_row_pitching_df_stats['innings_pitched'] * 7
+            total_row_pitching_df_stats['strikeouts_per_seven'] = total_row_pitching_df_stats['strikeouts_pitching'] / total_row_pitching_df_stats['innings_pitched'] * 7
             
             pitching_df_stats = pitching_df_stats.sort_values(by="out_credit_pitching", ascending=False)
         
@@ -704,6 +705,7 @@ with tab_player_stats:
             total_row_fielding_df_stats = total_row_fielding_df_stats.fillna("")
         
             total_row_fielding_df_stats['player'] = "Total"
+            total_row_fielding_df_stats['range_factor'] = (total_row_fielding_df_stats['putouts'] + total_row_fielding_df_stats['assists']) / total_row_fielding_df_stats['innings_defense'] * 7
             
             fielding_df_stats = fielding_df_stats.sort_values(by="out_credit_fielding", ascending=False)
         
