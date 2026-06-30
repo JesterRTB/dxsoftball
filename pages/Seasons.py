@@ -232,7 +232,20 @@ with tab_box_scores:
     df_box_with_total = pd.concat([df_box, total_row_box], ignore_index=True)
 
     # Style the total row
-    styled_df_box = df_box_with_total.style.apply(
+    styled_df_box = df_box_with_total.style.format({
+        "innings_defense": format_baseball_innings,
+        "innings_pitched": format_baseball_innings,
+        "innings_catcher": format_baseball_innings,
+        "innings_first_base": format_baseball_innings,
+        "innings_second_base": format_baseball_innings,
+        "innings_third_base": format_baseball_innings,
+        "innings_shortstop": format_baseball_innings,
+        "innings_left_field": format_baseball_innings,
+        "innings_left_center_field": format_baseball_innings,
+        "innings_right_center_field": format_baseball_innings,
+        "innings_right_field": format_baseball_innings,
+        "innings_designated_hitter": format_baseball_innings
+    }).apply(
         create_row_highlighter(target_column="player", target_value="Total"),
         axis=1
     )
