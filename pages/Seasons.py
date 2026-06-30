@@ -531,7 +531,7 @@ with tab_player_stats:
             )
             if not pitching_df_stats.empty:
                 st.dataframe(
-                    pitching_df_stats,
+                    styled_pitching_df_stats,
                     height="content",
                     hide_index=True,
                     placeholder="",
@@ -574,7 +574,7 @@ with tab_player_stats:
             )
             if not fielding_df_stats.empty:
                 st.dataframe(
-                    fielding_df_stats,
+                    styled_fielding_df_stats,
                     height="content",
                     hide_index=True,
                     placeholder="",
