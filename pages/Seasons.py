@@ -466,9 +466,27 @@ with tab_player_stats:
     tab_stats_overview, tab_stats_standard_batting, tab_stats_advanced_batting, tab_stats_pitching, tab_stats_fielding, tab_stats_value = st.tabs(["Overview", "Standard Batting", "Advanced Batting", "Pitching", "Fielding", "Value"])
 
     with tab_stats_overview:
-        styled_df_stats = styled_df_stats.sort_values(by="wins_above_replacement", ascending=False)
+        df_stats_overview = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
+        df_stats_overview = df_stats_overview.sort_values(by="wins_above_replacement", ascending=False)
+        styled_df_stats_overview = df_stats_overview.style.format({
+            "innings_defense": format_baseball_innings,
+            "innings_pitched": format_baseball_innings,
+            "innings_catcher": format_baseball_innings,
+            "innings_first_base": format_baseball_innings,
+            "innings_second_base": format_baseball_innings,
+            "innings_third_base": format_baseball_innings,
+            "innings_shortstop": format_baseball_innings,
+            "innings_left_field": format_baseball_innings,
+            "innings_left_center_field": format_baseball_innings,
+            "innings_right_center_field": format_baseball_innings,
+            "innings_right_field": format_baseball_innings,
+            "innings_designated_hitter": format_baseball_innings
+        }).apply(
+            create_row_highlighter(target_column="player", target_value="Total"),
+            axis=1
+        )
         st.dataframe(
-                styled_df_stats,
+                styled_df_stats_overview,
                 height="content",
                 hide_index=True,
                 placeholder="",
@@ -495,9 +513,27 @@ with tab_player_stats:
             )
         
         with tab_stats_standard_batting:
-            styled_df_stats = styled_df_stats.sort_values(by="batting_average", ascending=False)
+            df_stats_standard_batting = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
+            df_stats_standard_batting = df_stats_standard_batting.sort_values(by="wins_above_replacement", ascending=False)
+            styled_df_stats_standard_batting = df_stats_standard_batting.style.format({
+                "innings_defense": format_baseball_innings,
+                "innings_pitched": format_baseball_innings,
+                "innings_catcher": format_baseball_innings,
+                "innings_first_base": format_baseball_innings,
+                "innings_second_base": format_baseball_innings,
+                "innings_third_base": format_baseball_innings,
+                "innings_shortstop": format_baseball_innings,
+                "innings_left_field": format_baseball_innings,
+                "innings_left_center_field": format_baseball_innings,
+                "innings_right_center_field": format_baseball_innings,
+                "innings_right_field": format_baseball_innings,
+                "innings_designated_hitter": format_baseball_innings
+            }).apply(
+                create_row_highlighter(target_column="player", target_value="Total"),
+                axis=1
+            )
             st.dataframe(
-                styled_df_stats,
+                styled_df_stats_standard_batting,
                 height="content",
                 hide_index=True,
                 placeholder="",
@@ -527,9 +563,27 @@ with tab_player_stats:
             )
 
         with tab_stats_advanced_batting:
-            styled_df_stats = styled_df_stats.sort_values(by="wrc_plus", ascending=False)
+            df_stats_advanced_batting = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
+            df_stats_advanced_batting = df_stats_advanced_batting.sort_values(by="wins_above_replacement", ascending=False)
+            styled_df_stats_advanced_batting = df_stats_advanced_batting.style.format({
+                "innings_defense": format_baseball_innings,
+                "innings_pitched": format_baseball_innings,
+                "innings_catcher": format_baseball_innings,
+                "innings_first_base": format_baseball_innings,
+                "innings_second_base": format_baseball_innings,
+                "innings_third_base": format_baseball_innings,
+                "innings_shortstop": format_baseball_innings,
+                "innings_left_field": format_baseball_innings,
+                "innings_left_center_field": format_baseball_innings,
+                "innings_right_center_field": format_baseball_innings,
+                "innings_right_field": format_baseball_innings,
+                "innings_designated_hitter": format_baseball_innings
+            }).apply(
+                create_row_highlighter(target_column="player", target_value="Total"),
+                axis=1
+            )
             st.dataframe(
-                styled_df_stats,
+                styled_df_stats_advanced_batting,
                 height="content",
                 hide_index=True,
                 placeholder="",
@@ -558,11 +612,46 @@ with tab_player_stats:
             )
 
         with tab_stats_pitching:
-            pitching_df_stats = styled_df_stats[styled_df_stats['games_pitching'] > 0].copy()
+            pitching_df_stats = df_stats[df_stats['games_pitching'] > 0].copy()
+
+            # Declare total row
+            total_row_pitching_df_stats = pd.DataFrame(index=[0], columns=pitching_df_stats.columns)
+        
+            # Compute numeric sums
+            pitching_df_stats_numeric_sums = pitching_df_stats.sum(numeric_only=True)
+            for col in pitching_df_stats_numeric_sums.index:
+                total_row_pitching_df_stats[col] = pitching_df_stats_numeric_sums[col]
+        
+            # Fill non-numeric cells with empty string
+            total_row_pitching_df_stats = total_row_pitching_df_stats.fillna("")
+        
+            total_row_pitching_df_stats['player'] = "Total"
+            
             pitching_df_stats = pitching_df_stats.sort_values(by="out_credit_pitching", ascending=False)
+        
+            # Append total row to df
+            pitching_df_stats_with_total = pd.concat([pitching_df_stats, total_row_pitching_df_stats], ignore_index=True)
+
+            styled_df_stats_pitching = pitching_df_stats_with_total.style.format({
+                "innings_defense": format_baseball_innings,
+                "innings_pitched": format_baseball_innings,
+                "innings_catcher": format_baseball_innings,
+                "innings_first_base": format_baseball_innings,
+                "innings_second_base": format_baseball_innings,
+                "innings_third_base": format_baseball_innings,
+                "innings_shortstop": format_baseball_innings,
+                "innings_left_field": format_baseball_innings,
+                "innings_left_center_field": format_baseball_innings,
+                "innings_right_center_field": format_baseball_innings,
+                "innings_right_field": format_baseball_innings,
+                "innings_designated_hitter": format_baseball_innings
+            }).apply(
+                create_row_highlighter(target_column="player", target_value="Total"),
+                axis=1
+            )
             if not pitching_df_stats.empty:
                 st.dataframe(
-                    pitching_df_stats,
+                    styled_df_stats_pitching,
                     height="content",
                     hide_index=True,
                     placeholder="",
@@ -584,11 +673,47 @@ with tab_player_stats:
                 st.info("Pitching stats were not tracked before Summer 2025")
             
         with tab_stats_fielding:
-            fielding_df_stats = styled_df_stats[(styled_df_stats['innings_defense'] > 0) | (styled_df_stats['innings_designated_hitter'] > 0)].copy()
+            fielding_df_stats = df_stats[(df_stats['innings_defense'] > 0) | (df_stats['innings_designated_hitter'] > 0)].copy()
+
+            # Declare total row
+            total_row_fielding_df_stats = pd.DataFrame(index=[0], columns=fielding_df_stats.columns)
+        
+            # Compute numeric sums
+            fielding_df_stats_numeric_sums = fielding_df_stats.sum(numeric_only=True)
+            for col in fielding_df_stats_numeric_sums.index:
+                total_row_fielding_df_stats[col] = fielding_df_stats_numeric_sums[col]
+        
+            # Fill non-numeric cells with empty string
+            total_row_fielding_df_stats = total_row_fielding_df_stats.fillna("")
+        
+            total_row_fielding_df_stats['player'] = "Total"
+            
             fielding_df_stats = fielding_df_stats.sort_values(by="out_credit_fielding", ascending=False)
+        
+            # Append total row to df
+            fielding_df_stats_with_total = pd.concat([fielding_df_stats, total_row_fielding_df_stats], ignore_index=True)
+
+            styled_df_stats_fielding = fielding_df_stats_with_total.style.format({
+                "innings_defense": format_baseball_innings,
+                "innings_pitched": format_baseball_innings,
+                "innings_catcher": format_baseball_innings,
+                "innings_first_base": format_baseball_innings,
+                "innings_second_base": format_baseball_innings,
+                "innings_third_base": format_baseball_innings,
+                "innings_shortstop": format_baseball_innings,
+                "innings_left_field": format_baseball_innings,
+                "innings_left_center_field": format_baseball_innings,
+                "innings_right_center_field": format_baseball_innings,
+                "innings_right_field": format_baseball_innings,
+                "innings_designated_hitter": format_baseball_innings
+            }).apply(
+                create_row_highlighter(target_column="player", target_value="Total"),
+                axis=1
+            )
+            
             if not fielding_df_stats.empty:
                 st.dataframe(
-                    fielding_df_stats,
+                    styled_df_stats_fielding,
                     height="content",
                     hide_index=True,
                     placeholder="",
@@ -625,9 +750,27 @@ with tab_player_stats:
                 st.info("Fielding stats were not tracked before Summer 2025")
 
         with tab_stats_value:
-            styled_df_stats = styled_df_stats.sort_values(by="wins_above_replacement", ascending=False)
+            df_stats_value = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
+            df_stats_value = df_stats_value.sort_values(by="wins_above_replacement", ascending=False)
+            styled_df_stats_value = df_stats_value.style.format({
+                "innings_defense": format_baseball_innings,
+                "innings_pitched": format_baseball_innings,
+                "innings_catcher": format_baseball_innings,
+                "innings_first_base": format_baseball_innings,
+                "innings_second_base": format_baseball_innings,
+                "innings_third_base": format_baseball_innings,
+                "innings_shortstop": format_baseball_innings,
+                "innings_left_field": format_baseball_innings,
+                "innings_left_center_field": format_baseball_innings,
+                "innings_right_center_field": format_baseball_innings,
+                "innings_right_field": format_baseball_innings,
+                "innings_designated_hitter": format_baseball_innings
+            }).apply(
+                create_row_highlighter(target_column="player", target_value="Total"),
+                axis=1
+            )
             st.dataframe(
-                styled_df_stats,
+                styled_df_stats_value,
                 height="content",
                 hide_index=True,
                 placeholder="",
