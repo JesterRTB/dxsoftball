@@ -466,8 +466,8 @@ with tab_player_stats:
     tab_stats_overview, tab_stats_standard_batting, tab_stats_advanced_batting, tab_stats_pitching, tab_stats_fielding, tab_stats_value = st.tabs(["Overview", "Standard Batting", "Advanced Batting", "Pitching", "Fielding", "Value"])
 
     with tab_stats_overview:
+        df_stats = df_stats.sort_values(by="wins_above_replacement", ascending=False)
         df_stats_overview = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
-        df_stats_overview = df_stats_overview.sort_values(by="wins_above_replacement", ascending=False)
         styled_df_stats_overview = df_stats_overview.style.format({
             "innings_defense": format_baseball_innings,
             "innings_pitched": format_baseball_innings,
@@ -513,8 +513,8 @@ with tab_player_stats:
             )
         
         with tab_stats_standard_batting:
+            df_stats = df_stats.sort_values(by="batting_average", ascending=False)
             df_stats_standard_batting = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
-            df_stats_standard_batting = df_stats_standard_batting.sort_values(by="wins_above_replacement", ascending=False)
             styled_df_stats_standard_batting = df_stats_standard_batting.style.format({
                 "innings_defense": format_baseball_innings,
                 "innings_pitched": format_baseball_innings,
@@ -563,8 +563,8 @@ with tab_player_stats:
             )
 
         with tab_stats_advanced_batting:
+            df_stats = df_stats.sort_values(by="wrc_plus", ascending=False)
             df_stats_advanced_batting = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
-            df_stats_advanced_batting = df_stats_advanced_batting.sort_values(by="wins_above_replacement", ascending=False)
             styled_df_stats_advanced_batting = df_stats_advanced_batting.style.format({
                 "innings_defense": format_baseball_innings,
                 "innings_pitched": format_baseball_innings,
@@ -750,8 +750,8 @@ with tab_player_stats:
                 st.info("Fielding stats were not tracked before Summer 2025")
 
         with tab_stats_value:
+            df_stats = df_stats.sort_values(by="wins_above_replacement", ascending=False)
             df_stats_value = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
-            df_stats_value = df_stats_value.sort_values(by="wins_above_replacement", ascending=False)
             styled_df_stats_value = df_stats_value.style.format({
                 "innings_defense": format_baseball_innings,
                 "innings_pitched": format_baseball_innings,
