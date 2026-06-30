@@ -441,6 +441,14 @@ with tab_player_stats:
     total_row_df_stats = total_row_df_stats.fillna("")
 
     total_row_df_stats['player'] = "Total"
+    total_row_df_stats['batting_average'] = total_row_df_stats['hits']/total_row_df_stats['at_bats']
+    total_row_df_stats['on_base_percentage'] = (total_row_df_stats['hits']+total_row_df_stats['walks'])/total_row_df_stats['plate_appearances']
+    total_row_df_stats['slugging_percentage'] = total_row_df_stats['total_bases']/total_row_df_stats['at_bats']
+    total_row_df_stats['on_base_plus_slugging'] = (total_row_df_stats['hits']+total_row_df_stats['walks'])/total_row_df_stats['plate_appearances'] + total_row_df_stats['total_bases']/total_row_df_stats['at_bats']
+    total_box_woba_points = (df_box['woba']*df_box['plate_appearances']).sum()
+    total_box_wrc_points = (df_box['wrc_plus']*df_box['plate_appearances']).sum()
+    total_row_df_stats['woba'] = total_box_woba_points/total_row_df_stats['plate_appearances']
+    total_row_df_stats['wrc_plus'] = total_box_wrc_points/total_row_df_stats['plate_appearances']
 
     # Append total row to df
     df_stats_with_total = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
