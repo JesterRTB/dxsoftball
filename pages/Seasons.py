@@ -445,11 +445,19 @@ with tab_player_stats:
     total_row_df_stats['on_base_percentage'] = (total_row_df_stats['hits']+total_row_df_stats['walks'])/total_row_df_stats['plate_appearances']
     total_row_df_stats['slugging_percentage'] = total_row_df_stats['total_bases']/total_row_df_stats['at_bats']
     total_row_df_stats['on_base_plus_slugging'] = (total_row_df_stats['hits']+total_row_df_stats['walks'])/total_row_df_stats['plate_appearances'] + total_row_df_stats['total_bases']/total_row_df_stats['at_bats']
-    total_box_woba_points = (df_box['woba']*df_box['plate_appearances']).sum()
-    total_box_wrc_points = (df_box['wrc_plus']*df_box['plate_appearances']).sum()
-    total_row_df_stats['woba'] = total_box_woba_points/total_row_df_stats['plate_appearances']
+    total_row_df_stats_woba_points = (df_stats['woba']*df_stats['plate_appearances']).sum()
+    total_row_df_stats['woba'] = total_row_df_stats_woba_points/total_row_df_stats['plate_appearances']
     total_row_df_stats['wrc_plus'] = 100
     total_row_df_stats['ops_plus'] = 100
+    
+    total_row_df_stats['strikeout_percentage'] = total_row_df_stats['strikeouts_batting'] / total_row_df_stats['plate_appearances'] * 100
+    total_row_df_stats['walk_percentage'] = total_row_df_stats['walks'] / total_row_df_stats['plate_appearances'] * 100
+    total_row_df_stats['isolated_power'] = total_row_df_stats['slugging_percentage'] - total_row_df_stats['batting_average']
+    total_row_df_stats['batting_average_balls_in_play'] = (total_row_df_stats['hits'] - total_row_df_stats['home_runs']) / (total_row_df_stats['at_bats'] - total_row_df_stats['strikeouts_batting'] - total_row_df_stats['home_runs'] + total_row_df_stats['sacrifice_flies'])
+    total_row_df_stats['extra_base_hit_percentage'] = total_row_df_stats['extra_base_hits'] / total_row_df_stats['plate_appearances'] * 100
+    total_row_df_stats['runs_allowed_per_seven'] = total_row_df_stats['runs_allowed'] / total_row_df_stats['innings_pitched'] * 7
+    total_row_df_stats['strikeouts_per_seven'] = total_row_df_stats['strikeouts_pitching'] / total_row_df_stats['innings_pitched'] * 7
+    total_row_df_stats['range_factor'] = (total_row_df_stats['putouts'] + total_row_df_stats['assists']) / total_row_df_stats['innings_defense'] * 7
 
     # Append total row to df
     df_stats_with_total = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
