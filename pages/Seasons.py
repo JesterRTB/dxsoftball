@@ -429,12 +429,46 @@ with tab_player_stats:
     df_stats['fielding_run_value_with_adjustment'] = df_stats['fielding_run_value']+df_stats['designated_hitter_adjustment']
     df_stats['runs_above_replacement'] = df_stats['wraa']+df_stats['defensive_run_value']+df_stats['replacement_runs']
 
+    # Declare total row
+    total_row_df_stats = pd.DataFrame(index=[0], columns=df_stats.columns)
+
+    # Compute numeric sums
+    df_stats_numeric_sums = df_stats.sum(numeric_only=True)
+    for col in df_stats_numeric_sums.index:
+        total_row_df_stats[col] = df_stats_numeric_sums[col]
+
+    # Fill non-numeric cells with empty string
+    total_row_df_stats = total_row_df_stats.fillna("")
+
+    total_row_df_stats['player'] = "Total"
+
+    # Append total row to df
+    df_stats_with_total = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
+
+    styled_df_stats = df_stats_with_total.style.format({
+        "innings_defense": format_baseball_innings,
+        "innings_pitched": format_baseball_innings,
+        "innings_catcher": format_baseball_innings,
+        "innings_first_base": format_baseball_innings,
+        "innings_second_base": format_baseball_innings,
+        "innings_third_base": format_baseball_innings,
+        "innings_shortstop": format_baseball_innings,
+        "innings_left_field": format_baseball_innings,
+        "innings_left_center_field": format_baseball_innings,
+        "innings_right_center_field": format_baseball_innings,
+        "innings_right_field": format_baseball_innings,
+        "innings_designated_hitter": format_baseball_innings
+    }).apply(
+        create_row_highlighter(target_column="player", target_value="Total"),
+        axis=1
+    )
+
     tab_stats_overview, tab_stats_standard_batting, tab_stats_advanced_batting, tab_stats_pitching, tab_stats_fielding, tab_stats_value = st.tabs(["Overview", "Standard Batting", "Advanced Batting", "Pitching", "Fielding", "Value"])
 
     with tab_stats_overview:
-        df_stats = df_stats.sort_values(by="wins_above_replacement", ascending=False)
+        styled_df_stats = styled_df_stats.sort_values(by="wins_above_replacement", ascending=False)
         st.dataframe(
-                df_stats,
+                styled_df_stats,
                 height="content",
                 hide_index=True,
                 placeholder="",
@@ -461,9 +495,9 @@ with tab_player_stats:
             )
         
         with tab_stats_standard_batting:
-            df_stats = df_stats.sort_values(by="batting_average", ascending=False)
+            styled_df_stats = styled_df_stats.sort_values(by="batting_average", ascending=False)
             st.dataframe(
-                df_stats,
+                styled_df_stats,
                 height="content",
                 hide_index=True,
                 placeholder="",
@@ -493,9 +527,9 @@ with tab_player_stats:
             )
 
         with tab_stats_advanced_batting:
-            df_stats = df_stats.sort_values(by="wrc_plus", ascending=False)
+            styled_df_stats = styled_df_stats.sort_values(by="wrc_plus", ascending=False)
             st.dataframe(
-                df_stats,
+                styled_df_stats,
                 height="content",
                 hide_index=True,
                 placeholder="",
@@ -524,17 +558,11 @@ with tab_player_stats:
             )
 
         with tab_stats_pitching:
-            pitching_df_stats = df_stats[df_stats['games_pitching'] > 0].copy()
+            pitching_df_stats = styled_df_stats[styled_df_stats['games_pitching'] > 0].copy()
             pitching_df_stats = pitching_df_stats.sort_values(by="out_credit_pitching", ascending=False)
-            styled_pitching_df_stats = pitching_df_stats.style.format({
-                "innings_pitched": format_baseball_innings
-            }).apply(
-                create_row_highlighter(target_column="player", target_value="Total"),
-                axis=1
-            )
             if not pitching_df_stats.empty:
                 st.dataframe(
-                    styled_pitching_df_stats,
+                    pitching_df_stats,
                     height="content",
                     hide_index=True,
                     placeholder="",
@@ -556,28 +584,11 @@ with tab_player_stats:
                 st.info("Pitching stats were not tracked before Summer 2025")
             
         with tab_stats_fielding:
-            fielding_df_stats = df_stats[(df_stats['innings_defense'] > 0) | (df_stats['innings_designated_hitter'] > 0)].copy()
+            fielding_df_stats = styled_df_stats[(styled_df_stats['innings_defense'] > 0) | (styled_df_stats['innings_designated_hitter'] > 0)].copy()
             fielding_df_stats = fielding_df_stats.sort_values(by="out_credit_fielding", ascending=False)
-            styled_fielding_df_stats = fielding_df_stats.style.format({
-                "innings_defense": format_baseball_innings,
-                "innings_pitched": format_baseball_innings,
-                "innings_catcher": format_baseball_innings,
-                "innings_first_base": format_baseball_innings,
-                "innings_second_base": format_baseball_innings,
-                "innings_third_base": format_baseball_innings,
-                "innings_shortstop": format_baseball_innings,
-                "innings_left_field": format_baseball_innings,
-                "innings_left_center_field": format_baseball_innings,
-                "innings_right_center_field": format_baseball_innings,
-                "innings_right_field": format_baseball_innings,
-                "innings_designated_hitter": format_baseball_innings
-            }).apply(
-                create_row_highlighter(target_column="player", target_value="Total"),
-                axis=1
-            )
             if not fielding_df_stats.empty:
                 st.dataframe(
-                    styled_fielding_df_stats,
+                    fielding_df_stats,
                     height="content",
                     hide_index=True,
                     placeholder="",
@@ -614,9 +625,9 @@ with tab_player_stats:
                 st.info("Fielding stats were not tracked before Summer 2025")
 
         with tab_stats_value:
-            df_stats = df_stats.sort_values(by="wins_above_replacement", ascending=False)
+            styled_df_stats = styled_df_stats.sort_values(by="wins_above_replacement", ascending=False)
             st.dataframe(
-                df_stats,
+                styled_df_stats,
                 height="content",
                 hide_index=True,
                 placeholder="",
