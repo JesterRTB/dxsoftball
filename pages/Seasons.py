@@ -523,6 +523,12 @@ with tab_player_stats:
         with tab_stats_pitching:
             pitching_df_stats = df_stats[df_stats['games_pitching'] > 0].copy()
             pitching_df_stats = pitching_df_stats.sort_values(by="out_credit_pitching", ascending=False)
+            styled_pitching_df_stats = pitching_df_stats.style.format({
+                "innings_pitched": format_baseball_innings
+            }).apply(
+                create_row_highlighter(target_column="player", target_value="Total"),
+                axis=1
+            )
             if not pitching_df_stats.empty:
                 st.dataframe(
                     pitching_df_stats,
@@ -549,7 +555,23 @@ with tab_player_stats:
         with tab_stats_fielding:
             fielding_df_stats = df_stats[(df_stats['innings_defense'] > 0) | (df_stats['innings_designated_hitter'] > 0)].copy()
             fielding_df_stats = fielding_df_stats.sort_values(by="out_credit_fielding", ascending=False)
-            df_stats = df_stats.sort_values(by="innings_defense", ascending=False)
+            styled_fielding_df_stats = fielding_df_stats.style.format({
+                "innings_defense": format_baseball_innings,
+                "innings_pitched": format_baseball_innings,
+                "innings_catcher": format_baseball_innings,
+                "innings_first_base": format_baseball_innings,
+                "innings_second_base": format_baseball_innings,
+                "innings_third_base": format_baseball_innings,
+                "innings_shortstop": format_baseball_innings,
+                "innings_left_field": format_baseball_innings,
+                "innings_left_center_field": format_baseball_innings,
+                "innings_right_center_field": format_baseball_innings,
+                "innings_right_field": format_baseball_innings,
+                "innings_designated_hitter": format_baseball_innings
+            }).apply(
+                create_row_highlighter(target_column="player", target_value="Total"),
+                axis=1
+            )
             if not fielding_df_stats.empty:
                 st.dataframe(
                     fielding_df_stats,
