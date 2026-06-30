@@ -448,7 +448,8 @@ with tab_player_stats:
     total_box_woba_points = (df_box['woba']*df_box['plate_appearances']).sum()
     total_box_wrc_points = (df_box['wrc_plus']*df_box['plate_appearances']).sum()
     total_row_df_stats['woba'] = total_box_woba_points/total_row_df_stats['plate_appearances']
-    total_row_df_stats['wrc_plus'] = total_box_wrc_points/total_row_df_stats['plate_appearances']
+    total_row_df_stats['wrc_plus'] = 100
+    total_row_df_stats['ops_plus'] = 100
 
     # Append total row to df
     df_stats_with_total = pd.concat([df_stats, total_row_df_stats], ignore_index=True)
