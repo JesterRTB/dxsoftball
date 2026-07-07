@@ -145,7 +145,7 @@ schedule_season = st.selectbox(
         width=300
     )
 
-tab_schedule, tab_box_scores, tab_player_stats = st.tabs(["Schedule & Results", "Box Scores", "Player Stats"])
+tab_schedule, tab_box_scores, tab_player_stats = st.tabs(["Schedule & Results", "Box Scores", "Player Stats"], on_change="rerun")
 
 if tab_schedule.open:
     with tab_schedule:
@@ -331,7 +331,7 @@ if tab_box_scores.open:
         else:
             st.info("Linescore unavailable because game metadata has not been logged")
             
-        tab_box_score_batting, tab_box_score_pitching, tab_box_score_value = st.tabs(["Batting", "Pitching & Fielding", "Value"], on_change="rerun")
+        tab_box_score_batting, tab_box_score_pitching, tab_box_score_value = st.tabs(["Batting", "Pitching & Fielding", "Value"])
     
         with tab_box_score_batting:
             st.dataframe(
