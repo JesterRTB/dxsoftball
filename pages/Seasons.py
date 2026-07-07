@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from glossary import *
 from Home import supabase
 from utils import (
     create_row_highlighter,
@@ -144,17 +145,15 @@ schedule_season = st.selectbox(
         label_visibility="collapsed",
         width=300
     )
+schedule_response = supabase.rpc("get_season_schedule", {
+    "target_season": schedule_season 
+}).execute()
+df_schedule = pd.DataFrame(schedule_response.data)
 
 tab_schedule, tab_box_scores, tab_player_stats = st.tabs(["Schedule & Results", "Box Scores", "Player Stats"], on_change="rerun")
 
 if tab_schedule.open:
     with tab_schedule:
-        schedule_response = supabase.rpc("get_season_schedule", {
-            "target_season": schedule_season 
-        }).execute()
-    
-        df_schedule = pd.DataFrame(schedule_response.data)
-    
         st.dataframe(
             df_schedule,
             height="content",
