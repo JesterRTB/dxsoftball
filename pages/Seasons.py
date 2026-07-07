@@ -329,89 +329,92 @@ with tab_box_scores:
     else:
         st.info("Linescore unavailable because game metadata has not been logged")
         
-    tab_box_score_batting, tab_box_score_pitching, tab_box_score_value = st.tabs(["Batting", "Pitching & Fielding", "Value"])
+    tab_box_score_batting, tab_box_score_pitching, tab_box_score_value = st.tabs(["Batting", "Pitching & Fielding", "Value"], on_change="rerun")
 
-    with tab_box_score_batting:
-        st.dataframe(
-            styled_df_box,
-            height="content",
-            hide_index=True,
-            placeholder="",
-            column_order=[
-                "player","player_position","runs","at_bats","hits","doubles","triples","home_runs","runs_batted_in","walks","strikeouts_batting","batting_average","on_base_percentage",
-                "slugging_percentage","on_base_plus_slugging","total_bases","sacrifice_flies","batting_double_plays","wrc","woba","wrc_plus"
-            ],
-            column_config={
-                "player": st.column_config.Column("Player", pinned=True, width=120, help="**Player**"),
-                "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
-                "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
-                "at_bats": st.column_config.NumberColumn("AB", format="%d", help="**At-Bats**"),
-                "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
-                "doubles": st.column_config.NumberColumn("2B", format="%d", help="**Doubles**"),
-                "triples": st.column_config.NumberColumn("3B", format="%d", help="**Triples**"),
-                "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
-                "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
-                "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases on Balls / Walks**"),
-                "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
-                "total_bases": st.column_config.NumberColumn("TB", format="%d", help="**Total Bases**  \n=1B+2x2B+3x3B+4xHR"),
-                "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**"),
-                "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**"),
-                "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \n=H/AB"),
-                "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n=(H+BB)/PA"),
-                "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \n=TB/AB"),
-                "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
-                "wrc": st.column_config.NumberColumn("wRC", format="%d", help="**Weighted Runs Created**"),
-                "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help="**Weighted On-Base Average**"),
-                "wrc_plus": st.column_config.NumberColumn("wRC+", format="%d", help="**Adjusted wRC+**")
-            }
-        )
+    if tab_box_score_batting.open:
+        with tab_box_score_batting:
+            st.dataframe(
+                styled_df_box,
+                height="content",
+                hide_index=True,
+                placeholder="",
+                column_order=[
+                    "player","player_position","runs","at_bats","hits","doubles","triples","home_runs","runs_batted_in","walks","strikeouts_batting","batting_average","on_base_percentage",
+                    "slugging_percentage","on_base_plus_slugging","total_bases","sacrifice_flies","batting_double_plays","wrc","woba","wrc_plus"
+                ],
+                column_config={
+                    "player": st.column_config.Column("Player", pinned=True, width=120, help="**Player**"),
+                    "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
+                    "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
+                    "at_bats": st.column_config.NumberColumn("AB", format="%d", help="**At-Bats**"),
+                    "hits": st.column_config.NumberColumn("H", format="%d", help="**Hits**"),
+                    "doubles": st.column_config.NumberColumn("2B", format="%d", help="**Doubles**"),
+                    "triples": st.column_config.NumberColumn("3B", format="%d", help="**Triples**"),
+                    "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**"),
+                    "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**"),
+                    "walks": st.column_config.NumberColumn("BB", format="%d", help="**Bases on Balls / Walks**"),
+                    "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help="**Strikeouts**  \nIncludes foul outs"),
+                    "total_bases": st.column_config.NumberColumn("TB", format="%d", help="**Total Bases**  \n=1B+2x2B+3x3B+4xHR"),
+                    "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help="**Sacrifice Flies**"),
+                    "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="**Hit Into Double Plays**"),
+                    "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \n=H/AB"),
+                    "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n=(H+BB)/PA"),
+                    "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \n=TB/AB"),
+                    "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
+                    "wrc": st.column_config.NumberColumn("wRC", format="%d", help="**Weighted Runs Created**"),
+                    "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help="**Weighted On-Base Average**"),
+                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%d", help="**Adjusted wRC+**")
+                }
+            )
 
-    with tab_box_score_pitching:
-        st.dataframe(
-            styled_df_box,
-            height="content",
-            hide_index=True,
-            placeholder="",
-            column_order=[
-                "player","player_position","innings_pitched","runs_allowed","strikeouts_pitching","out_credit_pitching",
-                "innings_defense","putouts","assists","fielding_double_plays","out_credit_fielding","out_credit_total"
-            ],
-            column_config={
-                "player": st.column_config.Column("Player", pinned=True, width=120, help="**Player**"),
-                "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
-                "innings_pitched": st.column_config.NumberColumn("IP", help="**Innings Pitched**"),
-                "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
-                "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**"),
-                "out_credit_pitching": st.column_config.NumberColumn("PC", format="%.1f", help="**Pitching Out Credit**  \nPitchers receive 0.1 for all outs and an additional 0.9 for strikeouts"),
-                "innings_defense": st.column_config.NumberColumn("Inn", help="**Defensive Innings Played**"),
-                "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
-                "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
-                "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
-                "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs and the remaining 0.9 is split evenly by all fielders who touch the ball leading to a putout"),
-                "out_credit_total": st.column_config.NumberColumn("DC", format="%.1f", help="**Defensive Out Credit**  \n=PC+FC"),
-            }
-        )
+    if tab_box_score_pitching.open:
+        with tab_box_score_pitching:
+            st.dataframe(
+                styled_df_box,
+                height="content",
+                hide_index=True,
+                placeholder="",
+                column_order=[
+                    "player","player_position","innings_pitched","runs_allowed","strikeouts_pitching","out_credit_pitching",
+                    "innings_defense","putouts","assists","fielding_double_plays","out_credit_fielding","out_credit_total"
+                ],
+                column_config={
+                    "player": st.column_config.Column("Player", pinned=True, width=120, help="**Player**"),
+                    "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
+                    "innings_pitched": st.column_config.NumberColumn("IP", help="**Innings Pitched**"),
+                    "runs_allowed": st.column_config.NumberColumn("RA", format="%d", help="**Runs Allowed**"),
+                    "strikeouts_pitching": st.column_config.NumberColumn("K", format="%d", help="**Strikeouts**"),
+                    "out_credit_pitching": st.column_config.NumberColumn("PC", format="%.1f", help="**Pitching Out Credit**  \nPitchers receive 0.1 for all outs and an additional 0.9 for strikeouts"),
+                    "innings_defense": st.column_config.NumberColumn("Inn", help="**Defensive Innings Played**"),
+                    "putouts": st.column_config.NumberColumn("PO", format="%d", help="**Putouts**"),
+                    "assists": st.column_config.NumberColumn("A", format="%d", help="**Assists**"),
+                    "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
+                    "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs and the remaining 0.9 is split evenly by all fielders who touch the ball leading to a putout"),
+                    "out_credit_total": st.column_config.NumberColumn("DC", format="%.1f", help="**Defensive Out Credit**  \n=PC+FC"),
+                }
+            )
 
-    with tab_box_score_value:
-        st.dataframe(
-            styled_df_box,
-            height="content",
-            hide_index=True,
-            placeholder="",
-            column_order=[
-                "player","player_position","wraa","pitching_run_value","fielding_run_value","designated_hitter_adjustment","defensive_run_value","runs_above_average"
-            ],
-            column_config={
-                "player": st.column_config.Column("Player", pinned=True, width=120, help="**Player**"),
-                "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
-                "wraa": st.column_config.NumberColumn("Batting", format="%.1f", help="**Batting Run Value**  \nCompared to the season-average player given an equal amount of plate appearances"),
-                "pitching_run_value": st.column_config.NumberColumn("Pitching", format="%.1f", help="**Pitching Run Value**"),
-                "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help="**Fielding Run Value**  \nCompared to the season-average player given an equal amount of defensive innings played"),
-                "designated_hitter_adjustment": st.column_config.NumberColumn("DH Adjustment", format="%.1f", help="**Designated Hitter Adjustment**  \nSitting players accrue negative run value as if they were on the field and didn't make any plays. To balance the team average to zero, an equal amount of positive run value is distributed equally amongst the players in the field."),
-                "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \nCompared to the season-average player given an equal amount of defensive playing time  \n=Pitching+Fielding+DH Adjustment"),
-                "runs_above_average": st.column_config.NumberColumn("Run Value", format="%.1f", help="**Run Value**  \nRuns contributed in this game compared to the season-average player given an equal amount of playing time  \n=Batting+Defense")
-            }
-        )
+    if tab_box_score_value.open:
+        with tab_box_score_value:
+            st.dataframe(
+                styled_df_box,
+                height="content",
+                hide_index=True,
+                placeholder="",
+                column_order=[
+                    "player","player_position","wraa","pitching_run_value","fielding_run_value","designated_hitter_adjustment","defensive_run_value","runs_above_average"
+                ],
+                column_config={
+                    "player": st.column_config.Column("Player", pinned=True, width=120, help="**Player**"),
+                    "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
+                    "wraa": st.column_config.NumberColumn("Batting", format="%.1f", help="**Batting Run Value**  \nCompared to the season-average player given an equal amount of plate appearances"),
+                    "pitching_run_value": st.column_config.NumberColumn("Pitching", format="%.1f", help="**Pitching Run Value**"),
+                    "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help="**Fielding Run Value**  \nCompared to the season-average player given an equal amount of defensive innings played"),
+                    "designated_hitter_adjustment": st.column_config.NumberColumn("DH Adjustment", format="%.1f", help="**Designated Hitter Adjustment**  \nSitting players accrue negative run value as if they were on the field and didn't make any plays. To balance the team average to zero, an equal amount of positive run value is distributed equally amongst the players in the field."),
+                    "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \nCompared to the season-average player given an equal amount of defensive playing time  \n=Pitching+Fielding+DH Adjustment"),
+                    "runs_above_average": st.column_config.NumberColumn("Run Value", format="%.1f", help="**Run Value**  \nRuns contributed in this game compared to the season-average player given an equal amount of playing time  \n=Batting+Defense")
+                }
+            )
 
 with tab_player_stats:
     stats_response = supabase.rpc("get_leaderboard", {
