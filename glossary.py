@@ -1,0 +1,7 @@
+gloss_g = "**Games Played**"
+gloss_pa = "**Plate Appearances**"
+gloss_r = "**Runs Scored**"
+gloss_hr = "**Home Runs**  \nIncludes both over-the-fence and inside-the-park home runs"
+gloss_rbi = "**Runs Batted In**"
+gloss_avg = "**Batting Average**  \n=H/AB"
+gloss_obp = "**On-Base Percentage**  \n=(H+BB)/PA"
