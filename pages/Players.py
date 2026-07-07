@@ -463,7 +463,7 @@ if selected_player:
                     })
                 )
 
-            tab_gl_batting, tab_gl_pitching = st.tabs(["Batting","Pitching & Fielding"], on_change="rerun")
+            tab_gl_batting, tab_gl_pitching = st.tabs(["Batting","Pitching & Fielding"])
 
             with tab_gl_batting:
                 st.dataframe(
