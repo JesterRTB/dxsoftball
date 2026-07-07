@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from glossary import *
 from Home import supabase
 from utils import (
     create_row_highlighter,
@@ -252,19 +253,19 @@ if selected_player:
                     ],
                     column_config={
                         "season": st.column_config.Column("Season", pinned=True, help="**Season**"),
-                        "games_batting": st.column_config.NumberColumn("G", format="%d", help="**Games Played**"),
-                        "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help="**Plate Appearances**"),
-                        "runs": st.column_config.NumberColumn("R", format="%d", help="**Runs Scored**"),
-                        "home_runs": st.column_config.NumberColumn("HR", format="%d", help="**Home Runs**  \nIncludes over-the-fence and inside-the-park home runs"),
-                        "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help="**Runs Batted In**  \nTeam runs scored as a result from plate appearance"),
-                        "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \n=H/AB"),
-                        "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n=(H+BB)/PA"),
-                        "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \n=TB/AB"),
-                        "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \n=OBP+SLG"),
-                        "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted wRC+**  \nWeighted Runs Created per plate appearance scaled where 100 is team-average, higher is better  \nBased on wOBA"),
-                        "wraa": st.column_config.NumberColumn("Bat", format="%.1f", help="**Batting Run Value**  \nCompared to the team average given an equal amount of plate appearances  \nAlso referred to as Weighted Runs Above Average (wRAA)"),
-                        "defensive_run_value": st.column_config.NumberColumn("Def", format="%.1f", help="**Defensive Run Value**  \nCompared to the team average given an equal amount of defensive innings  \nAlso includes DH Adjustment"),
-                        "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help="**Wins Above Replacement**  \nAn approximation of total wins contributed")
+                        "games_batting": st.column_config.NumberColumn("G", format="%d", help=gloss_g),
+                        "plate_appearances": st.column_config.NumberColumn("PA", format="%d", help=gloss_pa),
+                        "runs": st.column_config.NumberColumn("R", format="%d", help=gloss_r),
+                        "home_runs": st.column_config.NumberColumn("HR", format="%d", help=gloss_hr),
+                        "runs_batted_in": st.column_config.NumberColumn("RBI", format="%d", help=gloss_rbi),
+                        "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help=gloss_avg),
+                        "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help=gloss_obp),
+                        "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help=gloss_slg),
+                        "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help=gloss_ops),
+                        "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help=gloss_wrc_plus),
+                        "wraa": st.column_config.NumberColumn("Bat", format="%.1f", help=gloss_bat),
+                        "defensive_run_value": st.column_config.NumberColumn("Def", format="%.1f", help=gloss_def),
+                        "wins_above_replacement": st.column_config.NumberColumn("WAR", format="%.1f", help=gloss_war)
                     }
                 )
     
