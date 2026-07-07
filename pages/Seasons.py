@@ -355,7 +355,7 @@ if tab_box_scores.open:
                     "strikeouts_batting": st.column_config.NumberColumn("SO", format="%d", help=gloss_so),
                     "total_bases": st.column_config.NumberColumn("TB", format="%d", help=gloss_tb),
                     "sacrifice_flies": st.column_config.NumberColumn("SF", format="%d", help=gloss_sf),
-                    "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help="gloss_hidp),
+                    "batting_double_plays": st.column_config.NumberColumn("HIDP", format="%d", help=gloss_hidp),
                     "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help=gloss_avg),
                     "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help=gloss_obp),
                     "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help=gloss_slg),
