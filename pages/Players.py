@@ -515,7 +515,7 @@ if selected_player:
                     ],
                     column_config={
                         "date": st.column_config.Column("Date", pinned=True, help="**Date**"),
-                        "opponent": st.column_config.Column("Opponent", help="**Opponent**"),
+                        "opponent": st.column_config.Column("Opponent", width=125, help="**Opponent**"),
                         "final_result": st.column_config.Column("Result", help="**Game Result**"),
                         "position_played": st.column_config.Column("Pos", help="**Position(s) Played**"),
                         "innings_pitched": st.column_config.NumberColumn("IP", help="**Innings Pitched**"),
