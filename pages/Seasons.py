@@ -403,8 +403,8 @@ with tab_box_scores:
                 "player": st.column_config.Column("Player", pinned=True, width=120, help="**Player**"),
                 "player_position": st.column_config.Column("Pos", help="**Position(s) Played**"),
                 "wraa": st.column_config.NumberColumn("Batting", format="%.1f", help="**Batting Run Value**  \nCompared to the season-average player given an equal amount of plate appearances"),
-                "pitching_run_value": st.column_config.NumberColumn("Pitching", format="%.1f", help="**Pitching Run Value**"),
-                "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help="**Fielding Run Value**  \nCompared to the season-average player given an equal amount of defensive innings played"),
+                "pitching_run_value": st.column_config.NumberColumn("Pitching", format="%.1f", help=gloss_prv),
+                "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help=gloss_frv),
                 "designated_hitter_adjustment": st.column_config.NumberColumn("DH Adjustment", format="%.1f", help="**Designated Hitter Adjustment**  \nSitting players accrue negative run value as if they were on the field and didn't make any plays. To balance the team average to zero, an equal amount of positive run value is distributed equally amongst the players in the field."),
                 "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \nCompared to the season-average player given an equal amount of defensive playing time  \n=Pitching+Fielding+DH Adjustment"),
                 "runs_above_average": st.column_config.NumberColumn("Run Value", format="%.1f", help="**Run Value**  \nRuns contributed in this game compared to the season-average player given an equal amount of playing time  \n=Batting+Defense")
@@ -681,7 +681,7 @@ with tab_box_scores:
                         "runs_allowed_per_seven": st.column_config.NumberColumn("RA7", format="%.2f", help="**Runs Allowed Per Seven Innings**"),
                         "strikeouts_per_seven": st.column_config.NumberColumn("K/7", format="%.2f", help="**Strikeouts Per Seven Innings**  \nIncludes foul outs"),
                         "out_credit_pitching": st.column_config.NumberColumn("PC", format="%.1f", help="**Pitching Out Credit**  \nPitchers receive 0.1 for all outs and an additional 0.9 for strikeouts"),
-                        "pitching_run_value": st.column_config.NumberColumn("PRV", format="%.1f", help="**Pitching Run Value**")
+                        "pitching_run_value": st.column_config.NumberColumn("PRV", format="%.1f", help=gloss_prv)
                     }
                 )
 
@@ -759,7 +759,7 @@ with tab_box_scores:
                         "fielding_double_plays": st.column_config.NumberColumn("DP", format="%d", help="**Double Plays Turned**"),
                         "range_factor": st.column_config.NumberColumn("RF/7", format="%.2f", help="**Range Factor Per Seven Innings**  \n=(PO+A)/Inn*7"),
                         "out_credit_fielding": st.column_config.NumberColumn("FC", format="%.1f", help="**Fielding Out Credit**  \nPitchers receive 0.1 for all outs. The remaining 0.9 is split evenly between all fielders  \nwho touch the ball leading to an out"),
-                        "fielding_run_value": st.column_config.NumberColumn("FRV", format="%.1f", help="**Fielding Run Value**")
+                        "fielding_run_value": st.column_config.NumberColumn("FRV", format="%.1f", help=gloss_frv)
                     }
                 )
 
@@ -795,8 +795,8 @@ with tab_box_scores:
                 column_config={
                     "player": st.column_config.Column("Player", pinned=True, width=120, help="**Player**"),
                     "wraa": st.column_config.NumberColumn("Batting", format="%.1f", help="**Batting Run Value** \nCompared to the team average given an equal amount of plate appearances"),
-                    "pitching_run_value": st.column_config.NumberColumn("Pitching", format="%.1f", help="**Pitching Run Value**"),
-                    "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help="**Raw Fielding Run Value**  \nCompared to the team average given an equal amount of defensive innings"),
+                    "pitching_run_value": st.column_config.NumberColumn("Pitching", format="%.1f", help=gloss_prv),
+                    "fielding_run_value": st.column_config.NumberColumn("Fielding", format="%.1f", help=gloss_frv),
                     "designated_hitter_adjustment": st.column_config.NumberColumn("DH Adjustment", format="%.1f", help="**Designated Hitter Adjustment**  \nSitting players accrue negative run value as if they were on the field and didn't make any plays. To balance the team average to zero, an equal amount of positive run value is distributed equally amongst the players in the field."),
                     "defensive_run_value": st.column_config.NumberColumn("Defense", format="%.1f", help="**Defensive Run Value**  \nPitching+Fielding+DH Adjustment"),
                     "replacement_runs": st.column_config.NumberColumn("Replacement", format="%.1f", help="**Replacement Run Value**  \nRuns credited to players based on playing time (plate appearances) and team performance (runs scored vs. runs allowed)"),
