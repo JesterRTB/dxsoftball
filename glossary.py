@@ -8,7 +8,7 @@ gloss_bat = "**Batting Run Value**  \nCompared to the team average given an equa
 gloss_bb = "**Bases on Balls / Walks**"
 gloss_bb_pct = "**Base on Balls / Walk Percentage**  \nPercentage of all plate appearances ending in a Base on Balls.  \n= BB / PA"
 gloss_def = "**Defensive Run Value**  \nCompared to the team average given an equal amount of defensive innings played.  \nAlso includes DH Adjustment."
-gloss_frv = "**Fiedling Run Value**  \nMeasures how many defensive outs were contributed compared to the team-average player, then converts to run value. Does not necessarily measure fielding quality.  \n= (FC - (Inn x 0.3)) / 2 x (Team Runs Allowed / (Team Defensive Innings * 3))"
+gloss_frv = "**Fielding Run Value**  \nMeasures how many defensive outs were contributed compared to the team-average player, then converts to run value. Does not necessarily measure fielding quality.  \n= (FC - (Inn x 0.3)) / 2 x (Team Runs Allowed / (Team Defensive Innings * 3))"
 gloss_g = "**Games Played**"
 gloss_h = "**Hits**"
 gloss_hidp = "**Double Plays Hit Into**  \nBatted balls that result in two or more outs made by the defense."
