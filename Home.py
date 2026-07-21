@@ -18,24 +18,36 @@ st.set_page_config(page_title="D-Generation X", page_icon="https://images.seeklo
 
 # 1. Fetch and Parse
 def get_league_schedule(url):
-    # Fetch the raw calendar data
-    response = requests.get(url)
+    # 1. Convert webcal:// protocol to standard https:// if necessary
+    if url.startswith("webcal://"):
+        url = url.replace("webcal://", "https://", 1)
+        
+    # 2. Add User-Agent header so QuickScores serves the raw .ics file instead of an HTML page
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
+    
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+
+    # 3. Guard check: ensure we didn't receive an HTML response page
+    if response.text.strip().startswith("<"):
+        raise ValueError(f"Received HTML instead of iCal data. Check link or permissions.")
+
     calendar = Calendar(response.text)
     
     events = []
     for event in calendar.events:
-        # QuickScores usually provides UTC; convert to Chicago time
         start_time = arrow.get(event.begin).to('US/Central')
         
         events.append({
             "Date": start_time.format('ddd, MMM D'),
             "Time": start_time.format('h:mm A'),
-            "Opponent": event.name.replace("Softball - ", ""), # Clean up the text
+            "Opponent": event.name.replace("Softball - ", ""),
             "Field": event.location if event.location else "TBD",
-            "Unix": start_time.timestamp() # For sorting
+            "Unix": start_time.timestamp()
         })
     
-    # Return as a DataFrame sorted by time
     return pd.DataFrame(events).sort_values("Unix")
 
 st.subheader(":green[D-Generation X Schedule]")
