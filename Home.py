@@ -18,21 +18,23 @@ st.set_page_config(page_title="D-Generation X", page_icon="https://images.seeklo
 
 # 1. Fetch and Parse
 def get_league_schedule(url):
-    # 1. Convert webcal:// protocol to standard https:// if necessary
+    # 1. Convert webcal:// protocol to https://
     if url.startswith("webcal://"):
         url = url.replace("webcal://", "https://", 1)
         
-    # 2. Add User-Agent header so QuickScores serves the raw .ics file instead of an HTML page
+    # 2. Add Accept and User-Agent headers to satisfy QuickScores
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/calendar, text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9"
     }
     
     response = requests.get(url, headers=headers)
     response.raise_for_status()
 
-    # 3. Guard check: ensure we didn't receive an HTML response page
+    # 3. Safety check for HTML error responses
     if response.text.strip().startswith("<"):
-        raise ValueError(f"Received HTML instead of iCal data. Check link or permissions.")
+        raise ValueError("QuickScores returned a web page instead of iCal data.")
 
     calendar = Calendar(response.text)
     
