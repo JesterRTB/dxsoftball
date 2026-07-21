@@ -168,7 +168,7 @@ if all_seasons:
                     column_order=[
                         "player","games_batting","innings_defense","innings_pitched","innings_catcher","innings_first_base","innings_second_base","innings_third_base","innings_shortstop","innings_left_field",
                         "innings_left_center_field","innings_right_center_field","innings_right_field","innings_designated_hitter","putouts","assists","fielding_double_plays","range_factor","out_credit_fielding",
-                        "fielding_run_value""
+                        "fielding_run_value"
                     ],
                     column_config={
                         "player": st.column_config.Column("Player", pinned=True, help="**Player**"),
