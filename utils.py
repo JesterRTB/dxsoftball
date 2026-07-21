@@ -1,5 +1,14 @@
+import streamlit as st
 import pandas as pd
-from Home import supabase
+from supabase import create_client
+
+@st.cache_resource
+def init_supabase():
+    url = st.secrets["SUPABASE_URL"]
+    key = st.secrets["SUPABASE_KEY"]
+    return create_client(url, key)
+
+supabase = init_supabase()
 
 def create_row_highlighter(target_column, target_value, bg_color="rgba(128, 128, 128, 0.2)", bold=True):
     """
