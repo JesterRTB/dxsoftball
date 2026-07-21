@@ -19,21 +19,16 @@ st.set_page_config(page_title="D-Generation X", page_icon="https://images.seeklo
 
 # 1. Fetch and Parse
 def get_league_schedule(url):
-    if url.startswith("webcal://"):
-        url = url.replace("webcal://", "https://", 1)
-
-    # impersonate="chrome" sends Chrome's exact TLS fingerprint to bypass Cloudflare
-    response = requests.get(url, impersonate="chrome")
+    response = requests.get(url)
     response.raise_for_status()
 
-    if response.text.strip().startswith("<"):
-        raise ValueError(f"Received HTML snippet:\n\n{response.text[:500]}")
-
     calendar = Calendar(response.text)
-
+    
     events = []
     for event in calendar.events:
+        # Convert event time to Chicago local time
         start_time = arrow.get(event.begin).to('US/Central')
+        
         events.append({
             "Date": start_time.format('ddd, MMM D'),
             "Time": start_time.format('h:mm A'),
@@ -41,7 +36,7 @@ def get_league_schedule(url):
             "Field": event.location if event.location else "TBD",
             "Unix": start_time.timestamp()
         })
-
+    
     return pd.DataFrame(events).sort_values("Unix")
 
 st.subheader(":green[D-Generation X Schedule]")
