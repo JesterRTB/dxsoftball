@@ -7,3 +7,4 @@ psycopg2-binary
 requests
 ics
 arrow
+curl_cffi
