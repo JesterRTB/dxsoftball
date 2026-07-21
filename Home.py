@@ -1,45 +1,81 @@
 import streamlit as st
+
 import pandas as pd
+
+from supabase import create_client
+
 import requests
+
 from ics import Calendar
+
 import arrow
 
-st.set_page_config(page_title="D-Generation X Schedule", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
 
-st.subheader(":green[D-Generation X Schedule]")
 
-@st.cache_data(ttl=3600)  # Caches the schedule for 1 hour so it loads lightning fast
+# Initialize connection
+
+@st.cache_resource
+
+def init_connection():
+
+    url = st.secrets["SUPABASE_URL"]
+
+    key = st.secrets["SUPABASE_KEY"]
+
+    return create_client(url, key)
+
+
+
+supabase = init_connection()
+
+
+
+st.set_page_config(page_title="D-Generation X", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
+
+
+
+# 1. Fetch and Parse
+
 def get_league_schedule(url):
+
+    # Fetch the raw calendar data
+
     response = requests.get(url)
-    response.raise_for_status()
 
     calendar = Calendar(response.text)
+
     
+
     events = []
+
     for event in calendar.events:
-        # QuickScores times are typically UTC; convert to Chicago local time
+
+        # QuickScores usually provides UTC; convert to Chicago time
         start_time = arrow.get(event.begin).to('US/Central')
-        
+
         events.append({
             "Date": start_time.format('ddd, MMM D'),
             "Time": start_time.format('h:mm A'),
-            "Opponent": event.name.replace("Softball - ", ""), # Clean up event title prefix
+            "Opponent": event.name.replace("Softball - ", ""), # Clean up the text
             "Field": event.location if event.location else "TBD",
-            "Unix": start_time.timestamp() # Helper column for accurate chronological sorting
+            "Unix": start_time.timestamp() # For sorting
         })
     
-    # Return sorted by game time
+    # Return as a DataFrame sorted by time
     return pd.DataFrame(events).sort_values("Unix")
 
+st.subheader(":green[D-Generation X Schedule]")
+
 try:
-    calendar_url = st.secrets["CALENDAR_URL"]
-    df_schedule = get_league_schedule(calendar_url)
-    
-    st.dataframe(
-        df_schedule[["Date", "Time", "Opponent", "Field"]],
-        hide_index=True,
-        use_container_width=True
+    ical_link = st.secrets["CALENDAR_URL"]
+    df = get_league_schedule(ical_link)
+    # Display the upcoming games in a clean table
+    # We drop the 'Unix' column so the user doesn't see it
+    st.table(
+        df[["Date", "Time", "Opponent", "Field"]],
+        hide_index=True
     )
 
 except Exception as e:
-    st.error(f"Error loading schedule: {e}")
+    st.error(f"Error details: {e}") # This will show the actual technical error
+    st.info("Make sure 'requests', 'ics', and 'arrow' are in your requirements.txt!")
