@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 from glossary import *
-from Home import supabase
 from utils import (
     create_row_highlighter,
     fetch_player_data,
@@ -9,7 +8,8 @@ from utils import (
     get_all_players,
     get_player_seasons,
     get_sorted_seasons,
-    get_table_data
+    get_table_data,
+    supabase
 )
 
 st.set_page_config(page_title="D-X Seasons", layout="wide", page_icon="https://images.seeklogo.com/logo-png/27/1/d-generation-x-logo-png_seeklogo-275249.png")
