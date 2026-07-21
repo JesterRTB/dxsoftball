@@ -12,4 +12,4 @@ st.set_page_config(
 
 st.subheader(":green[D-Generation X Schedule]")
 
-st.info("Awaiting playoff schedule...")
+st.info("Awaiting playoff schedule...", width=150)
