@@ -12,4 +12,9 @@ st.set_page_config(
 
 st.subheader(":green[D-Generation X Schedule]")
 
-st.info("Awaiting playoff schedule...", width=250)
+st.write(
+    """**[5] D-Generation X @ [4] Blue Steel**  
+    Monday, July 27  
+    9:45 PM  
+    Melas #3"""
+)
