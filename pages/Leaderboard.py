@@ -118,17 +118,17 @@ if all_seasons:
                     "walk_percentage": st.column_config.NumberColumn("BB%", format="%.1f%%", help="**Walk Percentage**  \nBB/PA"),
                     "strikeout_percentage": st.column_config.NumberColumn("K%", format="%.1f%%", help="**Strikeout Percentage**  \nK/PA  \nIncludes foul outs"),
                     "extra_base_hit_percentage": st.column_config.NumberColumn("XBH%", format="%.1f%%", help="**Extra-Base Hit Percentage**  \n(2B+3B+HR)/PA"),
-                    "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help="**Batting Average**  \nH/AB"),
-                    "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help="**On-Base Percentage**  \n(H+BB)/PA"),
-                    "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help="**Slugging Percentage**  \nTB/AB"),
-                    "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help="**On-Base Plus Slugging**  \nOBP+SLG"),
-                    "ops_plus": st.column_config.NumberColumn("OPS+", format="%.0f", help="**Adjusted OPS+**  \nOPS adjusted to the team average. 100 is average, higher is better  \n=100*((OBP/tmOBP)+(SLG/tmSLG)-1)"),
-                    "isolated_power": st.column_config.NumberColumn("ISO", format="%.3f", help="**Isolated Power**  \nSLG-AVG"),
-                    "batting_average_balls_in_play": st.column_config.NumberColumn("BABIP", format="%.3f", help="**Batting Average on Balls In Play**  \n(H-HR)/(AB-K-HR+SF)"),
-                    "wrc": st.column_config.NumberColumn("wRC", format="%.0f", help="**Weighted Runs Created**"),
-                    "wraa": st.column_config.NumberColumn("wRAA", format="%.1f", help="**Weighted Runs Above Average**"),
-                    "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help="**Weighted On-Base Average**"),
-                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help="**Adjusted wRC+**  \nWeighted Runs Created represented as a rate statistic and adjusted to the team's overall offensive performance  \n100 is team-average, higher is better")
+                    "batting_average": st.column_config.NumberColumn("AVG", format="%.3f", help=gloss_avg),
+                    "on_base_percentage": st.column_config.NumberColumn("OBP", format="%.3f", help=gloss_obp),
+                    "slugging_percentage": st.column_config.NumberColumn("SLG", format="%.3f", help=gloss_slg),
+                    "on_base_plus_slugging": st.column_config.NumberColumn("OPS", format="%.3f", help=gloss_ops),
+                    "ops_plus": st.column_config.NumberColumn("OPS+", format="%.0f", help=gloss_ops_plus),
+                    "isolated_power": st.column_config.NumberColumn("ISO", format="%.3f", help=gloss_iso),
+                    "batting_average_balls_in_play": st.column_config.NumberColumn("BABIP", format="%.3f", help=gloss_babip),
+                    "wrc": st.column_config.NumberColumn("wRC", format="%.0f", help=gloss_wrc),
+                    "wraa": st.column_config.NumberColumn("wRAA", format="%.1f", help=gloss_wraa),
+                    "woba": st.column_config.NumberColumn("wOBA", format="%.3f", help=gloss_woba),
+                    "wrc_plus": st.column_config.NumberColumn("wRC+", format="%.0f", help=gloss_wrc_plus)
                 }
             )
 
