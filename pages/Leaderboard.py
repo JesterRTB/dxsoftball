@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from glossary import *
 from utils import (
     get_sorted_seasons,
     supabase
