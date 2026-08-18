@@ -11,6 +11,7 @@ st.set_page_config(
 )
 
 st.subheader(":green[D-Generation X Upcoming Schedule]")
+st.write("")
 
 st.write(
     """**Alabama Slammers @ :green[D-Generation X]**  
