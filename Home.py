@@ -13,7 +13,7 @@ st.set_page_config(
 st.subheader(":green[D-Generation X Upcoming Schedule]")
 st.write("")
 
-st.write("**August 24**")
+st.subheader("**August 24**")
 st.write(
     """**Alabama Slammers @ :green[D-Generation X]**  
     8:40 PM  
@@ -27,7 +27,7 @@ st.write(
 
 st.divider()
 
-st.write("**August 31**")
+st.subheader("**August 31**")
 st.write(
     """**:green[D-Generation X] @ Draft Picks**  
     6:30 PM  
@@ -41,14 +41,14 @@ st.write(
 
 st.divider()
 
-st.write("**September 7**")
+st.subheader("**September 7**")
 st.write(
     """**Labor Day**"""
 )
 
 st.divider()
 
-st.write("**September 14**")
+st.subheader("**September 14**")
 st.write(
     """**:green[D-Generation X] @ Get Wrecked**  
     8:40 PM  
@@ -62,7 +62,7 @@ st.write(
 
 st.divider()
 
-st.write("**September 21**")
+st.subheader("**September 21**")
 st.write(
     """**:green[D-Generation X] @ Got Errorrs**  
     6:30 PM  
