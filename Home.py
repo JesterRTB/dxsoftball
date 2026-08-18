@@ -11,6 +11,7 @@ st.set_page_config(
 )
 
 st.subheader(":green[D-Generation X Upcoming Schedule]")
+st.link_button("QuickScores", "https://www.quickscores.com/Orgs/ResultsDisplay.php?OrgDir=ahpd&LeagueID=1740379")
 st.write("")
 
 st.subheader("**August 24**")
