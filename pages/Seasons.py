@@ -135,7 +135,7 @@ with tab_team_pitching:
         }
     )
 
-st.divider()
+st.write("")
 st.subheader(":green[D-Generation X Records by Season]")
 schedule_season = st.selectbox(
         "Select a season",
