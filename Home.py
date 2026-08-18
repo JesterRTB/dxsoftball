@@ -42,14 +42,14 @@ st.write(
     Melas #2"""
 )
 
-st.write()
+st.write("")
 
 st.write(
     """**Labor Day**  
     Monday, Sep 7"""
 )
 
-st.write()
+st.write("")
 
 st.write(
     """**D-Generation X @ Get Wrecked**  
@@ -65,7 +65,7 @@ st.write(
     Melas #2"""
 )
 
-st.write()
+st.write("")
 
 st.write(
     """**D-Generation X @ Got Errorrs**  
