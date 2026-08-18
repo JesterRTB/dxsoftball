@@ -26,7 +26,7 @@ st.write(
     Melas #1"""
 )
 
-st.write("")
+st.divider()
 
 st.write(
     """**D-Generation X @ Draft Picks**  
@@ -42,14 +42,14 @@ st.write(
     Melas #2"""
 )
 
-st.write("")
+st.divider()
 
 st.write(
     """**Labor Day**  
     Monday, Sep 7"""
 )
 
-st.write("")
+st.divider()
 
 st.write(
     """**D-Generation X @ Get Wrecked**  
@@ -65,7 +65,7 @@ st.write(
     Melas #2"""
 )
 
-st.write("")
+st.divider()
 
 st.write(
     """**D-Generation X @ Got Errorrs**  
