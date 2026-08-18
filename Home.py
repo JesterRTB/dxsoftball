@@ -26,7 +26,7 @@ st.write(
     Melas #1"""
 )
 
-st.write()
+st.write("")
 
 st.write(
     """**D-Generation X @ Draft Picks**  
