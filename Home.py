@@ -13,71 +13,63 @@ st.set_page_config(
 st.subheader(":green[D-Generation X Upcoming Schedule]")
 st.write("")
 
+st.write("**August 24**")
 st.write(
     """**Alabama Slammers @ :green[D-Generation X]**  
-    Monday, Aug 24 
     8:40 PM  
     Melas #1"""
 )
-
 st.write(
     """**Got Errorrs @ :green[D-Generation X]**  
-    Monday, Aug 24  
     9:45 PM  
     Melas #1"""
 )
 
 st.divider()
 
+st.write("**August 31**")
 st.write(
     """**:green[D-Generation X] @ Draft Picks**  
-    Monday, Aug 31  
     6:30 PM  
     Melas #3"""
 )
-
 st.write(
     """**G.O.A.T.S. @ :green[D-Generation X]**  
-    Monday, Aug 31  
     7:35 PM  
     Melas #2"""
 )
 
 st.divider()
 
+st.write("**September 7**")
 st.write(
-    """**Labor Day**  
-    Monday, Sep 7"""
+    """**Labor Day**"""
 )
 
 st.divider()
 
+st.write("**September 14**")
 st.write(
     """**:green[D-Generation X] @ Get Wrecked**  
-    Monday, Sep 14  
     8:40 PM  
     Melas #2"""
 )
-
 st.write(
     """**:green[D-Generation X] @ Blue Steel**  
-    Monday, Sep 14  
     9:45 PM  
     Melas #2"""
 )
 
 st.divider()
 
+st.write("**September 21**")
 st.write(
     """**:green[D-Generation X] @ Got Errorrs**  
-    Monday, Sep 21  
     6:30 PM  
     Melas #2"""
 )
-
 st.write(
     """**:green[D-Generation X] @ Village Idiots**  
-    Monday, Sep 21  
     7:35 PM  
     Melas #1"""
 )
