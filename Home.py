@@ -14,20 +14,6 @@ st.subheader(":green[D-Generation X Upcoming Schedule]")
 st.link_button("QuickScores", "https://www.quickscores.com/Orgs/ResultsDisplay.php?OrgDir=ahpd&LeagueID=1740379")
 st.write("")
 
-st.subheader("**August 24**")
-st.write(
-    """**Alabama Slammers @ :green[D-Generation X]**  
-    8:40 PM  
-    Melas #1"""
-)
-st.write(
-    """**Got Errorrs @ :green[D-Generation X]**  
-    9:45 PM  
-    Melas #1"""
-)
-
-st.divider()
-
 st.subheader("**August 31**")
 st.write(
     """**:green[D-Generation X] @ Draft Picks**  
