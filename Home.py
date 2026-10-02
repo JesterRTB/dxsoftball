@@ -10,18 +10,5 @@ st.set_page_config(
     layout="wide"
 )
 
-st.subheader(":green[D-Generation X Upcoming Schedule]")
-st.link_button("QuickScores", "https://www.quickscores.com/Orgs/ResultsDisplay.php?OrgDir=ahpd&LeagueID=1740379")
-st.write("")
-
-st.subheader("**September 21**")
-st.write(
-    """**:green[D-Generation X] @ Got Errorrs**  
-    6:30 PM  
-    Melas #2"""
-)
-st.write(
-    """**:green[D-Generation X] @ Village Idiots**  
-    7:35 PM  
-    Melas #1"""
+st.write("See y'all next year"
 )
